@@ -44,7 +44,7 @@ export const ThemeSwitcher = () => {
   ];
 
   return (
-    <div className="absolute right-5 top-2">
+    <div className="right-5 top-2">
       <select
         className={`p-2 rounded-md hover:scale-110 active:scale-100 duration-200 ${
           theme === "dark"
