@@ -9,12 +9,11 @@ export const Hero = () => {
         <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
           <div>
             <h1 className="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">
-              Hey, there{" "}
-              <span className="text-blue-600">I'm Vinayak</span>
+              Hey, there <span className="text-blue-600">I'm Vinayak</span>
             </h1>
             <p className="mt-3 text-lg text-gray-800 dark:text-gray-400">
-              Hand-picked professionals and expertly crafted components,
-              designed for any kind of entrepreneur.
+              I'm currently a frontend developer expanding my skills to
+              encompass full stack development.
             </p>
 
             {/* <!-- Buttons --> */}
@@ -23,7 +22,7 @@ export const Hero = () => {
                 className="inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 border border-transparent text-sm lg:text-base text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:focus:ring-offset-gray-800"
                 href="#"
               >
-                Get started
+                Book a call
                 <svg
                   className="w-2.5 h-2.5"
                   width="16"
@@ -39,12 +38,12 @@ export const Hero = () => {
                   />
                 </svg>
               </a>
-              <a
+              {/* <a
                 className="inline-flex justify-center items-center gap-x-3.5 text-sm lg:text-base text-center border hover:border-gray-300 shadow-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:border-gray-800 dark:hover:border-gray-600 dark:shadow-slate-700/[.7] dark:text-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
                 href="#"
               >
-                {/* Contact sales team */}
-              </a>
+                Contact sales team 
+              </a> */}
             </div>
             {/* <!-- End Buttons --> */}
 

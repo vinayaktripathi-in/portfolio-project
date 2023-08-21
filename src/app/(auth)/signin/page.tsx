@@ -1,89 +1,191 @@
+"use client";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+
 export default function SignIn() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   return (
-    <div className="w-full min-h-screen flex justify-center items-center">
-      <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:dark:bg-gray-900 dark:dark:text-gray-100">
-        <h1 className="text-2xl font-bold text-center">Login</h1>
-        <form action="" className="space-y-6">
-          <div className="space-y-1 text-sm">
-            <label htmlFor="username" className="block dark:dark:text-gray-400">
-              Username
-            </label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
-              className="w-full px-4 py-3 rounded-md dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
-            />
+    <main className="w-full max-w-md mx-auto p-6">
+      <div className="mt-7 bg-slate-50 border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <div className="p-4 sm:p-7">
+          <div className="text-center">
+            <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">
+              Sign in
+            </h1>
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              Don't have an account yet?
+              <Link
+                className="text-blue-600 decoration-2 hover:underline font-medium"
+                href="/signup"
+              >
+                Sign up here
+              </Link>
+            </p>
           </div>
-          <div className="space-y-1 text-sm">
-            <label htmlFor="password" className="block dark:dark:text-gray-400">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              className="w-full px-4 py-3 rounded-md dark:dark:border-gray-700 dark:dark:bg-gray-900 dark:dark:text-gray-100 focus:dark:dark:border-violet-400"
-            />
-            <div className="flex justify-end text-xs dark:dark:text-gray-400">
-              <a rel="noopener noreferrer" href="#">
-                Forgot Password?
-              </a>
+          <div className="mt-5">
+            <button
+              type="button"
+              className="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
+            >
+              <svg
+                className="w-4 h-auto"
+                width={46}
+                height={47}
+                viewBox="0 0 46 47"
+                fill="none"
+              >
+                <path
+                  d="M46 24.0287C46 22.09 45.8533 20.68 45.5013 19.2112H23.4694V27.9356H36.4069C36.1429 30.1094 34.7347 33.37 31.5957 35.5731L31.5663 35.8669L38.5191 41.2719L38.9885 41.3306C43.4477 37.2181 46 31.1669 46 24.0287Z"
+                  fill="#4285F4"
+                />
+                <path
+                  d="M23.4694 47C29.8061 47 35.1161 44.9144 39.0179 41.3012L31.625 35.5437C29.6301 36.9244 26.9898 37.8937 23.4987 37.8937C17.2793 37.8937 12.0281 33.7812 10.1505 28.1412L9.88649 28.1706L2.61097 33.7812L2.52296 34.0456C6.36608 41.7125 14.287 47 23.4694 47Z"
+                  fill="#34A853"
+                />
+                <path
+                  d="M10.1212 28.1413C9.62245 26.6725 9.32908 25.1156 9.32908 23.5C9.32908 21.8844 9.62245 20.3275 10.0918 18.8588V18.5356L2.75765 12.8369L2.52296 12.9544C0.909439 16.1269 0 19.7106 0 23.5C0 27.2894 0.909439 30.8731 2.49362 34.0456L10.1212 28.1413Z"
+                  fill="#FBBC05"
+                />
+                <path
+                  d="M23.4694 9.07688C27.8699 9.07688 30.8622 10.9863 32.5344 12.5725L39.1645 6.11C35.0867 2.32063 29.8061 0 23.4694 0C14.287 0 6.36607 5.2875 2.49362 12.9544L10.0918 18.8588C11.9987 13.1894 17.25 9.07688 23.4694 9.07688Z"
+                  fill="#EB4335"
+                />
+              </svg>
+              Sign in with Google
+            </button>
+            <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-[1_1_0%] before:border-t before:border-gray-200 before:mr-6 after:flex-[1_1_0%] after:border-t after:border-gray-200 after:ml-6 dark:text-gray-500 dark:before:border-gray-600 dark:after:border-gray-600">
+              Or
             </div>
+            {/* Form */}
+            <form onSubmit={handleSubmit((data) => console.log(data))}>
+              <div className="grid gap-y-4">
+                {/* Form Group */}
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm mb-2 dark:text-white"
+                  >
+                    Email address
+                  </label>
+                  <div className="relative">
+                    <input
+                      {...register("email", { required: true })}
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                      aria-describedby="email-error"
+                    />
+                    {errors.email && (
+                      <p className="text-red-600">Email is required.</p>
+                    )}
+                    <div className="hidden absolute inset-y-0 right-0 items-center pointer-events-none pr-3">
+                      <svg
+                        className="h-5 w-5 text-red-500"
+                        width={16}
+                        height={16}
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                        aria-hidden="true"
+                      >
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p
+                    className="hidden text-xs text-red-600 mt-2"
+                    id="email-error"
+                  >
+                    Please include a valid email address so we can get back to
+                    you
+                  </p>
+                </div>
+                {/* End Form Group */}
+                {/* Form Group */}
+                <div>
+                  <div className="flex justify-between items-center">
+                    <label
+                      htmlFor="password"
+                      className="block text-sm mb-2 dark:text-white"
+                    >
+                      Password
+                    </label>
+                    <a
+                      className="text-sm text-blue-600 decoration-2 hover:underline font-medium"
+                      href="/forgotpassword"
+                    >
+                      Forgot password?
+                    </a>
+                  </div>
+                  <div className="relative">
+                    <input
+                      {...register("password", { required: true })}
+                      type="password"
+                      id="password"
+                      name="password"
+                      className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                      aria-describedby="password-error"
+                    />
+                    {errors.password && (
+                      <p className="text-red-600">Password is required.</p>
+                    )}
+                    <div className="hidden absolute inset-y-0 right-0 items-center pointer-events-none pr-3">
+                      <svg
+                        className="h-5 w-5 text-red-500"
+                        width={16}
+                        height={16}
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                        aria-hidden="true"
+                      >
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <p
+                    className="hidden text-xs text-red-600 mt-2"
+                    id="password-error"
+                  >
+                    8+ characters required
+                  </p>
+                </div>
+                {/* End Form Group */}
+                {/* Checkbox */}
+                <div className="flex items-center">
+                  <div className="flex">
+                    <input
+                      id="remember-me"
+                      name="remember-me"
+                      type="checkbox"
+                      className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                    />
+                  </div>
+                  <div className="ml-3">
+                    <label
+                      htmlFor="remember-me"
+                      className="text-sm dark:text-white"
+                    >
+                      Remember me
+                    </label>
+                  </div>
+                </div>
+                {/* End Checkbox */}
+                <button
+                  type="submit"
+                  className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+                >
+                  Sign in
+                </button>
+              </div>
+            </form>
+            {/* End Form */}
           </div>
-          <button className="block w-full p-3 text-center rounded-sm dark:dark:text-gray-900 dark:dark:bg-violet-400">
-            Sign in
-          </button>
-        </form>
-        <div className="flex items-center pt-4 space-x-1">
-          <div className="flex-1 h-px sm:w-16 dark:dark:bg-gray-700"></div>
-          <p className="px-3 text-sm dark:dark:text-gray-400">
-            Login with social accounts
-          </p>
-          <div className="flex-1 h-px sm:w-16 dark:dark:bg-gray-700"></div>
         </div>
-        <div className="flex justify-center space-x-4">
-          <button aria-label="Log in with Google" className="p-3 rounded-sm">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 32 32"
-              className="w-5 h-5 fill-current"
-            >
-              <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
-            </svg>
-          </button>
-          <button aria-label="Log in with Twitter" className="p-3 rounded-sm">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 32 32"
-              className="w-5 h-5 fill-current"
-            >
-              <path d="M31.937 6.093c-1.177 0.516-2.437 0.871-3.765 1.032 1.355-0.813 2.391-2.099 2.885-3.631-1.271 0.74-2.677 1.276-4.172 1.579-1.192-1.276-2.896-2.079-4.787-2.079-3.625 0-6.563 2.937-6.563 6.557 0 0.521 0.063 1.021 0.172 1.495-5.453-0.255-10.287-2.875-13.52-6.833-0.568 0.964-0.891 2.084-0.891 3.303 0 2.281 1.161 4.281 2.916 5.457-1.073-0.031-2.083-0.328-2.968-0.817v0.079c0 3.181 2.26 5.833 5.26 6.437-0.547 0.145-1.131 0.229-1.724 0.229-0.421 0-0.823-0.041-1.224-0.115 0.844 2.604 3.26 4.5 6.14 4.557-2.239 1.755-5.077 2.801-8.135 2.801-0.521 0-1.041-0.025-1.563-0.088 2.917 1.86 6.36 2.948 10.079 2.948 12.067 0 18.661-9.995 18.661-18.651 0-0.276 0-0.557-0.021-0.839 1.287-0.917 2.401-2.079 3.281-3.396z"></path>
-            </svg>
-          </button>
-          <button aria-label="Log in with GitHub" className="p-3 rounded-sm">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 32 32"
-              className="w-5 h-5 fill-current"
-            >
-              <path d="M16 0.396c-8.839 0-16 7.167-16 16 0 7.073 4.584 13.068 10.937 15.183 0.803 0.151 1.093-0.344 1.093-0.772 0-0.38-0.009-1.385-0.015-2.719-4.453 0.964-5.391-2.151-5.391-2.151-0.729-1.844-1.781-2.339-1.781-2.339-1.448-0.989 0.115-0.968 0.115-0.968 1.604 0.109 2.448 1.645 2.448 1.645 1.427 2.448 3.744 1.74 4.661 1.328 0.14-1.031 0.557-1.74 1.011-2.135-3.552-0.401-7.287-1.776-7.287-7.907 0-1.751 0.62-3.177 1.645-4.297-0.177-0.401-0.719-2.031 0.141-4.235 0 0 1.339-0.427 4.4 1.641 1.281-0.355 2.641-0.532 4-0.541 1.36 0.009 2.719 0.187 4 0.541 3.043-2.068 4.381-1.641 4.381-1.641 0.859 2.204 0.317 3.833 0.161 4.235 1.015 1.12 1.635 2.547 1.635 4.297 0 6.145-3.74 7.5-7.296 7.891 0.556 0.479 1.077 1.464 1.077 2.959 0 2.14-0.020 3.864-0.020 4.385 0 0.416 0.28 0.916 1.104 0.755 6.4-2.093 10.979-8.093 10.979-15.156 0-8.833-7.161-16-16-16z"></path>
-            </svg>
-          </button>
-        </div>
-        <p className="text-xs text-center sm:px-6 dark:dark:text-gray-400">
-          Don't have an account?
-          <a
-            rel="noopener noreferrer"
-            href="#"
-            className="underline dark:dark:text-gray-100"
-          >
-            Sign up
-          </a>
-        </p>
       </div>
-    </div>
+    </main>
   );
 }
