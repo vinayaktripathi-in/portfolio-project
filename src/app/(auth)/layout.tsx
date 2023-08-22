@@ -1,5 +1,5 @@
 "use client";
-import "@/app/globals.css";
+import "../globals.css";
 import { useEffect } from "react";
 import type { Metadata } from "next";
 import { ThemeProvider, useTheme } from "next-themes";
