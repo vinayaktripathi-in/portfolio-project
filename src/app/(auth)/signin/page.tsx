@@ -114,12 +114,12 @@ export default function SignIn() {
                     >
                       Password
                     </label>
-                    <a
+                    <Link
                       className="text-sm text-blue-600 decoration-2 hover:underline font-medium"
                       href="/forgotpassword"
                     >
                       Forgot password?
-                    </a>
+                    </Link>
                   </div>
                   <div className="relative">
                     <input
