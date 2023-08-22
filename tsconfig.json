@@ -21,7 +21,10 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["./*"],
+      "@lib/*": ["./lib/*"],
+      "@redux/*": ["./lib/redux/*"],
+      "@src/*": ["src/*"],
       "@components/*": ["src/app/components/*"]
       // Add more aliases as needed
     }

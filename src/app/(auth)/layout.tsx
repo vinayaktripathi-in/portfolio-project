@@ -1,9 +1,10 @@
 "use client";
 import "@/app/globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ThemeProvider, useTheme } from "next-themes";
 import { useEffect } from "react";
+import type { Metadata } from "next";
+import { ThemeProvider, useTheme } from "next-themes";
+import { Inter } from "next/font/google";
+import { Providers } from "@lib/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +36,9 @@ export default function RootLayout({
     <div lang="en">
       <section className={inter.className}>
         <ThemeProvider defaultTheme="light" enableSystem={true}>
-          <main>{children}</main>
+          <main>
+            <Providers>{children}</Providers>
+          </main>
         </ThemeProvider>
       </section>
     </div>
