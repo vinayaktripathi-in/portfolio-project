@@ -2,11 +2,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { signUpUser } from "@/lib/redux/slices/signup";
-import {ThunkDispatch} from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
 export default function SignUp() {
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const dispatch = useDispatch<any>();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
