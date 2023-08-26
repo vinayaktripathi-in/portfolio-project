@@ -1,14 +1,37 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
-import { signUpUser } from "@/lib/redux/slices/signup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { useDispatch } from "react-redux";
+import { signUpUser } from "@/lib/redux/slices/signup";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+interface FormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+const schema = yup.object().shape({
+  email: yup.string().email().required("Email is required"),
+  password: yup.string().min(8).required("Password is required"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Passwords must match")
+    .required("Confirm Password is required"),
+  // Add other form fields validation here
+});
 
 export default function SignUp() {
   const dispatch = useDispatch<any>();
+  const router = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleSignUpSubmit = async (
     event: React.FormEvent<HTMLFormElement>
@@ -18,14 +41,16 @@ export default function SignUp() {
     const formData = {
       email: (event.target as HTMLFormElement).email.value,
       password: (event.target as HTMLFormElement).password.value,
+      confirmPassword: (event.target as HTMLFormElement).confirmPassword.value,
 
       // Add other form fields as needed
     };
     try {
       await dispatch(signUpUser(formData));
-      // Handle success, maybe navigate to a new page
+      toast.success("Account created successfully!");
+      router.push("/signin"); // Redirect to sign in page on success
     } catch (error) {
-      // Handle error, show error message
+      toast.error("An error occurred. Please try again.");
     }
   };
 
@@ -96,8 +121,8 @@ export default function SignUp() {
                     <input
                       type="email"
                       id="email"
-                      name="email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      // name="email"
+                      {...register('email', { required: true })}
                       className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                       aria-describedby="email-error"
                     />
@@ -113,6 +138,11 @@ export default function SignUp() {
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                       </svg>
                     </div>
+                    {errors.email && (
+                      <p className="text-xs text-red-600 mt-2">
+                        {errors.email.message}
+                      </p>
+                    )}
                   </div>
                   <p
                     className="hidden text-xs text-red-600 mt-2"
@@ -135,8 +165,8 @@ export default function SignUp() {
                     <input
                       type="password"
                       id="password"
-                      name="password"
-                      onChange={(e) => setPassword(e.target.value)}
+                      //name="password" 
+                      {...register('password', { required: true })}
                       className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                       aria-describedby="password-error"
                     />
@@ -152,6 +182,11 @@ export default function SignUp() {
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                       </svg>
                     </div>
+                    {errors.password && (
+                      <p className="text-xs text-red-600 mt-2">
+                        {errors.password.message}
+                      </p>
+                    )}
                   </div>
                   <p
                     className="hidden text-xs text-red-600 mt-2"
@@ -172,8 +207,9 @@ export default function SignUp() {
                   <div className="relative">
                     <input
                       type="password"
-                      id="confirm-password"
-                      name="confirm-password"
+                      id="confirmPassword"
+                      // name="confirm-password"
+                      {...register('confirmPassword', { required: true })}
                       className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                       aria-describedby="confirm-password-error"
                     />
@@ -189,6 +225,11 @@ export default function SignUp() {
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                       </svg>
                     </div>
+                    {errors.confirmPassword && (
+                      <p className="text-xs text-red-600 mt-2">
+                        {errors.confirmPassword.message}
+                      </p>
+                    )}
                   </div>
                   <p
                     className="hidden text-xs text-red-600 mt-2"
