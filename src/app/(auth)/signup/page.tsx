@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { signUpUser } from "@/lib/redux/slices/signup";
@@ -18,10 +18,9 @@ export default function SignUp() {
     const formData = {
       email: (event.target as HTMLFormElement).email.value,
       password: (event.target as HTMLFormElement).password.value,
-      
+
       // Add other form fields as needed
     };
-    console.log(formData);
     try {
       await dispatch(signUpUser(formData));
       // Handle success, maybe navigate to a new page

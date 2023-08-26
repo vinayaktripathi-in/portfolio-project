@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const signUpSlice = createSlice({
-  name: 'signUp',
+  name: 'signup',
   initialState,
   reducers: {
     signUpRequest: (state) => {
