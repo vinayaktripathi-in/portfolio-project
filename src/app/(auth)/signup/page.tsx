@@ -40,7 +40,7 @@ export default function SignUp() {
     resolver: yupResolver(schema),
   });
 
-  const handleSignUpSubmit: SubmitHandler<formData> = async (
+  const handleSignUpSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
@@ -117,7 +117,7 @@ export default function SignUp() {
               Or
             </div>
             {/* Form */}
-            <form onSubmit={handleSubmit(handleSignUpSubmit)}>
+            <form onSubmit={handleSignUpSubmit}>
               <div className="grid gap-y-4">
                 {/* Form Group */}
                 <div>
