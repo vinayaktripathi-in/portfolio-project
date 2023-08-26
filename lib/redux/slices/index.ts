@@ -1,2 +1,3 @@
 // export * from './counterSlice'
-export * from './signup'
+export * from "./signUpSlice";
+export * from "./loadingSlice";

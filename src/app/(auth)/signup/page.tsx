@@ -1,13 +1,15 @@
 "use client";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
-import { signUpUser } from "@/lib/redux/slices/signup";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpUser } from "@/lib/redux/slices/signUpSlice";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { startLoading, stopLoading } from "@/lib/redux/slices/loadingSlice";
+import { ReduxState } from "@/lib/redux/store";
+import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
 
 interface FormData {
   email: string;
@@ -27,9 +29,14 @@ const schema = yup.object().shape({
 
 export default function SignUp() {
   const dispatch = useDispatch<any>();
+  const loading = useSelector((state: ReduxState) => state.loading);
   const router = useRouter();
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -46,11 +53,14 @@ export default function SignUp() {
       // Add other form fields as needed
     };
     try {
+      dispatch(startLoading()); // Dispatch startLoading action
       await dispatch(signUpUser(formData));
       toast.success("Account created successfully!");
       router.push("/signin"); // Redirect to sign in page on success
     } catch (error) {
       toast.error("An error occurred. Please try again.");
+    } finally {
+      dispatch(stopLoading()); // Dispatch stopLoading action
     }
   };
 
@@ -122,7 +132,7 @@ export default function SignUp() {
                       type="email"
                       id="email"
                       // name="email"
-                      {...register('email', { required: true })}
+                      {...register("email", { required: true })}
                       className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                       aria-describedby="email-error"
                     />
@@ -165,8 +175,8 @@ export default function SignUp() {
                     <input
                       type="password"
                       id="password"
-                      //name="password" 
-                      {...register('password', { required: true })}
+                      //name="password"
+                      {...register("password", { required: true })}
                       className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                       aria-describedby="password-error"
                     />
@@ -209,7 +219,7 @@ export default function SignUp() {
                       type="password"
                       id="confirmPassword"
                       // name="confirm-password"
-                      {...register('confirmPassword', { required: true })}
+                      {...register("confirmPassword", { required: true })}
                       className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                       aria-describedby="confirm-password-error"
                     />
@@ -270,6 +280,11 @@ export default function SignUp() {
                   className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                 >
                   Sign up
+                  {loading ? (
+                    <RefreshTwoToneIcon className="animate-spin h-4 w-4" />
+                  ) : (
+                    "Sign up"
+                  )}
                 </button>
               </div>
             </form>
