@@ -1,5 +1,5 @@
 "use client";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,19 +11,19 @@ import { startLoading, stopLoading } from "@/lib/redux/slices/loadingSlice";
 import { ReduxState } from "@/lib/redux/store";
 import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
 
-interface FormData {
+interface formData {
   email: string;
   password: string;
   confirmPassword: string;
 }
 
 const schema = yup.object().shape({
-  email: yup.string().email().required("Email is required"),
-  password: yup.string().min(8).required("Password is required"),
+  email: yup.string().email().required("email is required"),
+  password: yup.string().min(8).required("password is required"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password")], "Passwords must match")
-    .required("Confirm Password is required"),
+    .oneOf([yup.ref("password")], "passwords must match")
+    .required("confirm password is required"),
   // Add other form fields validation here
 });
 
@@ -40,7 +40,7 @@ export default function SignUp() {
     resolver: yupResolver(schema),
   });
 
-  const handleSignUpSubmit = async (
+  const handleSignUpSubmit: SubmitHandler<formData> = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
@@ -117,7 +117,7 @@ export default function SignUp() {
               Or
             </div>
             {/* Form */}
-            <form onSubmit={handleSignUpSubmit}>
+            <form onSubmit={handleSubmit(handleSignUpSubmit)}>
               <div className="grid gap-y-4">
                 {/* Form Group */}
                 <div>
@@ -129,6 +129,7 @@ export default function SignUp() {
                   </label>
                   <div className="relative">
                     <input
+                      // required
                       type="email"
                       id="email"
                       // name="email"
@@ -173,6 +174,7 @@ export default function SignUp() {
                   </label>
                   <div className="relative">
                     <input
+                      // required
                       type="password"
                       id="password"
                       //name="password"
@@ -216,6 +218,7 @@ export default function SignUp() {
                   </label>
                   <div className="relative">
                     <input
+                      // required
                       type="password"
                       id="confirmPassword"
                       // name="confirm-password"
@@ -280,10 +283,8 @@ export default function SignUp() {
                   className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                 >
                   Sign up
-                  {loading ? (
+                  {loading && (
                     <RefreshTwoToneIcon className="animate-spin h-4 w-4" />
-                  ) : (
-                    "Sign up"
                   )}
                 </button>
               </div>
