@@ -40,21 +40,13 @@ export default function SignUp() {
     resolver: yupResolver(schema),
   });
 
-  const handleSignUpSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault();
-
-    const formData = {
-      email: (event.target as HTMLFormElement).email.value,
-      password: (event.target as HTMLFormElement).password.value,
-      confirmPassword: (event.target as HTMLFormElement).confirmPassword.value,
-
-      // Add other form fields as needed
-    };
+  const handleSignUpSubmit: SubmitHandler<formData> = async (data, event) => {
+    if (event) {
+      event.preventDefault();
+    }
     try {
       dispatch(startLoading()); // Dispatch startLoading action
-      await dispatch(signUpUser(formData));
+      await dispatch(signUpUser(data));
       toast.success("Account created successfully!");
       router.push("/signin"); // Redirect to sign in page on success
     } catch (error) {
@@ -117,7 +109,7 @@ export default function SignUp() {
               Or
             </div>
             {/* Form */}
-            <form onSubmit={handleSignUpSubmit}>
+            <form onSubmit={handleSubmit(handleSignUpSubmit)}>
               <div className="grid gap-y-4">
                 {/* Form Group */}
                 <div>
