@@ -1,6 +1,35 @@
+"use client"
+import { useState } from "react";
 import Link from "next/link";
+import { signUpUser } from "@/lib/redux/slices/signup";
+import { useDispatch } from "react-redux";
 
 export default function SignUp() {
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignUpSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    const formData = {
+      email: (event.target as HTMLFormElement).email.value,
+      password: (event.target as HTMLFormElement).password.value,
+      
+      // Add other form fields as needed
+    };
+    console.log(formData);
+    try {
+      await dispatch(signUpUser(formData));
+      // Handle success, maybe navigate to a new page
+    } catch (error) {
+      // Handle error, show error message
+    }
+  };
+
   return (
     <main className="w-full max-w-md mx-auto p-6">
       <div className="mt-7 bg-slate-50 border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -54,7 +83,7 @@ export default function SignUp() {
               Or
             </div>
             {/* Form */}
-            <form>
+            <form onSubmit={handleSignUpSubmit}>
               <div className="grid gap-y-4">
                 {/* Form Group */}
                 <div>
@@ -69,6 +98,7 @@ export default function SignUp() {
                       type="email"
                       id="email"
                       name="email"
+                      onChange={(e) => setEmail(e.target.value)}
                       className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                       aria-describedby="email-error"
                     />
@@ -107,6 +137,7 @@ export default function SignUp() {
                       type="password"
                       id="password"
                       name="password"
+                      onChange={(e) => setPassword(e.target.value)}
                       className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
                       aria-describedby="password-error"
                     />
