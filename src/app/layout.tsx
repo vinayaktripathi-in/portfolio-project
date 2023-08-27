@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { ThemeProvider, useTheme } from "next-themes";
 import { Inter } from "next/font/google";
 import { Providers } from "@lib/providers";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,7 +38,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider defaultTheme="light" enableSystem={true}>
           <main>
-            <Providers>{children}</Providers>
+            <Providers>
+              <Toaster />
+              {children}
+            </Providers>
           </main>
         </ThemeProvider>
       </body>

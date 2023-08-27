@@ -3,6 +3,8 @@ import { signUpApi } from "@/api";
 import { signUpRequest, signUpSuccess, signUpFailure } from "./signUpSlice";
 
 interface UserData {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 }

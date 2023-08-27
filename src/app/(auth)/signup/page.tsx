@@ -11,12 +11,16 @@ import { ReduxState } from "@/lib/redux/store";
 import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
 
 interface formData {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
 
 const schema = yup.object().shape({
+  firstName: yup.string().required("first name is required"),
+  lastName: yup.string().required("last name is required"),
   email: yup.string().email().required("email is required"),
   password: yup.string().min(1).required("password is required"),
   confirmPassword: yup
@@ -50,7 +54,7 @@ export default function SignUp() {
       router.push("/signin"); // Redirect to sign in page on success
     } catch (error) {
       toast.error("An error occurred. Please try again.");
-    } 
+    }
   };
 
   return (
@@ -108,7 +112,97 @@ export default function SignUp() {
             {/* Form */}
             <form onSubmit={handleSubmit(handleSignUpSubmit)}>
               <div className="grid gap-y-4">
-                {/* Form Group */}
+                <div className="flex gap-2">
+                  {/* Form Group */}
+                  <div>
+                    <label
+                      htmlFor="firstName"
+                      className="block text-sm mb-2 dark:text-white"
+                    >
+                      First Name
+                    </label>
+                    <div className="relative">
+                      <input
+                        {...register("firstName", { required: true })}
+                        autoComplete="true"
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                        aria-describedby="name-error"
+                      />
+                      <div className="hidden absolute inset-y-0 right-0 items-center pointer-events-none pr-3">
+                        <svg
+                          className="h-5 w-5 text-red-500"
+                          width={16}
+                          height={16}
+                          fill="currentColor"
+                          viewBox="0 0 16 16"
+                          aria-hidden="true"
+                        >
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                        </svg>
+                      </div>
+                      {errors.firstName && (
+                        <p className="text-xs text-red-600 mt-2">
+                          {errors.firstName.message}
+                        </p>
+                      )}
+                    </div>
+                    <p
+                      className="hidden text-xs text-red-600 mt-2"
+                      id="email-error"
+                    >
+                      Please enter your first name
+                    </p>
+                  </div>
+                  {/* End Form Group */}
+                  {/* Form Group */}
+                  <div>
+                    <label
+                      htmlFor="lastName"
+                      className="block text-sm mb-2 dark:text-white"
+                    >
+                      Last Name
+                    </label>
+                    <div className="relative">
+                      <input
+                        {...register("lastName", { required: true })}
+                        autoComplete="true"
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                        aria-describedby="name-error"
+                      />
+                      <div className="hidden absolute inset-y-0 right-0 items-center pointer-events-none pr-3">
+                        <svg
+                          className="h-5 w-5 text-red-500"
+                          width={16}
+                          height={16}
+                          fill="currentColor"
+                          viewBox="0 0 16 16"
+                          aria-hidden="true"
+                        >
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                        </svg>
+                      </div>
+                      {errors.lastName && (
+                        <p className="text-xs text-red-600 mt-2">
+                          {errors.lastName.message}
+                        </p>
+                      )}
+                    </div>
+                    <p
+                      className="hidden text-xs text-red-600 mt-2"
+                      id="email-error"
+                    >
+                      Please enter your last name
+                    </p>
+                  </div>
+                  {/* End Form Group */}
+                  {/* Form Group */}
+                </div>
                 <div>
                   <label
                     htmlFor="email"
@@ -153,94 +247,96 @@ export default function SignUp() {
                   </p>
                 </div>
                 {/* End Form Group */}
-                {/* Form Group */}
-                <div>
-                  <label
-                    htmlFor="password"
-                    className="block text-sm mb-2 dark:text-white"
-                  >
-                    Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      autoComplete="true"
-                      type="password"
-                      id="password"
-                      //name="password"
-                      {...register("password", { required: true })}
-                      className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                      aria-describedby="password-error"
-                    />
-                    <div className="hidden absolute inset-y-0 right-0 items-center pointer-events-none pr-3">
-                      <svg
-                        className="h-5 w-5 text-red-500"
-                        width={16}
-                        height={16}
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                        aria-hidden="true"
-                      >
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                      </svg>
+                <div className="flex gap-2">
+                  {/* Form Group */}
+                  <div>
+                    <label
+                      htmlFor="password"
+                      className="block text-sm mb-2 dark:text-white"
+                    >
+                      Password
+                    </label>
+                    <div className="relative">
+                      <input
+                        autoComplete="true"
+                        type="password"
+                        id="password"
+                        //name="password"
+                        {...register("password", { required: true })}
+                        className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                        aria-describedby="password-error"
+                      />
+                      <div className="hidden absolute inset-y-0 right-0 items-center pointer-events-none pr-3">
+                        <svg
+                          className="h-5 w-5 text-red-500"
+                          width={16}
+                          height={16}
+                          fill="currentColor"
+                          viewBox="0 0 16 16"
+                          aria-hidden="true"
+                        >
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                        </svg>
+                      </div>
+                      {errors.password && (
+                        <p className="text-xs text-red-600 mt-2">
+                          {errors.password.message}
+                        </p>
+                      )}
                     </div>
-                    {errors.password && (
-                      <p className="text-xs text-red-600 mt-2">
-                        {errors.password.message}
-                      </p>
-                    )}
+                    <p
+                      className="hidden text-xs text-red-600 mt-2"
+                      id="password-error"
+                    >
+                      8+ characters required
+                    </p>
                   </div>
-                  <p
-                    className="hidden text-xs text-red-600 mt-2"
-                    id="password-error"
-                  >
-                    8+ characters required
-                  </p>
-                </div>
-                {/* End Form Group */}
-                {/* Form Group */}
-                <div>
-                  <label
-                    htmlFor="confirm-password"
-                    className="block text-sm mb-2 dark:text-white"
-                  >
-                    Confirm Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      autoComplete="true"
-                      type="password"
-                      id="confirmPassword"
-                      // name="confirm-password"
-                      {...register("confirmPassword", { required: true })}
-                      className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-                      aria-describedby="confirm-password-error"
-                    />
-                    <div className="hidden absolute inset-y-0 right-0 items-center pointer-events-none pr-3">
-                      <svg
-                        className="h-5 w-5 text-red-500"
-                        width={16}
-                        height={16}
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                        aria-hidden="true"
-                      >
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                      </svg>
+                  {/* End Form Group */}
+                  {/* Form Group */}
+                  <div>
+                    <label
+                      htmlFor="confirm-password"
+                      className="block text-sm mb-2 dark:text-white"
+                    >
+                      Confirm Password
+                    </label>
+                    <div className="relative">
+                      <input
+                        autoComplete="true"
+                        type="password"
+                        id="confirmPassword"
+                        // name="confirm-password"
+                        {...register("confirmPassword", { required: true })}
+                        className="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+                        aria-describedby="confirm-password-error"
+                      />
+                      <div className="hidden absolute inset-y-0 right-0 items-center pointer-events-none pr-3">
+                        <svg
+                          className="h-5 w-5 text-red-500"
+                          width={16}
+                          height={16}
+                          fill="currentColor"
+                          viewBox="0 0 16 16"
+                          aria-hidden="true"
+                        >
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                        </svg>
+                      </div>
+                      {errors.confirmPassword && (
+                        <p className="text-xs text-red-600 mt-2">
+                          {errors.confirmPassword.message}
+                        </p>
+                      )}
                     </div>
-                    {errors.confirmPassword && (
-                      <p className="text-xs text-red-600 mt-2">
-                        {errors.confirmPassword.message}
-                      </p>
-                    )}
+                    <p
+                      className="hidden text-xs text-red-600 mt-2"
+                      id="confirm-password-error"
+                    >
+                      Password does not match the password
+                    </p>
                   </div>
-                  <p
-                    className="hidden text-xs text-red-600 mt-2"
-                    id="confirm-password-error"
-                  >
-                    Password does not match the password
-                  </p>
+                  {/* End Form Group */}
                 </div>
-                {/* End Form Group */}
                 {/* Checkbox */}
                 <div className="flex items-center">
                   <div className="flex">
