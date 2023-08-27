@@ -13,7 +13,7 @@ export const signUpSlice = createSlice({
     signUpRequest: (state) => {
       state.isLoading = true;
       state.error = null;
-      state.isSuccess = false;
+      state.isSuccess = false; 
     },
     signUpSuccess: (state) => {
       state.isLoading = false;

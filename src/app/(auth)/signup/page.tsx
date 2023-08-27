@@ -7,7 +7,6 @@ import { signUpUser } from "@/lib/redux/slices/signUpSlice";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { startLoading, stopLoading } from "@/lib/redux/slices/loadingSlice";
 import { ReduxState } from "@/lib/redux/store";
 import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
 
@@ -19,7 +18,7 @@ interface formData {
 
 const schema = yup.object().shape({
   email: yup.string().email().required("email is required"),
-  password: yup.string().min(8).required("password is required"),
+  password: yup.string().min(1).required("password is required"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password")], "passwords must match")
@@ -29,7 +28,9 @@ const schema = yup.object().shape({
 
 export default function SignUp() {
   const dispatch = useDispatch<any>();
-  const loading = useSelector((state: ReduxState) => state.loading);
+  const signUpState = useSelector((state: ReduxState) => state.signUp);
+  const { isLoading, error, isSuccess } = signUpState;
+
   const router = useRouter();
 
   const {
@@ -45,15 +46,12 @@ export default function SignUp() {
       event.preventDefault();
     }
     try {
-      dispatch(startLoading()); // Dispatch startLoading action
       await dispatch(signUpUser(data));
       toast.success("Account created successfully!");
       router.push("/signin"); // Redirect to sign in page on success
     } catch (error) {
       toast.error("An error occurred. Please try again.");
-    } finally {
-      dispatch(stopLoading()); // Dispatch stopLoading action
-    }
+    } 
   };
 
   return (
@@ -275,7 +273,7 @@ export default function SignUp() {
                   className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                 >
                   Sign up
-                  {loading && (
+                  {isLoading && (
                     <RefreshTwoToneIcon className="animate-spin h-4 w-4" />
                   )}
                 </button>
