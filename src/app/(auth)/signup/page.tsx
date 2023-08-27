@@ -119,7 +119,7 @@ export default function SignUp() {
                   </label>
                   <div className="relative">
                     <input
-                      // required
+                      autoComplete="true"
                       type="email"
                       id="email"
                       // name="email"
@@ -164,7 +164,7 @@ export default function SignUp() {
                   </label>
                   <div className="relative">
                     <input
-                      // required
+                      autoComplete="true"
                       type="password"
                       id="password"
                       //name="password"
@@ -208,7 +208,7 @@ export default function SignUp() {
                   </label>
                   <div className="relative">
                     <input
-                      // required
+                      autoComplete="true"
                       type="password"
                       id="confirmPassword"
                       // name="confirm-password"
