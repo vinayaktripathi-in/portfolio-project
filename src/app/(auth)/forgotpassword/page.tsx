@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 export default function ForgotPassword() {
+  
   return (
     <main className="w-full max-w-md mx-auto p-6">
       <div className="mt-7 bg-slate-50 border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">

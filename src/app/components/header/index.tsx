@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ThemeSwitcher } from "@components/theme";
 
 export const Header = () => {
+  
   return (
     <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
       <nav

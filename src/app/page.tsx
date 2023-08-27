@@ -1,6 +1,6 @@
 import { Header } from "@components/header";
 import { Hero } from "@components/home/hero";
-// import { Counter } from "@components/counter";
+
 
 export default function Home() {
   return (
