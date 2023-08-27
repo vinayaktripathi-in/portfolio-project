@@ -1,13 +1,60 @@
 "use client";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { signInUser } from "@/lib/redux/slices/signInSlice";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { ReduxState } from "@/lib/redux/store";
+import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
+
+interface formData {
+  email: string;
+  password: string;
+}
+
+const schema = yup.object().shape({
+  email: yup.string().email().required("email is required"),
+  password: yup.string().min(1).required("password is required"),
+});
 
 export default function SignIn() {
+  const dispatch = useDispatch<any>();
+  const signInState = useSelector((state: ReduxState) => state.signIn);
+  const { isLoading, isSuccess, error, token } = signInState;
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const handleSignInSubmit: SubmitHandler<formData> = async (data, event) => {
+    if (event) {
+      event.preventDefault();
+    }
+
+    try {
+      await dispatch(signInUser(data));
+      if (isSuccess) {
+        toast.success("Sign In Successful!");
+        if (token) {
+          console.log(token);
+        } else {
+          console.log("Token is not available.");
+        }
+        router.push("/"); // Redirect to home page on success
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Invalid email or password. Please try again.");
+    }
+  };
   return (
     <main className="w-full max-w-md mx-auto p-6">
       <div className="mt-7 bg-slate-50 border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -61,7 +108,7 @@ export default function SignIn() {
               Or
             </div>
             {/* Form */}
-            <form onSubmit={handleSubmit((data) => console.log(data))}>
+            <form onSubmit={handleSubmit(handleSignInSubmit)}>
               <div className="grid gap-y-4">
                 {/* Form Group */}
                 <div>
@@ -179,6 +226,9 @@ export default function SignIn() {
                   className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                 >
                   Sign in
+                  {isLoading && (
+                    <RefreshTwoToneIcon className="animate-spin h-4 w-4" />
+                  )}
                 </button>
               </div>
             </form>

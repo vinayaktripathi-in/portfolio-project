@@ -1,13 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SigninState {
-  loading: boolean;
+  isLoading: boolean;
+  isSuccess: boolean;
   error: string | null;
+  token: string | null;
 }
 
 const initialState: SigninState = {
-  loading: false,
+  isLoading: false,
+  isSuccess: false,
   error: null,
+  token: null,
 };
 
 export const signInSlice = createSlice({
@@ -15,20 +19,26 @@ export const signInSlice = createSlice({
   initialState,
   reducers: {
     signinRequest: (state) => {
-      state.loading = true;
+      state.isLoading = true;
+      state.isSuccess = false;
       state.error = null;
     },
     signinSuccess: (state) => {
-      state.loading = false;
+      state.isLoading = false;
+      state.isSuccess = true;
       state.error = null;
     },
     signinFailure: (state, action: PayloadAction<string>) => {
-      state.loading = false;
+      state.isLoading = false;
+      state.isSuccess = false;
       state.error = action.payload;
+    },
+    setToken: (state, action: PayloadAction<string>) => {
+      state.token = action.payload;
     },
   },
 });
 
-export const { signinRequest, signinSuccess, signinFailure } = signInSlice.actions;
+export const { signinRequest, signinSuccess, signinFailure, setToken } = signInSlice.actions;
 
 export default signInSlice.reducer;

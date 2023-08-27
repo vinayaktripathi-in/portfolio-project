@@ -1,13 +1,18 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { signInApi } from "@/api";
-import { signinRequest, signinSuccess, signinFailure } from "./signInSlice";
+import {
+  signinRequest,
+  signinSuccess,
+  signinFailure,
+  setToken,
+} from "./signInSlice";
 
 interface SigninData {
   email: string;
   password: string;
 }
 
-export const signinUser = createAsyncThunk(
+export const signInUser = createAsyncThunk(
   "signin",
   async (signinData: SigninData, thunkAPI) => {
     const { dispatch } = thunkAPI;
@@ -15,7 +20,8 @@ export const signinUser = createAsyncThunk(
     try {
       const response = await signInApi(signinData);
       dispatch(signinSuccess());
-      return response.data;
+      dispatch(setToken(response.token));
+      return response;
     } catch (error) {
       const errorMessage = (error as Error).message || "An error occurred.";
       dispatch(signinFailure(errorMessage));
