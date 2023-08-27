@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -38,22 +39,36 @@ export default function SignIn() {
     if (event) {
       event.preventDefault();
     }
-    console.log("test", token);
+    // console.log("test", token);
 
     try {
-      await dispatch(signInUser(data))
-      toast.success("Sign In Successful!");
-      if (token) {
-        console.log(token);
-      } else {
-        console.log("Token is not available.");
-      }
-      router.push("/"); // Redirect to home page on success
+      await dispatch(signInUser(data));
+      // toast.success("Sign In Successful!");
+      // if (token) {
+      //   console.log(token);
+      // } else {
+      //   console.log("Token is not available.");
+      // }
+      // router.push("/"); // Redirect to home page on success
     } catch (error) {
       console.log(error);
       toast.error("Invalid email or password. Please try again.");
     }
   };
+  useEffect(() => {
+    if (token) {
+      router.push("/");
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Sign In Successful!");
+    } else if (error) {
+      toast.error("Password did not match");
+    }
+  }, [isSuccess, error]);
+
   return (
     <main className="w-full max-w-md mx-auto p-6">
       <div className="mt-7 bg-slate-50 border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
