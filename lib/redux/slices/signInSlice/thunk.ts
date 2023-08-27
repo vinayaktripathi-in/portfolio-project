@@ -6,6 +6,7 @@ import {
   signinFailure,
   setToken,
 } from "./signInSlice";
+import { setUserData } from "../userDataSlice";
 
 interface SigninData {
   email: string;
@@ -20,6 +21,8 @@ export const signInUser = createAsyncThunk(
     try {
       const response = await signInApi(signinData);
       dispatch(signinSuccess());
+      dispatch(setUserData(response.user));
+      console.log(response);
       dispatch(setToken(response.token));
       return response;
     } catch (error) {
