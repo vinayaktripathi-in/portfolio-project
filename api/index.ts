@@ -16,3 +16,11 @@ export async function signUpApi(userData: UserData) {
     throw error;
   }
 }
+export async function signInApi(userData: UserData) {
+  try {
+    const response = await axios.post(`${BASE_URL}/signin`, userData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

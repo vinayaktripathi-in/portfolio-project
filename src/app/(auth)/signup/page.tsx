@@ -30,7 +30,7 @@ export default function SignUp() {
   const dispatch = useDispatch<any>();
   const signUpState = useSelector((state: ReduxState) => state.signUp);
   const { isLoading, error, isSuccess } = signUpState;
-
+  console.log("ye hai", signUpState)
   const router = useRouter();
 
   const {

@@ -1,9 +1,9 @@
 /* Instruments */
-// import { counterSlice } from "./slices";
 import { signUpSlice } from "./slices";
+import { signInSlice } from "./slices";
 
 export const reducer = {
-  // counter: counterSlice.reducer,
   signUp: signUpSlice.reducer,
+  signIn: signInSlice.reducer,
 
 };
