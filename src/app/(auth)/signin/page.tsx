@@ -39,18 +39,16 @@ export default function SignIn() {
       event.preventDefault();
     }
     console.log("test", token);
-    
+
     try {
-      await dispatch(signInUser(data));
-      if (isSuccess) {
-        toast.success("Sign In Successful!");
-        if (token) {
-          console.log(token);
-        } else {
-          console.log("Token is not available.");
-        }
-        router.push("/"); // Redirect to home page on success
+      await dispatch(signInUser(data))
+      toast.success("Sign In Successful!");
+      if (token) {
+        console.log(token);
+      } else {
+        console.log("Token is not available.");
       }
+      router.push("/"); // Redirect to home page on success
     } catch (error) {
       console.log(error);
       toast.error("Invalid email or password. Please try again.");
