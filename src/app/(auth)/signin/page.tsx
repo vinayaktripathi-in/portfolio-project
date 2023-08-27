@@ -38,7 +38,8 @@ export default function SignIn() {
     if (event) {
       event.preventDefault();
     }
-
+    console.log("test", token);
+    
     try {
       await dispatch(signInUser(data));
       if (isSuccess) {
