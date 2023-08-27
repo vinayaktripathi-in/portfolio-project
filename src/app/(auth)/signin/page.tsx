@@ -24,6 +24,7 @@ const schema = yup.object().shape({
 export default function SignIn() {
   const dispatch = useDispatch<any>();
   const signInState = useSelector((state: ReduxState) => state.signIn);
+  const userData = useSelector((state: ReduxState) => state.userData);
   const { isLoading, isSuccess, error, token } = signInState;
   const router = useRouter();
 
@@ -65,7 +66,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Sign In Successful!");
+      toast.success(`Sign In Successful ${userData.data?.firstName}!!`);
     } else if (error) {
       toast.error("An error occurred");
     }
