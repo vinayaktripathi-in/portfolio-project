@@ -15,11 +15,11 @@ interface SigninData {
 
 export const signInUser = createAsyncThunk(
   "signin",
-  async (signinData: SigninData, thunkAPI) => {
+  async (signInData: SigninData, thunkAPI) => {
     const { dispatch } = thunkAPI;
     dispatch(signinRequest());
     try {
-      const response = await signInApi(signinData);
+      const response = await signInApi(signInData);
       dispatch(signinSuccess());
       dispatch(setUserData(response.user));
       console.log(response);

@@ -39,39 +39,20 @@ export default function SignIn() {
   const handleSignInSubmit: SubmitHandler<formData> = async (data, event) => {
     if (event) {
       event.preventDefault();
-      
     }
     dispatch(signInUser(data));
-    // console.log("test", token);
-
-    // try {
-    //   await dispatch(signInUser(data));
-    //   localStorage.setItem('token', token);
-    //   // toast.success("Sign In Successful!");
-    //   // if (token) {
-    //   //   console.log(token);
-    //   // } else {
-    //   //   console.log("Token is not available.");
-    //   // }
-    //   // router.push("/"); // Redirect to home page on success
-    // } catch (error) {
-    //   console.log(error);
-    //   toast.error("Invalid email or password. Please try again.");
-    // }
   };
   useEffect(() => {
     if (token) {
       router.push("/");
     }
-  }, [token]);
-
-  useEffect(() => {
     if (isSuccess) {
       toast.success(`Sign in successful ${userData.data?.firstName}!!`);
     } else if (error) {
       toast.error("An error occurred");
     }
-  }, [isSuccess, error]);
+  }, [token, isSuccess, error, userData]);
+
 
   return (
     <main className="w-full max-w-md mx-auto p-6">

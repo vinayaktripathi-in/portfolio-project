@@ -51,7 +51,7 @@ export default function SignUp() {
     try {
       await dispatch(signUpUser(data));
       toast.success("Account created successfully!");
-      router.push("/signin"); // Redirect to sign in page on success
+      router.push("/signin");
     } catch (error) {
       toast.error("An error occurred. Please try again.");
     }
