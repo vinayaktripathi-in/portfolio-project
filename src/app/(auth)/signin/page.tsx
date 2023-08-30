@@ -39,6 +39,7 @@ export default function SignIn() {
   const handleSignInSubmit: SubmitHandler<formData> = async (data, event) => {
     if (event) {
       event.preventDefault();
+      
     }
     dispatch(signInUser(data));
     // console.log("test", token);
@@ -66,7 +67,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success(`Sign In Successful ${userData.data?.firstName}!!`);
+      toast.success(`Sign in successful ${userData.data?.firstName}!!`);
     } else if (error) {
       toast.error("An error occurred");
     }
