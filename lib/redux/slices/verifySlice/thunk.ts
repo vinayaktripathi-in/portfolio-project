@@ -7,7 +7,7 @@ interface verifyData {
   otp: string;
 }
 
-export const verify = createAsyncThunk(
+export const verifyUser = createAsyncThunk(
   "verify",
   async (verifyData: verifyData, thunkAPI) => {
     const { dispatch } = thunkAPI;

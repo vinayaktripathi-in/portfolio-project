@@ -1,17 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface createPasswordState {
-  isLoading: boolean;
-  isSuccess: boolean;
+  loading: boolean;
+  success: boolean;
   error: string | null;
-  token: string | null;
 }
 
 const initialState: createPasswordState = {
-  isLoading: false,
-  isSuccess: false,
+  loading: false,
+  success: false,
   error: null,
-  token: null,
 };
 
 export const createPasswordSlice = createSlice({
@@ -19,18 +17,18 @@ export const createPasswordSlice = createSlice({
   initialState,
   reducers: {
     createPasswordRequest: (state) => {
-      state.isLoading = true;
-      state.isSuccess = false;
+      state.loading = true;
+      state.success = false;
       state.error = null;
     },
     createPasswordSuccess: (state) => {
-      state.isLoading = false;
-      state.isSuccess = true;
+      state.loading = false;
+      state.success = true;
       state.error = null;
     },
     createPasswordFailure: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
-      state.isSuccess = false;
+      state.loading = false;
+      state.success = false;
       state.error = action.payload;
     },
   },
