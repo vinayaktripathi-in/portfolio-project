@@ -1,6 +1,5 @@
 "use client";
-
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -27,6 +26,7 @@ export default function ForgotPassword() {
   );
   const { isLoading, isSuccess, error } = forgotPasswordState;
   const router = useRouter();
+  const emailRef = useRef<string | null>(null);
 
   const {
     register,
@@ -43,11 +43,13 @@ export default function ForgotPassword() {
     if (event) {
       event.preventDefault();
     }
+    emailRef.current = data.email; // Store the email in the ref
     dispatch(forgotPassword(data));
   };
   useEffect(() => {
-    if (isSuccess) {
-      router.push("/verify");
+    if (isSuccess && emailRef.current) {
+      // Redirect to the verify page with the email as a query parameter
+      router.push(`/verify?email=${emailRef.current}`);
     }
     if (isSuccess) {
       toast.success(`OTP sent successful`);

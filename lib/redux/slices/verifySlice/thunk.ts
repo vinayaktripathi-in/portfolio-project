@@ -4,7 +4,7 @@ import { verifyRequest, verifySuccess, verifyFailure } from "./verifySlice";
 
 interface verifyData {
   email: string;
-  otp: number;
+  otp: string;
 }
 
 export const verify = createAsyncThunk(

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 
 interface Props {
@@ -21,6 +21,7 @@ interface Props {
   accept?: string;
   readOnly?: boolean;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  errors?: string;
 }
 
 export const Input: React.FC<Props> = ({
@@ -43,6 +44,8 @@ export const Input: React.FC<Props> = ({
   onFocus,
   onClick,
   onKeyDown,
+  errors,
+  ...restInput
 }) => {
   const [ringColor, setRingColor] = useState(
     "focus-within:ring-1 focus-within:ring-blue-700"
@@ -74,6 +77,7 @@ export const Input: React.FC<Props> = ({
   return (
     <div className={`${className} + w-full relative`}>
       <input
+        {...restInput}
         type={type}
         id={label}
         value={value}
@@ -106,6 +110,7 @@ export const Input: React.FC<Props> = ({
       <i className="absolute top-1/2 -translate-y-1/2 right-0 mr-3">
         {righticon}
       </i>
+      {errors}
     </div>
   );
 };

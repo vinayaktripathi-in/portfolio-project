@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface verifyState {
-  isLoading: boolean;
-  isSuccess: boolean;
+  loading: boolean;
+  success: boolean;
   error: string | null;
 }
 
 const initialState: verifyState = {
-  isLoading: false,
-  isSuccess: false,
+  loading: false,
+  success: false,
   error: null,
 };
 
@@ -17,18 +17,18 @@ export const verifySlice = createSlice({
   initialState,
   reducers: {
     verifyRequest: (state) => {
-      state.isLoading = true;
-      state.isSuccess = false;
+      state.loading = true;
+      state.success = false;
       state.error = null;
     },
     verifySuccess: (state) => {
-      state.isLoading = false;
-      state.isSuccess = true;
+      state.loading = false;
+      state.success = true;
       state.error = null;
     },
     verifyFailure: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
-      state.isSuccess = false;
+      state.loading = false;
+      state.success = false;
       state.error = action.payload;
     },
   },

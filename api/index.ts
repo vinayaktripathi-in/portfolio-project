@@ -21,7 +21,7 @@ interface CreatePasswordUserData {
 }
 interface VerifyUserData {
   email: string;
-  otp: number;
+  otp: string;
 }
 
 export async function signUpApi(userData: SignUpUserData) {
