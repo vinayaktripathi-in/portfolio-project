@@ -1,13 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+
+interface signUpState {
+  isLoading: boolean;
+  isSuccess: boolean;
+  error: string | null;
+}
+
+const initialState: signUpState = {
   isLoading: false,
   error: null,
   isSuccess: false,
 };
 
 export const signUpSlice = createSlice({
-  name: 'signup',
+  name: 'signUp',
   initialState,
   reducers: {
     signUpRequest: (state) => {

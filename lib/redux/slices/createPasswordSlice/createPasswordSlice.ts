@@ -1,44 +1,40 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface signInState {
+interface createPasswordState {
   isLoading: boolean;
   isSuccess: boolean;
   error: string | null;
   token: string | null;
 }
 
-const initialState: signInState = {
+const initialState: createPasswordState = {
   isLoading: false,
   isSuccess: false,
   error: null,
   token: null,
 };
 
-export const signInSlice = createSlice({
-  name: "signIn",
+export const createPasswordSlice = createSlice({
+  name: "createPassword",
   initialState,
   reducers: {
-    signinRequest: (state) => {
+    createPasswordRequest: (state) => {
       state.isLoading = true;
       state.isSuccess = false;
       state.error = null;
     },
-    signinSuccess: (state) => {
+    createPasswordSuccess: (state) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.error = null;
     },
-    signinFailure: (state, action: PayloadAction<string>) => {
+    createPasswordFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.isSuccess = false;
       state.error = action.payload;
     },
-    setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
-    },
   },
 });
 
-export const { signinRequest, signinSuccess, signinFailure, setToken } = signInSlice.actions;
-
-export default signInSlice.reducer;
+export const { createPasswordRequest, createPasswordSuccess, createPasswordFailure } = createPasswordSlice.actions;
+export default createPasswordSlice.reducer;

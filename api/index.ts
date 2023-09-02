@@ -15,6 +15,14 @@ interface SignInUserData {
 interface ForgotPasswordUserData {
   email: string;
 }
+interface CreatePasswordUserData {
+  email: string;
+  password: string;
+}
+interface VerifyUserData {
+  email: string;
+  otp: number;
+}
 
 export async function signUpApi(userData: SignUpUserData) {
   try {
@@ -35,6 +43,22 @@ export async function signInApi(userData: SignInUserData) {
 export async function forgotPasswordApi(userData: ForgotPasswordUserData) {
   try {
     const response = await axios.post(`${BASE_URL}/forgot-password`, userData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function createPasswordApi(userData: CreatePasswordUserData) {
+  try {
+    const response = await axios.post(`${BASE_URL}/create-password`, userData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function verifyApi(userData: VerifyUserData) {
+  try {
+    const response = await axios.post(`${BASE_URL}/verify`, userData);
     return response.data;
   } catch (error) {
     throw error;

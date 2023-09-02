@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Verify = () => {
+export const CreatePassword = () => {
   return (
     <div>page</div>
   )
