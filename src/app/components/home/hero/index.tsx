@@ -1,5 +1,3 @@
-import React from "react";
-
 export const Hero = () => {
   return (
     <>
@@ -15,7 +13,6 @@ export const Hero = () => {
               I'm currently a frontend developer expanding my skills to
               encompass full stack development.
             </p>
-
             {/* <!-- Buttons --> */}
             <div className="mt-7 grid gap-3 w-full sm:inline-flex">
               <a
