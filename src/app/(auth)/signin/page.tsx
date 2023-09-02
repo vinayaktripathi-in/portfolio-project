@@ -44,6 +44,7 @@ export default function SignIn() {
   };
   useEffect(() => {
     if (token) {
+      localStorage.setItem("userData", JSON.stringify(userData.data));
       router.push("/");
     }
     if (isSuccess) {
@@ -52,7 +53,6 @@ export default function SignIn() {
       toast.error("An error occurred");
     }
   }, [token, isSuccess, error, userData]);
-
 
   return (
     <main className="w-full max-w-md mx-auto p-6">
