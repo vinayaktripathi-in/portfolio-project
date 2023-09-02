@@ -4,7 +4,7 @@ import OtpInput from "react-otp-input";
 import { useDispatch, useSelector } from "react-redux";
 import { verifyUser } from "@/lib/redux/slices/verifySlice";
 import { toast } from "react-hot-toast";
-import { useRouter,  useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ReduxState } from "@/lib/redux/store";
 import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
@@ -30,7 +30,7 @@ export default function Verify() {
     if (event) {
       event.preventDefault();
     }
-   
+
     if (email) {
       const verifyData = { email, otp };
       emailRef.current = email; // Store the email in the ref
@@ -69,8 +69,21 @@ export default function Verify() {
           </div>
           <div className="mt-5">
             <form onSubmit={handleVerifySubmit}>
-              <div className="grid gap-y-4">
+              <div className="grid content-center gap-y-4">
                 <OtpInput
+                  containerStyle={`w-full flex flex-wrap justify-center item-center`}
+                  shouldAutoFocus={true}
+                  inputStyle={{
+                    border: "1px solid transparent",
+                    borderRadius: "8px",
+                    width: "35px",
+                    height: "35px",
+                    fontSize: "16px",
+                    // color: "#000",
+                    fontWeight: "700",
+                    // caretColor: "blue",
+                    // backgroundColor: "darkgray",
+                  }}
                   value={otp}
                   onChange={setOtp}
                   numInputs={6}
