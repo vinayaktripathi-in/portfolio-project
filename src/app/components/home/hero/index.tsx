@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const Hero = () => {
   return (
     <>
@@ -260,7 +262,7 @@ export const Hero = () => {
           </div>
 
           <div className="relative ml-4">
-            <img
+            <Image
               className="w-full rounded-md"
               src="https://images.unsplash.com/photo-1665686377065-08ba896d16fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=700&h=800&q=80"
               alt="Image Description"
