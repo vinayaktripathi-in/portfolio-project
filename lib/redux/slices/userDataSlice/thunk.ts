@@ -3,11 +3,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getUserDataApi } from "@/api";
 import { setUser, setLoading, setError } from "./userDataSlice";
 
-const token = localStorage.getItem("token");
-
 export const fetchUserData = createAsyncThunk(
   "fetchUserData",
   async (_, { rejectWithValue, dispatch }) => {
+    const token = localStorage.getItem("token");
     if (token === null) {
       return rejectWithValue("Token not found in local storage");
     }
