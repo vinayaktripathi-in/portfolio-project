@@ -3,11 +3,11 @@ import "../globals.css";
 import { useEffect } from "react";
 // import type { Metadata } from "next";
 import { ThemeProvider, useTheme } from "next-themes";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import { Providers } from "@lib/providers";
 import { Toaster } from "react-hot-toast";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -35,7 +35,8 @@ export default function RootLayout({
 
   return (
     <div lang="en">
-      <section className={inter.className}>
+      {/* className={inter.className} */}
+      <section >
         <ThemeProvider defaultTheme="light" enableSystem={true}>
           <main>
             <Providers>
