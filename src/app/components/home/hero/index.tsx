@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HeroImage from "../../../assets/images/hero.svg"
+import HeroImage from "../../../assets/images/hero.jpg";
 
 export const Hero = () => {
   return (
@@ -264,6 +264,7 @@ export const Hero = () => {
 
           <div className="relative ml-4">
             <Image
+              unoptimized
               width={100}
               height={100}
               className="w-full rounded-md"
@@ -272,7 +273,7 @@ export const Hero = () => {
             />
             <div className="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 mr-4 -ml-4 lg:mt-6 lg:-mb-6 lg:mr-6 lg:-ml-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
 
-            <div className="absolute bottom-0 left-0">
+            {/* <div className="absolute bottom-0 left-0">
               <svg
                 className="w-2/3 ml-auto h-auto text-white dark:text-slate-900"
                 width="630"
@@ -389,7 +390,7 @@ export const Hero = () => {
                   fill="currentColor"
                 />
               </svg>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

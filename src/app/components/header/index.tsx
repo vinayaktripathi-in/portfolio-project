@@ -208,7 +208,7 @@ export const Header = () => {
         </nav>
       </header>
       {click && (
-        <div className="md:hidden z-20 absolote top-0">
+        <div className="p-2 rounded md:hidden z-20 absolute top-20 right-4 bg-white dark:bg-black">
           {" "}
           <Link
             className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500"
