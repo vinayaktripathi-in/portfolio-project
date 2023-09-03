@@ -17,11 +17,6 @@ export const Header = () => {
   const userDataState = useSelector((state: ReduxState) => state.userData);
   const { data, loading } = userDataState;
 
-  // const handleClick = () => {
-  //   setClick(!click);
-  //   console.log(click);
-  // };
-
   return (
     <>
       <header className="flex flex-wrap md:justify-start md:flex-nowrap z-20 w-full text-sm">
