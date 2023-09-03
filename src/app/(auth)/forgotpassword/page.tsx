@@ -56,7 +56,7 @@ export default function ForgotPassword() {
     } else if (error) {
       toast.error("An error occurred");
     }
-  }, [isSuccess, error]);
+  }, [isSuccess, error, router]);
 
   return (
     <main className="w-full max-w-md mx-auto p-6">

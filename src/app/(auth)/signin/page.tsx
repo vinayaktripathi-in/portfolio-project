@@ -55,7 +55,7 @@ export default function SignIn() {
     } else if (error) {
       toast.error("An error occurred");
     }
-  }, [token, isSuccess, error, data]);
+  }, [token, isSuccess, error, data, router]);
 
   return (
     <main className="w-full max-w-md mx-auto p-6">
