@@ -1,10 +1,11 @@
 "use client";
 import { useEffect } from "react";
 import Link from "next/link";
+import { ReduxState } from "@/lib/redux";
 import { ThemeSwitcher } from "@components/theme";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "@/lib/redux/slices/userDataSlice";
-import { ReduxState } from "@/lib/redux";
+import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
 
 export const Header = () => {
   const dispatch = useDispatch<any>();
@@ -13,8 +14,7 @@ export const Header = () => {
     dispatch(fetchUserData());
   }, [dispatch]);
   const userDataState = useSelector((state: ReduxState) => state.userData);
-  const { data } = userDataState;
-  console.log("user", userDataState);
+  const { data, loading } = userDataState;
 
   return (
     <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
@@ -182,7 +182,7 @@ export const Header = () => {
             </div>
             <Link
               className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500"
-              href="/signin"
+              href={data? '/profile' : "/signin"}
             >
               <svg
                 className="w-4 h-4"
@@ -194,11 +194,7 @@ export const Header = () => {
               >
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
               </svg>
-              {data
-                ? `${data?.firstName ?? ""} ${
-                    data?.lastName ?? ""
-                  }`.trim() || "Sign in"
-                : "Sign in"}
+              {loading ? <RefreshTwoToneIcon className="animate-spin"/> : data ? `${data?.firstName ?? ""} ${data?.lastName ?? ""}`.trim() || "Sign in" : "Sign in" }
             </Link>
           </div>
         </div>

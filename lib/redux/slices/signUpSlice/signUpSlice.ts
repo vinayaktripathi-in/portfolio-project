@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 interface signUpState {
   isLoading: boolean;
   isSuccess: boolean;

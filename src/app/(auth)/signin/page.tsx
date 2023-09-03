@@ -28,9 +28,8 @@ export default function SignIn() {
   const userDataState = useSelector((state: ReduxState) => state.userData);
   const { isLoading, isSuccess, error, token } = signInState;
   const { data } = userDataState;
-
   const router = useRouter();
-
+  
   const {
     register,
     handleSubmit,
@@ -46,14 +45,9 @@ export default function SignIn() {
     dispatch(signInUser(data));
   };
 
-  // useEffect(() => {
-  //   // Dispatch the action to fetch user data when the component mounts
-  //   dispatch(fetchUserData());
-  // }, [dispatch]);
-
   useEffect(() => {
     if (token) {
-      localStorage.setItem('token', token);
+      localStorage.setItem("token", token);
       router.push("/");
     }
     if (isSuccess) {
