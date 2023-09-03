@@ -46,8 +46,8 @@ export const ThemeSwitcher = () => {
   ];
 
   return (
-    <div className="flex justify-center item gap-2">
-      <Switch value={theme} onChange={(e) => handleThemeChange(e.target.value)}/>
+    <div className="flex justify-center items-center gap-2">
+      <Switch value={theme} onChange={(e) => handleThemeChange("dark")}/>
       <select
         className={`p-2 rounded-md ${
           theme === "dark"
