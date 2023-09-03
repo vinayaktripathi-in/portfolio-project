@@ -29,7 +29,16 @@ interface VerifyUserData {
 export async function signUpApi(userData: SignUpUserData) {
   try {
     const response = await axios.post(`${BASE_URL}/signup`, userData);
-    return response.data;
+    if (response.status === 200) {
+      // User registered successfully
+      return response.data;
+    } else if (response.status === 409) {
+      // User is already registered
+      throw new Error("User is already registered");
+    } else {
+      // Handle other status codes as needed
+      throw new Error("Registration failed");
+    }
   } catch (error) {
     throw error;
   }
