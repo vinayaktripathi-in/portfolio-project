@@ -7,10 +7,10 @@ export const Hero = () => {
         <div className="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
           <div>
             <h1 className="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">
-              Hey, there <span className="text-blue-600">I'm Vinayak</span>
+              Hey, there <span className="text-blue-600">I&apos;m Vinayak</span>
             </h1>
             <p className="mt-3 text-lg text-gray-800 dark:text-gray-400">
-              I'm currently a frontend developer expanding my skills to
+              I&apos;m currently a frontend developer expanding my skills to
               encompass full stack development.
             </p>
             {/* <!-- Buttons --> */}

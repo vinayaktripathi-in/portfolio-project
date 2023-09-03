@@ -29,7 +29,7 @@ export default function SignIn() {
   const { isLoading, isSuccess, error, token } = signInState;
   const { data } = userDataState;
   const router = useRouter();
-  
+
   const {
     register,
     handleSubmit,
@@ -66,7 +66,7 @@ export default function SignIn() {
               Sign in
             </h1>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              Don't have an account yet?
+              Don&apos;t have an account yet?
               <Link
                 className="text-blue-600 decoration-2 hover:underline font-medium"
                 href="/signup"
