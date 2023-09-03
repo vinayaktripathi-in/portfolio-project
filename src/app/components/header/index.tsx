@@ -1,12 +1,20 @@
 "use client";
-import React from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { ThemeSwitcher } from "@components/theme";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserData } from "@/lib/redux/slices/userDataSlice";
 import { ReduxState } from "@/lib/redux";
 
 export const Header = () => {
-  const userData = useSelector((state: ReduxState) => state.userData);
+  const dispatch = useDispatch<any>();
+  useEffect(() => {
+    // Dispatch the action to fetch user data when the component mounts
+    dispatch(fetchUserData());
+  }, [dispatch]);
+  const userDataState = useSelector((state: ReduxState) => state.userData);
+  const { data } = userDataState;
+  console.log("user", userDataState);
 
   return (
     <header className="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
@@ -186,9 +194,9 @@ export const Header = () => {
               >
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
               </svg>
-              {userData
-                ? `${userData.data?.firstName ?? ""} ${
-                    userData.data?.lastName ?? ""
+              {data
+                ? `${data?.firstName ?? ""} ${
+                    data?.lastName ?? ""
                   }`.trim() || "Sign in"
                 : "Sign in"}
             </Link>

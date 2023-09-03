@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { signInUser } from "@/lib/redux/slices/signInSlice";
+import { fetchUserData } from "@/lib/redux";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -24,8 +25,10 @@ const schema = yup.object().shape({
 export default function SignIn() {
   const dispatch = useDispatch<any>();
   const signInState = useSelector((state: ReduxState) => state.signIn);
-  const userData = useSelector((state: ReduxState) => state.userData);
+  const userDataState = useSelector((state: ReduxState) => state.userData);
   const { isLoading, isSuccess, error, token } = signInState;
+  const { data } = userDataState;
+
   const router = useRouter();
 
   const {
@@ -42,17 +45,23 @@ export default function SignIn() {
     }
     dispatch(signInUser(data));
   };
+
+  // useEffect(() => {
+  //   // Dispatch the action to fetch user data when the component mounts
+  //   dispatch(fetchUserData());
+  // }, [dispatch]);
+
   useEffect(() => {
     if (token) {
-      localStorage.setItem("userData", JSON.stringify(userData.data));
+      localStorage.setItem('token', token);
       router.push("/");
     }
     if (isSuccess) {
-      toast.success(`Sign in successful ${userData.data?.firstName}!!`);
+      toast.success(`Sign in successful ${data?.firstName}!!`);
     } else if (error) {
       toast.error("An error occurred");
     }
-  }, [token, isSuccess, error, userData]);
+  }, [token, isSuccess, error, data]);
 
   return (
     <main className="w-full max-w-md mx-auto p-6">
