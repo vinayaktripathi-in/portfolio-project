@@ -30,7 +30,7 @@ export const Header = () => {
               href="#"
               aria-label="Brand"
             >
-              Brand
+              vinayaktripathi.in
             </Link>
             <div className="md:hidden">
               <button

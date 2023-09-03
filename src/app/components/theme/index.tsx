@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import Switch from "../switch";
 import "./theme-switch.css";
 
 export const ThemeSwitcher = () => {
@@ -45,7 +46,8 @@ export const ThemeSwitcher = () => {
   ];
 
   return (
-    <div>
+    <div className="flex justify-center item gap-2">
+      <Switch value={theme} onChange={(e) => handleThemeChange(e.target.value)}/>
       <select
         className={`p-2 rounded-md ${
           theme === "dark"
