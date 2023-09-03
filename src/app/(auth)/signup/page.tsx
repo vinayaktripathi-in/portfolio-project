@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -48,14 +49,17 @@ export default function SignUp() {
     if (event) {
       event.preventDefault();
     }
-    try {
-      await dispatch(signUpUser(data));
-      toast.success("Account created successfully!");
-      router.push("/signin");
-    } catch (error) {
-      toast.error("An error occurred. Please try again.");
-    }
+    dispatch(signUpUser(data));
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(`Account created successfully!!`);
+      router.push("/")
+    } else if (error) {
+      toast.error("An error occurred");
+    }
+  }, [isSuccess, error]);
 
   return (
     <main className="w-full max-w-md mx-auto p-6">
