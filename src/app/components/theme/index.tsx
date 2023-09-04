@@ -30,11 +30,14 @@ export const ThemeSwitch = () => {
 
   return (
     <>
-      <button onClick={handleThemeChange}>
+      <button
+        className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500"
+        onClick={handleThemeChange}
+      >
         {click ? (
-          <BsSun className="text-xl fill-black dark:fill-white" />
+          <BsSun  />
         ) : (
-          <BiMoon className="text-xl fill-black dark:fill-white" />
+          <BiMoon  />
         )}
       </button>
     </>

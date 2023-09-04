@@ -84,7 +84,7 @@ export const Header = () => {
                   Dropdown
                   <MdOutlineKeyboardArrowDown />
                 </button>
-                {!open && (
+                {open && (
                   <div className="absolute top-16 right-24 transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] md:w-48 z-10 bg-white md:shadow-md rounded-lg p-2 dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 md:border">
                     <Link
                       className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
