@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ReduxState } from "@/lib/redux/store";
-import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface formData {
   email: string;
@@ -229,7 +229,7 @@ export default function SignIn() {
                 >
                   Sign in
                   {isLoading && (
-                    <RefreshTwoToneIcon className="animate-spin h-4 w-4" />
+                    <AiOutlineLoading3Quarters className="animate-spin h-4 w-4" />
                   )}
                 </button>
               </div>

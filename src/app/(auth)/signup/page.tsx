@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ReduxState } from "@/lib/redux/store";
-import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface formData {
   firstName: string;
@@ -55,7 +55,7 @@ export default function SignUp() {
   useEffect(() => {
     if (isSuccess) {
       toast.success(`Account created successfully!!`);
-      router.push("/")
+      router.push("/");
     } else if (error) {
       toast.error("An error occurred");
     }
@@ -373,7 +373,7 @@ export default function SignUp() {
                 >
                   Sign up
                   {isLoading && (
-                    <RefreshTwoToneIcon className="animate-spin h-4 w-4" />
+                    <AiOutlineLoading3Quarters className="animate-spin h-4 w-4" />
                   )}
                 </button>
               </div>

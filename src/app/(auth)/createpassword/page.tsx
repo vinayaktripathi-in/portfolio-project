@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ReduxState } from "@/lib/redux/store";
-import RefreshTwoToneIcon from "@mui/icons-material/RefreshTwoTone";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface FormData {
   password: string;
@@ -213,7 +213,7 @@ export default function CreatePassword() {
                 >
                   Create
                   {loading && (
-                    <RefreshTwoToneIcon className="animate-spin h-4 w-4" />
+                    <AiOutlineLoading3Quarters className="animate-spin h-4 w-4" />
                   )}
                 </button>
               </div>

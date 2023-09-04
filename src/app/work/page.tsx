@@ -1,7 +1,7 @@
 export default function Work() {
   return (
     <>
-      <div>This is my works.</div>
+      <div className="text-black dark:text-white">This is my works.</div>
     </>
   );
 }

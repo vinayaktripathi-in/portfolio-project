@@ -1,10 +1,9 @@
 "use client";
 import "../globals.css";
-import { useEffect } from "react";
 // import type { Metadata } from "next";
-import { ThemeProvider, useTheme } from "next-themes";
 // import { Inter } from "next/font/google";
 import { Providers } from "@lib/providers";
+import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -19,17 +18,21 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { theme, setTheme } = useTheme();
+  const [theme, setTheme] = useState(loadTheme());
+
+  function loadTheme() {
+    const isServer = typeof window === "undefined";
+    if (!isServer) {
+      return localStorage.getItem("theme") || "dark";
+    }
+  }
 
   useEffect(() => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      document.documentElement.classList.add("dark");
+    const element = document.documentElement;
+    if (theme === "dark") {
+      element.classList.add("dark");
     } else {
-      document.documentElement.classList.remove("dark");
+      element.classList.remove("dark");
     }
   }, [theme]);
 
@@ -37,14 +40,10 @@ export default function RootLayout({
     <div lang="en">
       {/* className={inter.className} */}
       <section>
-        <ThemeProvider defaultTheme="light" enableSystem={true}>
-          <main>
-            <Providers>
-              <Toaster />
-              {children}
-            </Providers>
-          </main>
-        </ThemeProvider>
+        <Providers>
+          <Toaster />
+          {children}
+        </Providers>
       </section>
     </div>
   );
