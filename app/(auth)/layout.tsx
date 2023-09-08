@@ -2,7 +2,6 @@
 import "../globals.css";
 // import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
-import { Toaster } from "react-hot-toast";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +20,9 @@ export default function RootLayout({
     <div className="bg-white dark:bg-[#121212]" lang="en">
       {/* className={inter.className} */}
       <section>
-        <main>
-          <Toaster />
+        
           {children}
-        </main>
+        
       </section>
     </div>
   );
