@@ -45,7 +45,7 @@
 }
 /* Color of the scrollbar handle */
 ::-webkit-scrollbar-thumb {
-  background: #2563EB;
+  background: #2563eb;
   border-radius: 8px;
 }
 
@@ -53,4 +53,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #fbb03b;
 }
-
