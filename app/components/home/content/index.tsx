@@ -12,9 +12,14 @@ export const Content = ({}: Props) => {
     <>
       {/* Icon Blocks */}
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <h1 className="my-10 text-center text-2xl font-bold sm:text-3xl md:text-4xl dark:text-white">
-          Project Features
-        </h1>
+        <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+          <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
+            Project Features
+          </h2>
+          <p className="mt-1 text-gray-600 dark:text-gray-400">
+            This is what I bring to the table!
+          </p>
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-2">
           {/* Icon Block */}
           <a
