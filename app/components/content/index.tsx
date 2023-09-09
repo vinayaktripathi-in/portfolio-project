@@ -1,8 +1,11 @@
 import Image from "next/image";
+import InsightImg01 from "/public/images/insight-img-01.avif";
+import InsightImg02 from "/public/images/insight-img-02.avif";
+import UserImg from "/public/images/user-img.avif";
 
 type Props = {};
 
-export default function Content({}: Props) {
+export const Content = ({}: Props) => {
   return (
     <>
       {/* Icon Blocks */}
@@ -214,8 +217,11 @@ export default function Content({}: Props) {
           <a className="group rounded-xl overflow-hidden" href="#">
             <div className="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
               <Image
+                unoptimized
+                width={100}
+                height={100}
                 className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
-                src="https://images.unsplash.com/photo-1586232702178-f044c5f4d4b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
+                src={InsightImg01}
                 alt="Image Description"
               />
               <span className="absolute top-0 right-0 rounded-tr-xl rounded-bl-xl text-xs font-medium bg-gray-800 text-white py-1.5 px-3 dark:bg-gray-900">
@@ -254,8 +260,11 @@ export default function Content({}: Props) {
           <a className="group rounded-xl overflow-hidden" href="#">
             <div className="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
               <Image
+                unoptimized
+                width={100}
+                height={100}
                 className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
-                src="https://images.unsplash.com/photo-1542125387-c71274d94f0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                src={InsightImg02}
                 alt="Image Description"
               />
             </div>
@@ -289,17 +298,17 @@ export default function Content({}: Props) {
           {/* End Card */}
           {/* Card */}
           <a
-            className="group relative flex flex-col w-full min-h-[15rem] bg-center bg-cover rounded-xl hover:shadow-lg transition bg-[url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3000&q=80')]"
+            className="group relative flex flex-col w-full min-h-[15rem] bg-center bg-cover rounded-xl hover:shadow-lg transition] bg-[url('/images/insight-img-03.avif')]"
             href="#"
           >
             <div className="flex-auto p-4 md:p-6">
-              <h3 className="text-xl text-white/[.9] group-hover:text-white">
+              <h3 className="text-xl dark:text-white/[.9] group-hover:text-white">
                 <span className="font-bold">Preline</span> Press publishes books
                 about economic and technological advancement.
               </h3>
             </div>
             <div className="pt-0 p-4 md:p-6">
-              <div className="inline-flex items-center gap-2 text-sm font-medium text-white group-hover:text-white/[.7]">
+              <div className="inline-flex items-center gap-2 text-sm font-medium dark:text-white group-hover:text-white/[.7]">
                 Visit the site
                 <svg
                   className="w-2.5 h-2.5"
@@ -341,8 +350,11 @@ export default function Content({}: Props) {
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
               <Image
+                unoptimized
+                width={100}
+                height={100}
                 className="rounded-full w-20 h-20"
-                src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
+                src={UserImg}
                 alt="Image Description"
               />
               <div className="grow">
@@ -410,8 +422,11 @@ export default function Content({}: Props) {
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
               <Image
+                unoptimized
+                width={100}
+                height={100}
                 className="rounded-full w-20 h-20"
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
+                src={UserImg}
                 alt="Image Description"
               />
               <div className="grow">
@@ -481,8 +496,11 @@ export default function Content({}: Props) {
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
               <Image
+                unoptimized
+                width={100}
+                height={100}
                 className="rounded-full w-20 h-20"
-                src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
+                src={UserImg}
                 alt="Image Description"
               />
               <div className="grow">
@@ -552,8 +570,10 @@ export default function Content({}: Props) {
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
               <Image
+                width={100}
+                height={100}
                 className="rounded-full w-20 h-20"
-                src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
+                src={UserImg}
                 alt="Image Description"
               />
               <div className="grow">
@@ -623,8 +643,10 @@ export default function Content({}: Props) {
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
               <Image
+                width={100}
+                height={100}
                 className="rounded-full w-20 h-20"
-                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
+                src={UserImg}
                 alt="Image Description"
               />
               <div className="grow">
@@ -694,8 +716,10 @@ export default function Content({}: Props) {
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
               <Image
+                width={100}
+                height={100}
                 className="rounded-full w-20 h-20"
-                src="https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
+                src={UserImg}
                 alt="Image Description"
               />
               <div className="grow">
@@ -765,8 +789,10 @@ export default function Content({}: Props) {
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
               <Image
+                width={100}
+                height={100}
                 className="rounded-full w-20 h-20"
-                src="https://images.unsplash.com/photo-1579017331263-ef82f0bbc748?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
+                src={UserImg}
                 alt="Image Description"
               />
               <div className="grow">
@@ -836,8 +862,10 @@ export default function Content({}: Props) {
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
               <Image
+                width={100}
+                height={100}
                 className="rounded-full w-20 h-20"
-                src="https://images.unsplash.com/photo-1514222709107-a180c68d72b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
+                src={UserImg}
                 alt="Image Description"
               />
               <div className="grow">
@@ -938,4 +966,4 @@ export default function Content({}: Props) {
       {/* Recommendations */}
     </>
   );
-}
+};
