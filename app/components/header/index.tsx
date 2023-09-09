@@ -30,7 +30,7 @@ export const Header = () => {
           <div className="flex items-center justify-between">
             <Link
               className="flex-none text-xl font-semibold dark:text-white"
-              href="#"
+              href="/"
               aria-label="Brand"
             >
               vinayaktripathi.in
@@ -51,7 +51,7 @@ export const Header = () => {
               {/* <ThemeSwitch/> */}
               <Link
                 className="font-medium text-blue-600 md:py-6 dark:text-blue-500"
-                href="#"
+                href="/"
                 aria-current="page"
               >
                 Home
@@ -70,7 +70,7 @@ export const Header = () => {
               </Link>
               <Link
                 className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
-                href="#"
+                href="/blog"
               >
                 Blog
               </Link>
