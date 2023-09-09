@@ -1,4 +1,4 @@
-import React from "react";
+import Image from "next/image";
 
 type Props = {};
 
@@ -213,7 +213,7 @@ export default function Content({}: Props) {
           {/* Card */}
           <a className="group rounded-xl overflow-hidden" href="#">
             <div className="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
-              <img
+              <Image
                 className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
                 src="https://images.unsplash.com/photo-1586232702178-f044c5f4d4b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
                 alt="Image Description"
@@ -253,7 +253,7 @@ export default function Content({}: Props) {
           {/* Card */}
           <a className="group rounded-xl overflow-hidden" href="#">
             <div className="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
-              <img
+              <Image
                 className="w-full h-full absolute top-0 left-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
                 src="https://images.unsplash.com/photo-1542125387-c71274d94f0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
                 alt="Image Description"
@@ -340,7 +340,7 @@ export default function Content({}: Props) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
-              <img
+              <Image
                 className="rounded-full w-20 h-20"
                 src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
                 alt="Image Description"
@@ -409,7 +409,7 @@ export default function Content({}: Props) {
           {/* End Col */}
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
-              <img
+              <Image
                 className="rounded-full w-20 h-20"
                 src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
                 alt="Image Description"
@@ -480,7 +480,7 @@ export default function Content({}: Props) {
           {/* End Col */}
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
-              <img
+              <Image
                 className="rounded-full w-20 h-20"
                 src="https://images.unsplash.com/photo-1548142813-c348350df52b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
                 alt="Image Description"
@@ -551,7 +551,7 @@ export default function Content({}: Props) {
           {/* End Col */}
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
-              <img
+              <Image
                 className="rounded-full w-20 h-20"
                 src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
                 alt="Image Description"
@@ -622,7 +622,7 @@ export default function Content({}: Props) {
           {/* End Col */}
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
-              <img
+              <Image
                 className="rounded-full w-20 h-20"
                 src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
                 alt="Image Description"
@@ -693,7 +693,7 @@ export default function Content({}: Props) {
           {/* End Col */}
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
-              <img
+              <Image
                 className="rounded-full w-20 h-20"
                 src="https://images.unsplash.com/photo-1624224971170-2f84fed5eb5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
                 alt="Image Description"
@@ -764,7 +764,7 @@ export default function Content({}: Props) {
           {/* End Col */}
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
-              <img
+              <Image
                 className="rounded-full w-20 h-20"
                 src="https://images.unsplash.com/photo-1579017331263-ef82f0bbc748?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
                 alt="Image Description"
@@ -835,7 +835,7 @@ export default function Content({}: Props) {
           {/* End Col */}
           <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
             <div className="flex items-center gap-x-4">
-              <img
+              <Image
                 className="rounded-full w-20 h-20"
                 src="https://images.unsplash.com/photo-1514222709107-a180c68d72b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
                 alt="Image Description"
