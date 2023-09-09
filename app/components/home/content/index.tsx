@@ -16,9 +16,11 @@ export const Content = ({}: Props) => {
     const handleScroll = () => {
       const element = elementRef.current;
       if (element) {
-        const elementTop = element.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect();
         const windowHeight = window.innerHeight;
-        const scrollPercentage = 1 - elementTop / windowHeight;
+        const elementTop = elementRect.top + elementRect.height / 2; // Center of the element
+        const scrollPercentage =
+          1 - Math.abs(elementTop - windowHeight / 2) / (windowHeight / 2);
         const roundedOpacity = Math.min(1, Math.max(0, scrollPercentage)); // Ensure opacity is within 0 to 1
         setOpacity(roundedOpacity);
       }
