@@ -1,17 +1,46 @@
 import Card from "../../card";
 import Image from "next/image";
 import { userData } from "./userdata";
+import { useEffect, useRef, useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import InsightImg01 from "/public/images/insight-img-01.avif";
 import InsightImg02 from "/public/images/insight-img-02.avif";
 
-type Props = {};
+interface Props {}
 
 export const Content = ({}: Props) => {
+  const elementRef = useRef<HTMLDivElement | null>(null);
+  const [opacity, setOpacity] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const element = elementRef.current;
+      if (element) {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        const scrollPercentage = 1 - elementTop / windowHeight;
+        const roundedOpacity = Math.min(1, Math.max(0, scrollPercentage)); // Ensure opacity is within 0 to 1
+        setOpacity(roundedOpacity);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  const containerStyle = {
+    opacity: opacity,
+  };
   return (
     <>
       {/* Icon Blocks */}
-      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <div
+        ref={elementRef}
+        style={containerStyle}
+        className={`${opacity} transition-opacity max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto`}
+      >
         <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
           <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
             Project Features
@@ -155,7 +184,9 @@ export const Content = ({}: Props) => {
       {/* End Icon Blocks */}
 
       {/* Card Blog */}
-      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <div
+        className={`max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto`}
+      >
         {/* Title */}
         <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
           <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
@@ -250,7 +281,9 @@ export const Content = ({}: Props) => {
       {/* End Card Blog */}
 
       {/* Recommendations */}
-      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <div
+        className={`max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto`}
+      >
         {/* Title */}
         <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
           <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
