@@ -55,19 +55,19 @@ export const Header = () => {
                 href="#"
                 aria-current="page"
               >
-                Landing
+                Home
               </Link>
               <Link
                 className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
                 href="#"
               >
-                Account
+                Services
               </Link>
               <Link
                 className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
-                href="/work"
+                href="#"
               >
-                Work
+                Projects
               </Link>
               <Link
                 className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
