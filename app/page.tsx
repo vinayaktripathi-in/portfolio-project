@@ -1,7 +1,7 @@
 "use client";
 import { Header } from "@components/header";
 import { Hero } from "@components/home/hero";
-import { Content } from "@components/content";
+import { Content } from "@/app/components/home/content";
 import { Footer } from "@components/footer";
 
 export default function Home() {

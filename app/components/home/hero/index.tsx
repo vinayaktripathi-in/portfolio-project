@@ -54,6 +54,7 @@ export const Hero = () => {
 
                 <div className="mt-5">
                   {/* <!-- Star --> */}
+                 
                   <svg
                     className="h-auto w-16 text-gray-800 dark:text-white"
                     width="80"
