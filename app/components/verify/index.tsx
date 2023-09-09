@@ -38,7 +38,7 @@ export default function Verify({
     } else if (error) {
       toast.error("An error occurred");
     }
-  }, [success, error]);
+  }, [success, error, routeLink]);
 
   return (
     <main className="w-full max-w-md mx-auto p-6">
