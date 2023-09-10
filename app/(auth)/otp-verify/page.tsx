@@ -13,7 +13,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 //   otp: string;
 // }
 
-export default function Verify() {
+export default function OTPVerify() {
   const [otp, setOtp] = useState("");
 
   const dispatch = useDispatch<any>();

@@ -49,7 +49,7 @@ export default function ForgotPassword() {
   useEffect(() => {
     if (isSuccess && emailRef.current) {
       // Redirect to the verify page with the email as a query parameter
-      router.push(`/verify?email=${emailRef.current}`);
+      router.push(`/otp-verify?email=${emailRef.current}`);
     }
     if (isSuccess) {
       toast.success(`OTP sent successful`);

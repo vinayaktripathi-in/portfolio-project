@@ -69,7 +69,7 @@ export async function createPasswordApi(userData: CreatePasswordUserData) {
 }
 export async function verifyApi(userData: VerifyUserData) {
   try {
-    const response = await axios.post(`${BASE_URL}/verify`, userData);
+    const response = await axios.post(`${BASE_URL}/otp-verify`, userData);
     return response.data;
   } catch (error) {
     throw error;
@@ -82,7 +82,7 @@ export async function getUserDataApi(token: string) {
   try {
     const response = await axios.get(`${BASE_URL}/user-data`, {
       headers: {
-        'x-auth-token': token, // Include the JWT token in the request header
+        "x-auth-token": token, // Include the JWT token in the request header
       },
     });
     return response.data;
