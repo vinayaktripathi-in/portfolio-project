@@ -9,39 +9,39 @@ import InsightImg02 from "/public/images/insight-img-02.avif";
 interface Props {}
 
 export const Content = ({}: Props) => {
-  const elementRef = useRef<HTMLDivElement | null>(null);
-  const [opacity, setOpacity] = useState(0);
+  // const elementRef = useRef<HTMLDivElement | null>(null);
+  // const [opacity, setOpacity] = useState(100);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const element = elementRef.current;
-      if (element) {
-        const elementRect = element.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const elementTop = elementRect.top + elementRect.height / 2; // Center of the element
-        const scrollPercentage =
-          1 - Math.abs(elementTop - windowHeight / 2) / (windowHeight / 2);
-        const roundedOpacity = Math.min(1, Math.max(0, scrollPercentage)); // Ensure opacity is within 0 to 1
-        setOpacity(roundedOpacity);
-      }
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const element = elementRef.current;
+  //     if (element) {
+  //       const elementRect = element.getBoundingClientRect();
+  //       const windowHeight = window.innerHeight;
+  //       const elementTop = elementRect.top + elementRect.height / 2; // Center of the element
+  //       const scrollPercentage =
+  //         1 - Math.abs(elementTop - windowHeight / 2) / (windowHeight / 2);
+  //       const roundedOpacity = Math.min(1, Math.max(0, scrollPercentage)); // Ensure opacity is within 0 to 1
+  //       setOpacity(roundedOpacity);
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  const containerStyle = {
-    opacity: opacity,
-  };
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+  // const containerStyle = {
+  //   opacity: opacity,
+  // };
   return (
     <>
       {/* Icon Blocks */}
       <div
-        ref={elementRef}
-        style={containerStyle}
-        className={`${opacity} transition-opacity max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto`}
+        // ref={elementRef}
+        // style={containerStyle}
+        className={`max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto`}
       >
         <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
           <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
