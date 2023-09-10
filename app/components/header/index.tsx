@@ -183,7 +183,7 @@ export const Header = () => {
               <ThemeSwitch />
               <Link
                 className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
-                href="#"
+                href="/blog/post"
               >
                 Post Blog
               </Link>
