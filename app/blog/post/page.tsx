@@ -134,7 +134,7 @@ export default function BlogPost({}: Props) {
                     <span className="mt-2 block text-sm text-gray-800 dark:text-gray-200">
                       Browse your device or{" "}
                       <span className="group-hover:text-blue-700 text-blue-600">
-                        drag 'n drop'
+                        drag &apos;n drop&apos;
                       </span>
                     </span>
                     <span className="mt-1 block text-xs text-gray-500">
