@@ -1,6 +1,6 @@
 "use client";
-
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Work() {
   return (
@@ -26,13 +26,14 @@ export default function Work() {
             <p className="mb-5 inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
               Business insight
             </p>
+           
             <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl lg:leading-tight xl:text-5xl xl:leading-tight text-gray-800 dark:text-gray-200">
-              <a
+              <Link
                 className="hover:text-blue-600 dark:text-gray-300 dark:hover:text-white"
                 href="#"
               >
                 How to get buy-in and budget for direct hiring
-              </a>
+              </Link>
             </h2>
             {/* Avatar */}
             <div className="mt-6 sm:mt-10 flex items-center">
@@ -57,7 +58,7 @@ export default function Work() {
             </div>
             {/* End Avatar */}
             <div className="mt-5">
-              <a
+              <Link
                 className="inline-flex items-center gap-x-1.5 text-blue-600 decoration-2 hover:underline font-medium"
                 href="#"
               >
@@ -76,7 +77,7 @@ export default function Work() {
                     strokeLinecap="round"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
           {/* End Col */}
@@ -101,7 +102,7 @@ export default function Work() {
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card */}
-          <a
+          <Link
             className="group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4]"
             href="#"
           >
@@ -139,10 +140,11 @@ export default function Work() {
                 </h5>
               </div>
             </div>
-          </a>
+          </Link>
+
           {/* End Card */}
           {/* Card */}
-          <a
+          <Link
             className="group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4]"
             href="#"
           >
@@ -180,10 +182,11 @@ export default function Work() {
                 </h5>
               </div>
             </div>
-          </a>
+          </Link>
+
           {/* End Card */}
           {/* Card */}
-          <a
+          <Link
             className="group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4]"
             href="#"
           >
@@ -220,13 +223,14 @@ export default function Work() {
                 </h5>
               </div>
             </div>
-          </a>
+          </Link>
+
           {/* End Card */}
         </div>
         {/* End Grid */}
         {/* Card */}
         <div className="mt-12 text-center">
-          <a
+          <Link
             className="inline-flex justify-center items-center gap-x-2 text-center bg-white border hover:border-gray-300 text-sm text-blue-600 hover:text-blue-700 font-medium hover:shadow-sm rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:bg-slate-900 dark:border-gray-700 dark:hover:border-gray-600 dark:text-blue-500 dark:hover:text-blue-400 dark:hover:shadow-slate-700/[.7] dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
             href="#"
           >
@@ -245,7 +249,7 @@ export default function Work() {
                 strokeLinecap="round"
               />
             </svg>
-          </a>
+          </Link>
         </div>
         {/* End Card */}
       </div>
