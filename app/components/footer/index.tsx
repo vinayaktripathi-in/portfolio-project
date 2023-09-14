@@ -21,7 +21,8 @@ export const Footer = ({}: Props) => {
               I&apos;m a part of the{" "}
               <a
                 className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400"
-                href="#"
+                href="https://www.vayuz.com"
+                target="_blank"
               >
                 VAYUZ
               </a>{" "}
