@@ -1,8 +1,39 @@
 "use client";
+import { ReduxState } from "@/lib/redux";
+import { getBlogsUser } from "@/lib/redux/slices/getBlogsSlice";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+interface formData {
+  email: string;
+}
 
 export default function Work() {
+  const dispatch = useDispatch<any>();
+  const getBlogsState = useSelector((state: ReduxState) => state.getBlogs);
+  const { isLoading, error, isSuccess } = getBlogsState;
+  console.log()
+  // const router = useRouter();
+
+  const handlegetBlogsSubmit = async () => {
+    // if (event) {
+    //   event.preventDefault();
+    // }
+    const email = "heyvinayak@gmail.com";
+    const getBlogData = {
+      email: email,
+    };
+    dispatch(getBlogsUser(getBlogData));
+  };
+
+  useEffect(() => {
+    handlegetBlogsSubmit(); // Automatically trigger the function when the component mounts
+  }, []);
+ 
+  if (isLoading) return "Loading...";
   return (
     <>
       {/* Card Blog */}
@@ -26,7 +57,7 @@ export default function Work() {
             <p className="mb-5 inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
               Business insight
             </p>
-           
+
             <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl lg:leading-tight xl:text-5xl xl:leading-tight text-gray-800 dark:text-gray-200">
               <Link
                 className="hover:text-blue-600 dark:text-gray-300 dark:hover:text-white"

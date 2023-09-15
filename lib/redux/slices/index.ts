@@ -4,3 +4,5 @@ export * from "./verifySlice";
 export * from "./userDataSlice";
 export * from "./forgotPasswordSlice";
 export * from "./createPasswordSlice";
+export * from "./postBlogSlice";
+export * from "./getBlogsSlice";

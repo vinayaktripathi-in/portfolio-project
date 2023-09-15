@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://portfolio-project-backend-p7xr.onrender.com";
+const BASE_URL = "https://portfolio-project-backend-pi.vercel.app";
 
 interface SignUpUserData {
   firstName: string;
@@ -22,6 +22,15 @@ interface CreatePasswordUserData {
 interface VerifyUserData {
   email: string;
   otp: string;
+}
+interface postBlogUserData {
+  title: string;
+  content: string;
+  email: string;
+  coverImage: File | null;
+}
+interface getBlogsUserData {
+  email: string;
 }
 
 // POST API
@@ -85,6 +94,22 @@ export async function getUserDataApi(token: string) {
         "x-auth-token": token, // Include the JWT token in the request header
       },
     });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function postBlogApi(userData: postBlogUserData) {
+  try {
+    const response = await axios.post(`${BASE_URL}/create-blog`, userData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function getBlogsApi(userData: getBlogsUserData) {
+  try {
+    const response = await axios.get(`${BASE_URL}/get-all-blogs`, userData);
     return response.data;
   } catch (error) {
     throw error;

@@ -2,6 +2,7 @@
 import "../globals.css";
 import { Header } from "@components/header";
 import { Footer } from "@components/footer";
+import { Toaster } from "react-hot-toast";
 // import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       {/* className={inter.className} */}
       <section>
         <Header />
+        <Toaster />
         {children}
         <Footer />
       </section>

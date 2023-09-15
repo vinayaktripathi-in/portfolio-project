@@ -1,13 +1,95 @@
+"use client";
+import { useEffect, useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  postBlogUser,
+  resetSuccessState,
+} from "@/lib/redux/slices/postBlogSlice";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ReduxState } from "@/lib/redux/store";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
 import Image from "next/image";
 
-interface Props {}
+interface formData {
+  title: string;
+  content: string;
+  // email: string;
+  // image: File | null;
+}
 
-export default function BlogPost({}: Props) {
+const schema = yup.object().shape({
+  title: yup.string().required("title is required"),
+  content: yup.string().required("content is required"),
+  // email: yup.string().email().required("email is required"),
+  image: yup.mixed().required("File is required"),
+  // Add other form fields validation here
+});
+
+export default function BlogPost() {
+  const dispatch = useDispatch<any>();
+  const postBlogState = useSelector((state: ReduxState) => state.postBlog);
+  const { isLoading, error, isSuccess } = postBlogState;
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  // const [previewImage, setPreviewImage] = useState<string | null>(null);
+
+  const handlepostBlogSubmit: SubmitHandler<formData> = async (data, event) => {
+    console.log("triggered");
+    if (event) {
+      event.preventDefault();
+    }
+
+    const email = "heyvinayak@gmail.com";
+
+    const postBlogData = {
+      title: data.title,
+      content: data.content,
+      email: email,
+      coverImage: selectedImage || null, // Use selectedImage or null if it's not set
+    };
+
+    dispatch(postBlogUser(postBlogData));
+  };
+  console.log(selectedImage);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      // Update the selectedImage state when a file is selected
+      setSelectedImage(e.target.files[0]);
+      // setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success(`Blog posted successfully!!`);
+      dispatch(dispatch(resetSuccessState()));
+      router.push("/blog");
+    } else if (error) {
+      toast.error("An error occurred");
+    }
+  }, [isSuccess, error, router]);
+
   return (
     <>
       {/* Card Section */}
       <div className="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <form>
+        <form onSubmit={handleSubmit(handlepostBlogSubmit)}>
           {/* Card */}
           <div className="bg-white rounded-xl shadow dark:bg-slate-900">
             <div className="relative h-40 rounded-t-xl bg-[url('/images/insight-img-03.avif')] bg-no-repeat bg-cover bg-center">
@@ -80,11 +162,17 @@ export default function BlogPost({}: Props) {
                     Blog Title
                   </label>
                   <input
+                    {...register("title", { required: true })}
                     id="af-submit-app-project-name"
                     type="text"
                     className="py-2 px-3 pr-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                     placeholder="Enter blog title"
                   />
+                  {errors.title && (
+                    <p className="text-xs text-red-600 mt-2">
+                      {errors.title.message}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <label
@@ -112,11 +200,25 @@ export default function BlogPost({}: Props) {
                     className="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 dark:border-gray-700"
                   >
                     <input
+                      {...register("image", { required: true })}
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
                       id="af-submit-app-upload-images"
                       name="af-submit-app-upload-images"
-                      type="file"
                       className="sr-only"
                     />
+                    {errors.image && (
+                      <p className="text-xs text-red-600 mt-2">
+                        {errors.image.message}
+                      </p>
+                    )}
+                    {/* <Image
+                      width={100}
+                      height={100}
+                      alt=""
+                      src={previewImage}
+                    /> */}
                     <svg
                       className="w-10 h-10 mx-auto text-gray-400 dark:text-gray-600"
                       xmlns="http://www.w3.org/2000/svg"
@@ -169,6 +271,7 @@ export default function BlogPost({}: Props) {
                     Description
                   </label>
                   <textarea
+                    {...register("content", { required: true })}
                     id="af-submit-app-description"
                     className="py-2 px-3 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                     rows={6}
@@ -180,10 +283,13 @@ export default function BlogPost({}: Props) {
               {/* End Grid */}
               <div className="mt-5 flex justify-center gap-x-2">
                 <button
-                  type="button"
+                  type="submit"
                   className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                 >
                   Post Blog
+                  {isLoading && (
+                    <AiOutlineLoading3Quarters className="animate-spin h-4 w-4" />
+                  )}
                 </button>
               </div>
             </div>
