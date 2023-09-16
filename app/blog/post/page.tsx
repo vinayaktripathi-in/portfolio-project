@@ -124,7 +124,7 @@ export default function BlogPost() {
                   <label className="sr-only">Product photo</label>
                   <div className="grid sm:flex sm:items-center sm:gap-x-5">
                     <Image
-                      className="-mt-8 relative z-10 inline-block h-24 w-24 mx-auto sm:mx-0 rounded-full ring-4 ring-white dark:ring-gray-800"
+                      className="-mt-8 relative z-[9] inline-block h-24 w-24 mx-auto sm:mx-0 rounded-full ring-4 ring-white dark:ring-gray-800"
                       unoptimized
                       width={100}
                       height={100}
