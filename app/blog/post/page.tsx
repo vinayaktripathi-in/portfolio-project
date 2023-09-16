@@ -56,20 +56,18 @@ export default function BlogPost() {
       event.preventDefault();
     }
 
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        const postBlogData = {
-          userData: {
-            title: data.title,
-            content: data.content,
-            coverImage: selectedImage || null,
-          },
-          token: token,
-        };
-        dispatch(postBlogUser(postBlogData));
-      }
-    }, []);
+    const token = localStorage.getItem("token");
+    if (token) {
+      const postBlogData = {
+        userData: {
+          title: data.title,
+          content: data.content,
+          coverImage: selectedImage || null,
+        },
+        token: token,
+      };
+      dispatch(postBlogUser(postBlogData));
+    }
   };
   console.log(selectedImage);
 
