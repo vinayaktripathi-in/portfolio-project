@@ -19,18 +19,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  
-  
   return (
     <div lang="en">
       {/* className={inter.className} */}
       <section>
-        <AuthProvider >
-          <Header />
-          <Toaster />
-          {children}
-          <Footer />
-        </AuthProvider>
+        <Header />
+        <Toaster />
+        <AuthProvider>{children}</AuthProvider>
+        <Footer />
       </section>
     </div>
   );
