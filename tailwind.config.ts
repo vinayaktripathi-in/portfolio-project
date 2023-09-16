@@ -14,6 +14,18 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      // Define the animation keyframes
+      keyframes: {
+        progressAnimation: {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
+      },
+
+      // Define loading related classes
+      animation: {
+        loading: "progressAnimation 10s linear infinite",
+      },
     },
   },
   plugins: [],

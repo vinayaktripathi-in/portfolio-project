@@ -38,19 +38,19 @@ html {
 /* Background color of the scrollbar track */
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 /* Background color of the scrollbar track in dark mode */
 @media (prefers-color-scheme: dark) {
   ::-webkit-scrollbar-track {
     background: #161b22;
-    border-radius: 8px;
+    /* border-radius: 8px; */
   }
 }
 /* Color of the scrollbar handle */
 ::-webkit-scrollbar-thumb {
   background: #2563eb;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 /* Hover style for the scrollbar handle */
