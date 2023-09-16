@@ -16,7 +16,7 @@ export default function Work() {
 
   useEffect(() => {
     dispatch(getBlogsUser()); // Automatically trigger the function when the component mounts
-  }, []);
+  }, [dispatch]);
 
 
   return (

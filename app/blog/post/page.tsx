@@ -83,7 +83,7 @@ export default function BlogPost() {
     } else if (error) {
       toast.error("An error occurred");
     }
-  }, [isSuccess, error, router]);
+  }, [isSuccess, error, router, dispatch]);
 
   return (
     <>
