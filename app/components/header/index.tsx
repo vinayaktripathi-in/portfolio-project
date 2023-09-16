@@ -196,7 +196,7 @@ export const Header = () => {
       {hamburger && (
         <>
           <div
-            className={`w-56 block absolute top-20 right-5 md:shadow-md p-2 bg-white dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 rounded-lg overflow-hidden transition-all duration-300 basis-full grow md:hidden`}
+            className={`z-10 w-56 block absolute top-20 right-5 md:shadow-md p-2 bg-white dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 rounded-lg overflow-hidden transition-all duration-300 basis-full grow md:hidden`}
           >
             <div className="p-2 flex flex-col items-center gap-y-4 gap-x-0 mt-5">
               <ThemeSwitch />
