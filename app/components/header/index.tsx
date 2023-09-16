@@ -5,14 +5,15 @@ import { ReduxState } from "@/lib/redux";
 import { ThemeSwitch } from "@components/theme";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "@/lib/redux/slices/userDataSlice";
+import { removeToken } from "@/lib/redux/slices/signInSlice";
 import { AiOutlineLoading3Quarters, AiOutlineUser } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 export const Header = () => {
-  const [click, setClick] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [hamburger, setHamburger] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const dispatch = useDispatch<any>();
   useEffect(() => {
     // Dispatch the action to fetch user data when the component mounts
@@ -20,6 +21,11 @@ export const Header = () => {
   }, [dispatch]);
   const userDataState = useSelector((state: ReduxState) => state.userData);
   const { data, loading } = userDataState;
+
+  function handleSignOut() {
+    localStorage.removeItem("token");
+    dispatch(removeToken());
+  }
   return (
     <>
       <header className="sticky top-4 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm">
@@ -37,11 +43,11 @@ export const Header = () => {
             </Link>
             <div className="md:hidden">
               <button
-                onClick={() => setClick(!click)}
+                onClick={() => setHamburger(!hamburger)}
                 type="button"
                 className="p-2 inline-flex justify-center items-center gap-2 rounded-full border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
               >
-                {!click ? <GiHamburgerMenu /> : <RxCross2 />}
+                {!hamburger ? <GiHamburgerMenu /> : <RxCross2 />}
               </button>
             </div>
           </div>
@@ -83,14 +89,14 @@ export const Header = () => {
               </Link>
               <div className="md:py-4">
                 <button
-                  onClick={() => setOpen(!open)}
+                  onClick={() => setDropdown(!dropdown)}
                   type="button"
                   className="flex items-center w-full text-gray-500 hover:text-gray-400 font-medium dark:text-gray-400 dark:hover:text-gray-500 "
                 >
                   Dropdown
                   <MdOutlineKeyboardArrowDown />
                 </button>
-                {open && (
+                {dropdown && (
                   <div className="absolute top-16 right-24 transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] md:w-48 z-10 bg-white md:shadow-md rounded-lg p-2 dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 md:border">
                     <Link
                       className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
@@ -120,7 +126,7 @@ export const Header = () => {
                           />
                         </svg>
                       </button>
-                      <div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 md:w-48 hidden z-10 md:mt-2 bg-white md:shadow-md rounded-lg p-2 dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 before:absolute md:border before:-right-5 before:top-0 before:h-full before:w-5 top-0 right-full !mx-[10px]">
+                      <div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-dropdown:opacity-100 opacity-0 md:w-48 hidden z-10 md:mt-2 bg-white md:shadow-md rounded-lg p-2 dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 before:absolute md:border before:-right-5 before:top-0 before:h-full before:w-5 top-0 right-full !mx-[10px]">
                         <Link
                           className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                           href="#"
@@ -153,6 +159,15 @@ export const Header = () => {
                     >
                       Team Account
                     </Link>
+                    <div className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-gray-300 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500">
+                      <AiOutlineUser />
+                      <button
+                        className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
+                        onClick={handleSignOut}
+                      >
+                        Sign Out
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -174,7 +189,7 @@ export const Header = () => {
           </div>
         </nav>
       </header>
-      {click && (
+      {hamburger && (
         <>
           <div
             className={`block overflow-hidden transition-all duration-300 basis-full grow md:hidden`}
@@ -214,14 +229,14 @@ export const Header = () => {
               </Link>
               <div className="md:py-4">
                 <button
-                  onClick={() => setOpen(!open)}
+                  onClick={() => setDropdown(!dropdown)}
                   type="button"
                   className="flex items-center w-full text-gray-500 hover:text-gray-400 font-medium dark:text-gray-400 dark:hover:text-gray-500 "
                 >
                   Dropdown
                   <MdOutlineKeyboardArrowDown />
                 </button>
-                {open && (
+                {dropdown && (
                   <div className="absolute top-16 right-24 transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] md:w-48 z-10 bg-white md:shadow-md rounded-lg p-2 dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 md:border">
                     <Link
                       className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
@@ -251,7 +266,7 @@ export const Header = () => {
                           />
                         </svg>
                       </button>
-                      <div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 md:w-48 hidden z-10 md:mt-2 bg-white md:shadow-md rounded-lg p-2 dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 before:absolute md:border before:-right-5 before:top-0 before:h-full before:w-5 top-0 right-full !mx-[10px]">
+                      <div className="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] md:duration-[150ms] hs-dropdown-dropdown:opacity-100 opacity-0 md:w-48 hidden z-10 md:mt-2 bg-white md:shadow-md rounded-lg p-2 dark:bg-gray-800 md:dark:border dark:border-gray-700 dark:divide-gray-700 before:absolute md:border before:-right-5 before:top-0 before:h-full before:w-5 top-0 right-full !mx-[10px]">
                         <Link
                           className="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                           href="#"
@@ -270,6 +285,15 @@ export const Header = () => {
                         >
                           Team Account
                         </Link>
+                        <div className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-gray-300 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500">
+                          <AiOutlineUser />
+                          <button
+                            className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
+                            onClick={handleSignOut}
+                          >
+                            Sign Out
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <Link

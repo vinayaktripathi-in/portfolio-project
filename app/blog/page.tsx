@@ -7,33 +7,18 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-interface formData {
-  email: string;
-}
-
 export default function Work() {
   const dispatch = useDispatch<any>();
   const getBlogsState = useSelector((state: ReduxState) => state.getBlogs);
-  const { isLoading, error, isSuccess } = getBlogsState;
-  console.log()
+  const { isLoading, error, isSuccess, data } = getBlogsState;
+  console.log(data, "mai hoon");
   // const router = useRouter();
 
-  const handlegetBlogsSubmit = async () => {
-    // if (event) {
-    //   event.preventDefault();
-    // }
-    const email = "heyvinayak@gmail.com";
-    const getBlogData = {
-      email: email,
-    };
-    dispatch(getBlogsUser(getBlogData));
-  };
-
   useEffect(() => {
-    handlegetBlogsSubmit(); // Automatically trigger the function when the component mounts
+    dispatch(getBlogsUser()); // Automatically trigger the function when the component mounts
   }, []);
- 
-  if (isLoading) return "Loading...";
+
+
   return (
     <>
       {/* Card Blog */}

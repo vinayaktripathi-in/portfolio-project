@@ -2,20 +2,13 @@ import { useAuth } from "../../hooks/useAuth";
 
 interface AuthProviderProps {
   children: React.ReactNode;
-  loading: boolean;
-  token: string | null;
+  // token: string | null;
 }
 
-const AuthProvider: React.FC<AuthProviderProps> = ({
-  children,
-  loading,
-  token,
-}) => {
-  useAuth(token);
+const token = localStorage.getItem("token");
 
-  if (loading) {
-    return <>Loading...</>;
-  }
+const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  useAuth(token);
 
   if (token) {
     return <>{children}</>;

@@ -15,15 +15,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  
   return (
     <div className="bg-white dark:bg-[#121212]" lang="en">
       {/* className={inter.className} */}
-      <section>
-        
-          {children}
-        
-      </section>
+      <section>{children}</section>
     </div>
   );
 }

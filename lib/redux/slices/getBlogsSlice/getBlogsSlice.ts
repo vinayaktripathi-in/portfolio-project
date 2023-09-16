@@ -1,7 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface Blog {
+  id: number;
+  blogId: string;
+  title: string;
+  content: string;
+  author: string;
+  email: string;
+  coverImage: string;
+  createdAt: Date;
+}
+
 interface getBlogsState {
-  data: string | null;
+  data: Blog[] | null; // Use an array of Blog objects
   isLoading: boolean;
   isSuccess: boolean;
   error: string | null;

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export function useAuth(token: string | null): void {
   const router = useRouter();
@@ -7,7 +7,7 @@ export function useAuth(token: string | null): void {
   useEffect(() => {
     if (!token) {
       localStorage.clear();
-      router.push('/');
+      router.push("/signin");
     }
   }, [router, token]);
 }

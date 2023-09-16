@@ -1,25 +1,28 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getBlogsApi } from "@/api";
-import { getBlogsRequest, getBlogsSuccess, getBlogsFailure } from "./getBlogsSlice";
-
-interface getBlogsData {
-  email: string;
-}
+import {
+  getBlogsRequest,
+  getBlogsSuccess,
+  getBlogsFailure,
+} from "./getBlogsSlice";
 
 export const getBlogsUser = createAsyncThunk(
   "getBlogs",
-  async (userData: getBlogsData, thunkAPI) => {
+  async (_, { rejectWithValue, dispatch }) => {
+    const token = localStorage.getItem("token");
+    if (token === null) {
+      return rejectWithValue("Token not found in local storage");
+    }
     try {
-      console.log(userData, "thunk")
-      thunkAPI.dispatch(getBlogsRequest());
-      const response = await getBlogsApi(userData);
-      thunkAPI.dispatch(getBlogsSuccess());
-      console.log(response.data)
-      return response.data;
-    } catch (error) {
-      const errorMessage = (error as Error).message || "An error occurred.";
-      thunkAPI.dispatch(getBlogsFailure(errorMessage));
-      throw error;
+      dispatch(getBlogsRequest()); // Pass 'true' to setLoading to indicate loading
+      const response = await getBlogsApi(token);
+      dispatch(getBlogsSuccess(response)); // Pass the response as payload
+      return response;
+    } catch (error: any) {
+      dispatch(getBlogsFailure(error)); // Pass the error object itself
+      return rejectWithValue(error);
+    } finally {
+      dispatch(getBlogsRequest()); // Pass 'false' to setLoading when loading is done
     }
   }
 );
