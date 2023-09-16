@@ -22,7 +22,7 @@ export const Header = () => {
     dispatch(fetchUserData());
   }, [dispatch]);
   const userDataState = useSelector((state: ReduxState) => state.userData);
-  const { data, loading } = userDataState;
+  const { data, loading, error } = userDataState;
 
   function handleSignOut() {
     localStorage.removeItem("token");

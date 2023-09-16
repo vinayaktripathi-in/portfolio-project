@@ -4,7 +4,6 @@ import { RiTwitterXFill } from "react-icons/ri";
 import { AiFillGithub, AiOutlineSlack } from "react-icons/ai";
 
 interface Props {
-  key?: number;
   name?: string;
   designation?: string;
   message?: string;
@@ -14,7 +13,6 @@ interface Props {
 }
 
 export default function Card({
-  key,
   name,
   designation,
   message,
@@ -24,10 +22,7 @@ export default function Card({
 }: Props) {
   return (
     <>
-      <div
-        key={key}
-        className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700"
-      >
+      <div className="flex flex-col rounded-xl p-4 md:p-6 bg-white border border-gray-200 dark:bg-slate-900 dark:border-gray-700">
         <div className="flex items-center gap-x-4">
           <Image
             unoptimized

@@ -3,7 +3,6 @@ import "../globals.css";
 import { Header } from "@components/header";
 import { Footer } from "@components/footer";
 import AuthProvider from "@components/auth";
-import { Toaster } from "react-hot-toast";
 // import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 
@@ -24,7 +23,6 @@ export default function RootLayout({
       {/* className={inter.className} */}
       <section>
         <Header />
-        <Toaster />
         <AuthProvider>{children}</AuthProvider>
         <Footer />
       </section>

@@ -6,7 +6,7 @@ export function useAuth(token: string | null): void {
 
   useEffect(() => {
     if (!token) {
-      // localStorage.clear();
+    
       router.push("/signin");
     }
   }, [router, token]);

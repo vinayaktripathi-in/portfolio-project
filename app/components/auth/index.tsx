@@ -1,42 +1,25 @@
-import { useEffect, useState } from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useAuth } from "../../hooks/useAuth";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface AuthProviderProps {
   children: React.ReactNode;
 }
 
-function getTokenFromLocalStorage() {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("token");
-  }
-  return null;
-}
-
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [loading, setLoading] = useState(true); // Start with loading state as true
-  const token = getTokenFromLocalStorage();
-  useAuth(token);
+  const router = useRouter();
 
   useEffect(() => {
-    setLoading(false);
-  }, [useAuth]);
+    if (localStorage) {
+      const token = localStorage.getItem("token");
 
-  if (loading) {
-    return (
-      <>
-        <div className="w-full min-h-screen flex justify-center items-center">
-          <AiOutlineLoading3Quarters className="animate-spin" />
-        </div>
-      </>
-    ); // Display a loading spinner
-  }
+      if (!token) {
+        router.push("/signin");
+      }
+    }
+  }, [router]);
 
-  if (token) {
-    return <>{children}</>; // Render children when token is available
-  }
-
-  return null;
+  // Render children when authenticated
+  return <>{children}</>;
 };
 
 export default AuthProvider;

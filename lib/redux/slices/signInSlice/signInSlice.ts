@@ -37,11 +37,18 @@ export const signInSlice = createSlice({
       state.token = action.payload;
     },
     removeToken: (state) => {
+      state.isSuccess = false;
       state.token = null;
     },
   },
 });
 
-export const { signinRequest, signinSuccess, signinFailure, setToken, removeToken } = signInSlice.actions;
+export const {
+  signinRequest,
+  signinSuccess,
+  signinFailure,
+  setToken,
+  removeToken,
+} = signInSlice.actions;
 
 export default signInSlice.reducer;
