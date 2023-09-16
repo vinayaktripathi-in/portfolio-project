@@ -7,6 +7,7 @@ interface UserdataState {
     lastName: string;
     email: string;
     phone: string;
+    token: string;
   } | null;
   loading: boolean;
   error: string | null;

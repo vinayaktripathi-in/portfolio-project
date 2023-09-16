@@ -34,7 +34,9 @@ const schema = yup.object().shape({
 export default function BlogPost() {
   const dispatch = useDispatch<any>();
   const postBlogState = useSelector((state: ReduxState) => state.postBlog);
+  const userDataState = useSelector((state: ReduxState) => state.userData);
   const { isLoading, error, isSuccess } = postBlogState;
+  const { data } = userDataState;
   const router = useRouter();
 
   const {
@@ -48,22 +50,26 @@ export default function BlogPost() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   // const [previewImage, setPreviewImage] = useState<string | null>(null);
 
+  const token = localStorage.getItem("token");
+  console.log(token);
+
   const handlepostBlogSubmit: SubmitHandler<formData> = async (data, event) => {
     console.log("triggered");
     if (event) {
       event.preventDefault();
     }
 
-    const email = "heyvinayak@gmail.com";
-
-    const postBlogData = {
-      title: data.title,
-      content: data.content,
-      email: email,
-      coverImage: selectedImage || null, // Use selectedImage or null if it's not set
-    };
-
-    dispatch(postBlogUser(postBlogData));
+    if (token) {
+      const postBlogData = {
+        userData: {
+          title: data.title,
+          content: data.content,
+          coverImage: selectedImage || null,
+        },
+        token: token,
+      };
+      dispatch(postBlogUser(postBlogData));
+    }
   };
   console.log(selectedImage);
 

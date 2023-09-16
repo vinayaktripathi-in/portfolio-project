@@ -5,17 +5,17 @@ import { postBlogRequest, postBlogSuccess, postBlogFailure } from "./postBlogSli
 interface postBlogData {
   title: string;
   content: string;
-  email: string;
   coverImage: File | null;
 }
 
+// Add a token parameter to postBlogUser
 export const postBlogUser = createAsyncThunk(
   "postBlog",
-  async (userData: postBlogData, thunkAPI) => {
+  async ({ userData, token }: { userData: postBlogData; token: string }, thunkAPI) => {
     try {
       console.log(userData, "thunk")
       thunkAPI.dispatch(postBlogRequest());
-      const response = await postBlogApi(userData);
+      const response = await postBlogApi(userData, token); // Pass the token to postBlogApi
       thunkAPI.dispatch(postBlogSuccess());
       return response.data;
     } catch (error) {

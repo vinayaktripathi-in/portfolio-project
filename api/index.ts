@@ -26,7 +26,6 @@ interface VerifyUserData {
 interface postBlogUserData {
   title: string;
   content: string;
-  email: string;
   coverImage: File | null;
 }
 interface getBlogsUserData {
@@ -99,9 +98,13 @@ export async function getUserDataApi(token: string) {
     throw error;
   }
 }
-export async function postBlogApi(userData: postBlogUserData) {
+export async function postBlogApi(userData: postBlogUserData, token: string) {
   try {
-    const response = await axios.post(`${BASE_URL}/create-blog`, userData);
+    const response = await axios.post(`${BASE_URL}/create-blog`, userData, {
+      headers: {
+        "x-auth-token": token, // Include the JWT token in the request header
+      },
+    });
     return response.data;
   } catch (error) {
     throw error;
