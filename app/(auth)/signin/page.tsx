@@ -52,11 +52,11 @@ export default function SignIn() {
       router.push("/");
     }
     if (isSuccess) {
-      toast.success(`Sign in successful ${data?.firstName}!!`);
+      toast.success(`Sign in successful!!`);
     } else if (error) {
       toast.error("An error occurred");
     }
-  }, [token, isSuccess, error, data, router]);
+  }, [token, isSuccess, error, router]);
 
   return (
     <main className="w-full max-w-md mx-auto p-6">
