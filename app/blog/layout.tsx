@@ -22,9 +22,11 @@ export default function RootLayout({
     <div lang="en">
       {/* className={inter.className} */}
       <section>
-        <Header />
-        <AuthProvider>{children}</AuthProvider>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AuthProvider>
       </section>
     </div>
   );
