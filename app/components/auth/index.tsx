@@ -4,8 +4,16 @@ interface AuthProviderProps {
   children: React.ReactNode;
   // token: string | null;
 }
+function getTokenFromLocalStorage() {
+  const isServer = typeof window === "undefined";
+  if (!isServer) {
+    return localStorage.getItem("token");
+  }
+  return null; // Return null if running on the server or if no token is found
+}
 
-const token = localStorage.getItem("token");
+// Usage:
+const token = getTokenFromLocalStorage();
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useAuth(token);
