@@ -117,7 +117,7 @@ export default function Work() {
         {/* Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Card */}
-          {data?.map((data, index) => (
+          {data?.slice().reverse().map((data, index) => (
             <Link
               key={index}
               className="group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4]"
