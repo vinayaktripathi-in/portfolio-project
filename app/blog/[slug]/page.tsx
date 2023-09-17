@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 interface blogData {
-  title: string;
-  content: string;
-  author: string;
-  email: string;
-  coverImag: string | null;
-  createdAt: number;
+  title?: string;
+  content?: string;
+  author?: string;
+  email?: string;
+  coverImag?: string | null;
+  createdAt?: number;
 }
 
 export default function Page() {
@@ -31,14 +31,8 @@ export default function Page() {
 
   const getBlogState = useSelector((state: ReduxState) => state.getBlog);
   const { isLoading, isSuccess, error, data } = getBlogState;
-  const blog: blogData = data || {
-    title: "",
-    content: "",
-    author: "",
-    email: "",
-    coverImage: null,
-    createdAt: 0,
-  };
+
+  const blog: blogData = {};
 
   console.log(data, "Object");
   return (
@@ -66,7 +60,7 @@ export default function Page() {
                     <div className="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
                       <div className="hs-tooltip-toggle sm:mb-1 block text-left cursor-pointer">
                         <span className="font-semibold text-gray-800 dark:text-gray-200">
-                          {blog?.author ? blog?.author : "Leyla Ludic"}
+                          {blog.title ? blog?.author : "Leyla Ludic"}
                         </span>
                         {/* Dropdown Card */}
                         <div
