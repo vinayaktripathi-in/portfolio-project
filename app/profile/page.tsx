@@ -1,5 +1,6 @@
 "use client";
 import { ReduxState } from "@/lib/redux";
+import Image from "next/image";
 import { useSelector } from "react-redux";
 
 type Props = {};
@@ -21,7 +22,10 @@ export default function Profile({}: Props) {
           </p>
         </div>
         <div className="text-center">
-          <img
+          <Image
+            unoptimized
+            width={0}
+            height={0}
             className="rounded-xl sm:w-48 sm:h-48 lg:w-60 lg:h-60 mx-auto"
             src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=900&h=900&q=80"
             alt="Image Description"

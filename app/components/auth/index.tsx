@@ -19,7 +19,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         window.location.replace("/signin");
       }
     }
-  }, [router]);
+  }, [router, loading]);
   function getTokenFromLocalStorage() {
     const isServer = typeof window === "undefined";
     if (!isServer) {
