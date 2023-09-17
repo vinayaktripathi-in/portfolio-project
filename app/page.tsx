@@ -4,13 +4,9 @@ import { Hero } from "@components/home/hero";
 import { Content } from "@/app/components/home/content";
 import { Footer } from "@components/footer";
 import { ProgressBar } from "@components/loading/ProgressBar";
-import { useSelector } from "react-redux";
-import { ReduxState } from "@/lib/redux";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  // const userDataState = useSelector((state: ReduxState) => state.userData);
-  // const { data, loading, error } = userDataState;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
