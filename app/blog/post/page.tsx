@@ -51,7 +51,7 @@ export default function BlogPost() {
   // const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const handlepostBlogSubmit: SubmitHandler<formData> = async (data, event) => {
-    console.log("triggered");
+    
     if (event) {
       event.preventDefault();
     }
@@ -69,7 +69,6 @@ export default function BlogPost() {
       dispatch(postBlogUser(postBlogData));
     }
   };
-  console.log(selectedImage);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {

@@ -30,10 +30,7 @@ export default function SignIn() {
   const { isLoading, isSuccess, error, token } = signInState;
   const { data } = userDataState;
   const router = useRouter();
-
-  console.log(isLoading, isSuccess, error, token, "SignInState");
   
-
   const {
     register,
     handleSubmit,

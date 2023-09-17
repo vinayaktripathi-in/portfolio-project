@@ -20,7 +20,6 @@ export const signInUser = createAsyncThunk(
     try {
       const response = await signInApi(signInData);
       dispatch(signinSuccess());
-      console.log(response);
       dispatch(setToken(response.token));
       return response;
     } catch (error) {

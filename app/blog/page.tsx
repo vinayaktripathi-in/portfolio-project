@@ -3,16 +3,13 @@ import { ReduxState } from "@/lib/redux";
 import { getBlogsUser } from "@/lib/redux/slices/getBlogsSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Work() {
   const dispatch = useDispatch<any>();
   const getBlogsState = useSelector((state: ReduxState) => state.getBlogs);
-  const { isLoading, error, isSuccess, data } = getBlogsState;
-  console.log(data, "mai hoon");
-  // const router = useRouter();
+  const { data } = getBlogsState;
 
   useEffect(() => {
     dispatch(getBlogsUser()); // Automatically trigger the function when the component mounts

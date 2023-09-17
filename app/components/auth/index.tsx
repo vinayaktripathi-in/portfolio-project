@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/loading";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -27,11 +28,13 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return null; // Return null if running on the server or if no token is found
   }
 
-  // Usage:
   const token = getTokenFromLocalStorage();
   if (token) {
-    return <>{(token && children) || setLoading(!loading)}</>;
-  }
+    return <>{children}</>;
+  } else
+    <>
+      <Loading />
+    </>;
 };
 
 export default AuthProvider;
