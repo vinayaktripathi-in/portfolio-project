@@ -3,12 +3,16 @@ import { ReduxState, getBlogUser } from "@/lib/redux";
 import { useParams } from "next/navigation"; // Import useRouter to access query parameters
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 interface data {
   title: string;
-  // Add other properties as needed
+  content: string;
+  author: string;
+  email: string;
+  coverImag: string | null;
+  createdAt: number;
 }
 
 export default function Page() {
@@ -27,6 +31,7 @@ export default function Page() {
 
   const getBlogState = useSelector((state: ReduxState) => state.getBlog);
   const { isLoading, isSuccess, error, data } = getBlogState;
+  const [blog, setBlog] = useState<data | null>(null);
 
   console.log(data, "Object");
   return (
@@ -54,7 +59,7 @@ export default function Page() {
                     <div className="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
                       <div className="hs-tooltip-toggle sm:mb-1 block text-left cursor-pointer">
                         <span className="font-semibold text-gray-800 dark:text-gray-200">
-                          {data?.author ? data?.author : "Leyla Ludic"}
+                          {blog?.author ? blog?.author : "Leyla Ludic"}
                         </span>
                         {/* Dropdown Card */}
                         <div
@@ -134,7 +139,7 @@ export default function Page() {
                     {/* End Tooltip */}
                     <ul className="text-xs text-gray-500">
                       <li className="inline-block relative pr-6 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
-                        {data?.createdAt ? data?.createdAt : "Jan 18"}
+                        {blog?.createdAt ? blog?.createdAt : "Jan 18"}
                       </li>
                       <li className="inline-block relative pr-6 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
                         8 min read
@@ -170,10 +175,14 @@ export default function Page() {
           <div className="space-y-5 md:space-y-8">
             <div className="space-y-3">
               <h2 className="text-2xl font-bold md:text-3xl dark:text-white">
-                {data.title ? data.title : "Announcing a free plan for small teams"}
+                {blog?.title
+                  ? blog.title
+                  : "Announcing a free plan for small teams"}
               </h2>
               <p className="text-lg text-gray-800 dark:text-gray-200">
-               {data.content ? data.content : " At preline, our mission has always been focused on bringing openness and transparency to the design process. We&apos;ve always believed that by providing a space where designers can share ongoing work not only empowers them to make better products, it also helps them grow."}
+                {blog?.content
+                  ? blog.content
+                  : " At preline, our mission has always been focused on bringing openness and transparency to the design process. We&apos;ve always believed that by providing a space where designers can share ongoing work not only empowers them to make better products, it also helps them grow."}
               </p>
             </div>
             <p className="text-lg text-gray-800 dark:text-gray-200">
