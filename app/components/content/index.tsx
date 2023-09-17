@@ -1,4 +1,4 @@
-import Card from "../../card";
+import Card from "../card";
 import Image from "next/image";
 import { userData } from "./userdata";
 import { useEffect, useRef, useState } from "react";

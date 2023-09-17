@@ -12,6 +12,7 @@ import { RxCross2 } from "react-icons/rx";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useRouter, usePathname } from "next/navigation";
 import { useOutsideClick } from "@/app/hooks";
+import { BiLockAlt } from "react-icons/bi";
 
 export const Header = () => {
   const [hamburger, setHamburger] = useState(false);
@@ -61,7 +62,9 @@ export const Header = () => {
               vinayaktripathi.in
             </Link>
             <div className="flex justify-center items-center gap-2">
-              <ThemeSwitch />
+              <div className="p-2 inline-flex justify-center items-center gap-2 rounded-full border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
+                <ThemeSwitch />
+              </div>
               <div className="md:hidden">
                 <button
                   onClick={() => setHamburger(!hamburger)}
@@ -80,7 +83,7 @@ export const Header = () => {
                       pathname === "/blog/post"
                         ? "text-blue-600"
                         : "text-gray-800 dark:text-gray-200"
-                    } + inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 dark:bg-gray-800`}
+                    } + inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 dark:bg-slate-900`}
                     href="/blog/post"
                   >
                     Post Blog
@@ -175,7 +178,7 @@ export const Header = () => {
                           onClick={handleSignOut}
                           className="w-full flex justify-center items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-gray-300 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500 group"
                         >
-                          <AiOutlineUser />
+                          <BiLockAlt />
                           <label className="font-medium text-gray-500 md:py-4 dark:text-gray-400 group-hover:text-blue-600">
                             Sign Out
                           </label>
@@ -216,7 +219,7 @@ export const Header = () => {
                   pathname === "/blog/post"
                     ? "text-blue-600"
                     : "text-gray-800 dark:text-gray-200"
-                } + inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 dark:bg-gray-800`}
+                } + inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 dark:bg-slate-900`}
                 href="/blog/post"
               >
                 Post Blog
@@ -278,7 +281,7 @@ export const Header = () => {
               </Link>
               {data && (
                 <div className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-gray-300 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500">
-                  <AiOutlineUser />
+                  <BiLockAlt />
                   <button
                     className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
                     onClick={handleSignOut}
