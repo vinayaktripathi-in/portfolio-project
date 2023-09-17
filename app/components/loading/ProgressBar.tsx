@@ -10,7 +10,7 @@ export const ProgressBar = (props: Props) => {
   return (
     <>
       {loading && (
-        <div className="sticky z-10 top-0 w-full bg-gray-200 h-2 dark:bg-gray-700">
+        <div className="fixed z-10 top-0 w-full bg-gray-200 h-2 dark:bg-gray-700">
           <div className={`bg-blue-600 h-2 animate-loading`} />
         </div>
       )}

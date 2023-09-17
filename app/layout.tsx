@@ -1,10 +1,11 @@
-"use client";
+"use client"
 import "./globals.css";
 // import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import { Providers } from "@lib/providers";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
+import { ProgressBar } from "@components/loading/ProgressBar";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [theme, setTheme] = useState(loadTheme());
+  const [loading, setLoading] = useState(true);
 
   function loadTheme() {
     const isServer = typeof window === "undefined";
@@ -38,6 +40,11 @@ export default function RootLayout({
     }
   }, [theme]);
 
+  useEffect(() => {
+    // This code will run on the client side after hydration.
+    setLoading(false); // Set loading to false once fully hydrated.
+  }, []);
+
   return (
     <html lang="en" className="dark">
       {/* className={inter.className} */}
@@ -45,6 +52,7 @@ export default function RootLayout({
         <main>
           <Providers>
             <Toaster />
+            <ProgressBar loading={loading} />
             {children}
           </Providers>
         </main>

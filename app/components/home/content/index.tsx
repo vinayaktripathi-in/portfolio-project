@@ -222,7 +222,7 @@ export const Content = ({}: Props) => {
               </h3>
               <p className="mt-3 text-gray-800 dark:text-gray-200">
                 Produce professional, reliable streams easily leveraging
-                Preline`&apos;`s innovative broadcast studio
+                Preline&apos;s innovative broadcast studio
               </p>
               <p className="mt-5 inline-flex items-center gap-x-1.5 text-blue-600 decoration-2 group-hover:underline font-medium">
                 Read more
