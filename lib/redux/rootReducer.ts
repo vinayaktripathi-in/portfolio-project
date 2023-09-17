@@ -7,6 +7,7 @@ import { forgotPasswordSlice } from "./slices";
 import { createPasswordSlice } from "./slices";
 import { postBlogSlice } from "./slices";
 import { getBlogsSlice } from "./slices";
+import { getBlogSlice } from "./slices";
 
 export const reducer = {
   signUp: signUpSlice.reducer,
@@ -17,4 +18,5 @@ export const reducer = {
   createPassword: createPasswordSlice.reducer,
   postBlog: postBlogSlice.reducer,
   getBlogs: getBlogsSlice.reducer,
+  getBlog: getBlogSlice.reducer,
 };

@@ -6,3 +6,4 @@ export * from "./forgotPasswordSlice";
 export * from "./createPasswordSlice";
 export * from "./postBlogSlice";
 export * from "./getBlogsSlice";
+export * from "./getBlogSlice";

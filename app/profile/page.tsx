@@ -1,16 +1,10 @@
 "use client";
-import { ReduxState, fetchUserData } from "@/lib/redux";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { ReduxState } from "@/lib/redux";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
 export default function Profile({}: Props) {
-  // const dispatch = useDispatch<any>();
-  // useEffect(() => {
-  //   // Dispatch the action to fetch user data when the component mounts
-  //   dispatch(fetchUserData());
-  // }, [dispatch]);
   const userDataState = useSelector((state: ReduxState) => state.userData);
   const { data } = userDataState;
 

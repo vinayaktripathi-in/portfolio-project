@@ -28,8 +28,8 @@ interface postBlogUserData {
   content: string;
   coverImage: File | null;
 }
-interface getBlogsUserData {
-  email: string;
+interface getBlogUserData {
+  id: string;
 }
 
 // POST API
@@ -115,6 +115,21 @@ export async function getBlogsApi(token: string) {
   try {
     const response: AxiosResponse = await axios.get(
       `${BASE_URL}/get-all-blogs`,
+      {
+        headers: {
+          "x-auth-token": token, // Include the JWT token in the request header
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function getBlogApi(token: string, id: string | null) {
+  try {
+    const response: AxiosResponse = await axios.get(
+      `${BASE_URL}/get-blog/${id}`,
       {
         headers: {
           "x-auth-token": token, // Include the JWT token in the request header
