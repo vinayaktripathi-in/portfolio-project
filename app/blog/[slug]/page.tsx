@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-interface data {
+interface blogData {
   title: string;
   content: string;
   author: string;
@@ -31,7 +31,14 @@ export default function Page() {
 
   const getBlogState = useSelector((state: ReduxState) => state.getBlog);
   const { isLoading, isSuccess, error, data } = getBlogState;
-  const [blog, setBlog] = useState<data | null>(null);
+  const blog: blogData = data || {
+    title: "",
+    content: "",
+    author: "",
+    email: "",
+    coverImage: null,
+    createdAt: 0,
+  };
 
   console.log(data, "Object");
   return (
