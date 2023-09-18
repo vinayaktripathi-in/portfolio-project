@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface getBlogState {
-  data: object | null;
+  data: {
+    title: string;
+    content: string;
+    author: string;
+    email: string;
+    coverImag: string | null;
+    createdAt: number;
+  } | null;
   isLoading: boolean;
   isSuccess: boolean;
   error: string | null;
