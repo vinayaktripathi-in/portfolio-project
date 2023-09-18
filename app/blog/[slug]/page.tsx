@@ -15,11 +15,11 @@ interface blogData {
   createdAt?: number;
 }
 
-interface Props {
-  blogId? : string;
-}
+// interface Props {
+//   blogId? : string;
+// }
 
-export default function BlogDetail({ blogId }: Props) {
+export default function BlogDetail() {
   const searchParams = useParams(); // Use useRouter to access query parameters
   const dispatch = useDispatch<any>();
 
@@ -30,7 +30,7 @@ export default function BlogDetail({ blogId }: Props) {
       // Check if blogId is not null before making the API call
       dispatch(getBlogUser(blogId as string));
     }
-  }, []);
+  }, [dispatch, searchParams?.slug]);
 
   const getBlogState = useSelector((state: ReduxState) => state.getBlog);
   const { isLoading, isSuccess, error, data } = getBlogState;
