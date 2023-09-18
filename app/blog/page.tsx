@@ -20,7 +20,7 @@ export default function Work() {
   function openBlog(id: string) {
     // Use the useRouter hook to navigate to the dynamic route
     router.push(`/blog/${id}`); // Replace "blog" with the actual route name
-    dispatch(getBlogUser(id));
+    // dispatch(getBlogUser(id));
   }
 
   return (

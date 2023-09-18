@@ -15,38 +15,32 @@ interface blogData {
   createdAt?: number;
 }
 
-export default function Page() {
-  // const searchParams = useParams(); // Use useRouter to access query parameters
-  // const dispatch = useDispatch<any>();
+interface Props {
+  blogId? : string;
+}
 
-  // useEffect(() => {
-  //   const blogId = searchParams;
-  //   const string = JSON.stringify(blogId.slug.toLocaleString());
-  //   console.log(string, "BlogiD");
-  //   if (blogId) {
-  //     // Check if blogId is not null before making the API call
-  //     dispatch(getBlogUser(string));
-  //   }
-  // }, []);
+export default function BlogDetail({ blogId }: Props) {
+  const searchParams = useParams(); // Use useRouter to access query parameters
+  const dispatch = useDispatch<any>();
+
+  useEffect(() => {
+    const blogId = searchParams?.slug;
+    console.log(blogId, "BlogID");
+    if (blogId) {
+      // Check if blogId is not null before making the API call
+      dispatch(getBlogUser(blogId as string));
+    }
+  }, []);
 
   const getBlogState = useSelector((state: ReduxState) => state.getBlog);
   const { isLoading, isSuccess, error, data } = getBlogState;
 
-  // const blog: blogData = data || {
-  //   title: "",
-  //   content: "",
-  //   author: "",
-  //   email: "",
-  //   coverImage: null,
-  //   createdAt: 0,
-  // };
-
-  const title = data?.title ?? "Title";
-  const content = data?.content ?? "ds";
-  const author = data?.author ?? "ds";
-  const email = data?.email ?? "sdsd";
-  const coverImag = data?.coverImag ?? "dsds";
-  const createdAt = data?.createdAt ?? "dsds";
+  const title = data?.title ?? "title";
+  const content = data?.content ?? "content";
+  const author = data?.author ?? "author";
+  const email = data?.email ?? "email";
+  const coverImage = data?.coverImage ?? "coverImage";
+  const createdAt = data?.createdAt ?? "createdAt";
 
   console.log(data, "Object");
   return (
@@ -223,8 +217,8 @@ export default function Page() {
               is brought in earlier, the better teams adapt and communicate with
               one another.
             </p>
-            <p className="text-lg text-gray-800 dark:text-gray-200">
-              That&apos;s why we are excited to share that we now have a{" "}
+            <div className="text-lg text-gray-800 dark:text-gray-200">
+              That&apos;s why we are excited to share that we now have a
               <a
                 className="text-blue-600 decoration-2 hover:underline font-medium"
                 href="#"
@@ -233,7 +227,7 @@ export default function Page() {
               </a>
               , which will allow individual designers, startups and other small
               teams a chance to create a culture of openness early on.
-            </p>
+            </div>
             <blockquote className="text-center p-4 sm:px-7">
               <p className="text-xl font-medium text-gray-800 md:text-2xl md:leading-normal xl:text-2xl xl:leading-normal dark:text-gray-200">
                 To say that switching to Preline has been life-changing is an

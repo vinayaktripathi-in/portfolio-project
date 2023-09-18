@@ -6,7 +6,7 @@ interface getBlogState {
     content: string;
     author: string;
     email: string;
-    coverImag: string | null;
+    coverImage: string | null;
     createdAt: number;
   } | null;
   isLoading: boolean;
