@@ -19,6 +19,7 @@ import Image from "next/image";
 interface formData {
   title: string;
   content: string;
+  category: string;
   // email: string;
   // image: File | null;
 }
@@ -26,6 +27,7 @@ interface formData {
 const schema = yup.object().shape({
   title: yup.string().required("title is required"),
   content: yup.string().required("content is required"),
+  category: yup.string().required("category is required"),
   // email: yup.string().email().required("email is required"),
   image: yup.mixed().required("File is required"),
   // Add other form fields validation here
@@ -51,7 +53,6 @@ export default function BlogPost() {
   // const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const handlepostBlogSubmit: SubmitHandler<formData> = async (data, event) => {
-    
     if (event) {
       event.preventDefault();
     }
@@ -62,6 +63,7 @@ export default function BlogPost() {
         userData: {
           title: data.title,
           content: data.content,
+          category: data.category,
           coverImage: selectedImage || null,
         },
         token: token,
@@ -74,6 +76,7 @@ export default function BlogPost() {
     if (e.target.files && e.target.files[0]) {
       // Update the selectedImage state when a file is selected
       setSelectedImage(e.target.files[0]);
+      console.log(selectedImage);
       // setPreviewImage(URL.createObjectURL(e.target.files[0]));
     }
   };
@@ -211,19 +214,17 @@ export default function BlogPost() {
                       name="af-submit-app-upload-images"
                       className="sr-only"
                     />
-                    {errors.image && (
-                      <p className="text-xs text-red-600 mt-2">
-                        {errors.image.message}
-                      </p>
+                    {selectedImage && (
+                      <Image
+                        width={0}
+                        height={0}
+                        className="w-full h-full"
+                        alt=""
+                        src={URL.createObjectURL(selectedImage)}
+                      />
                     )}
-                    {/* <Image
-                      width={100}
-                      height={100}
-                      alt=""
-                      src={previewImage}
-                    /> */}
                     <svg
-                      className="w-10 h-10 mx-auto text-gray-400 dark:text-gray-600"
+                      className="mt-2 w-10 h-10 mx-auto text-gray-400 dark:text-gray-600"
                       xmlns="http://www.w3.org/2000/svg"
                       width={16}
                       height={16}
@@ -246,7 +247,13 @@ export default function BlogPost() {
                       Maximum file size is 2 MB
                     </span>
                   </label>
+                  {errors.image && (
+                    <p className="text-xs text-red-600 mt-2">
+                      {errors.image.message}
+                    </p>
+                  )}
                 </div>
+
                 <div className="space-y-2">
                   <label
                     htmlFor="af-submit-app-category"
@@ -255,16 +262,24 @@ export default function BlogPost() {
                     Category
                   </label>
                   <select
+                    {...register("category", { required: true })}
                     id="af-submit-app-category"
                     className="py-2 px-3 pr-9 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                   >
-                    <option selected>Select a category</option>
-                    <option>Ecommerce</option>
-                    <option>Finance</option>
-                    <option>Marketplace</option>
-                    <option>Social</option>
-                    <option>Others</option>
+                    <option value={""} selected>
+                      Select a category
+                    </option>
+                    <option value={"ecommerce"}>Ecommerce</option>
+                    <option value={"finance"}>Finance</option>
+                    <option value={"marketplace"}>Marketplace</option>
+                    <option value={"social"}>Social</option>
+                    <option value={"others"}>Others</option>
                   </select>
+                  {errors.category && (
+                    <p className="text-xs text-red-600 mt-2">
+                      {errors.category.message}
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <label
@@ -281,6 +296,11 @@ export default function BlogPost() {
                     placeholder="A detailed summary will better explain your products to the audiences. Our users will see this in your dedicated product page."
                     defaultValue={""}
                   />
+                  {errors.content && (
+                    <p className="text-xs text-red-600 mt-2">
+                      {errors.content.message}
+                    </p>
+                  )}
                 </div>
               </div>
               {/* End Grid */}

@@ -26,6 +26,7 @@ interface VerifyUserData {
 interface postBlogUserData {
   title: string;
   content: string;
+  category: string;
   coverImage: File | null;
 }
 interface getBlogUserData {

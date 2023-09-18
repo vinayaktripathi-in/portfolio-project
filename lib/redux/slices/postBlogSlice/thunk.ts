@@ -5,6 +5,7 @@ import { postBlogRequest, postBlogSuccess, postBlogFailure } from "./postBlogSli
 interface postBlogData {
   title: string;
   content: string;
+  category: string;
   coverImage: File | null;
 }
 
