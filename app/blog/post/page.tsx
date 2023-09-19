@@ -52,6 +52,15 @@ export default function BlogPost() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   // const [previewImage, setPreviewImage] = useState<string | null>(null);
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      // Update the selectedImage state when a file is selected
+      setSelectedImage(e.target.files[0]);
+      console.log(selectedImage);
+      // setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
   const handlepostBlogSubmit: SubmitHandler<formData> = async (data, event) => {
     if (event) {
       event.preventDefault();
@@ -68,16 +77,16 @@ export default function BlogPost() {
         },
         token: token,
       };
-      dispatch(postBlogUser(postBlogData));
-    }
-  };
+      const formData = new FormData();
+      if (selectedImage) {
+        formData.append("coverImage", selectedImage);
+      }
+      formData.append("title", postBlogData.userData.title);
+      formData.append("content", postBlogData.userData.content);
+      formData.append("category", postBlogData.userData.category);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      // Update the selectedImage state when a file is selected
-      setSelectedImage(e.target.files[0]);
-      console.log(selectedImage);
-      // setPreviewImage(URL.createObjectURL(e.target.files[0]));
+      dispatch(postBlogUser({ userData: postBlogData.userData, token }));
+      // dispatch(postBlogUser(postBlogData));
     }
   };
 
@@ -95,7 +104,12 @@ export default function BlogPost() {
     <>
       {/* Card Section */}
       <div className="max-w-4xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <form onSubmit={handleSubmit(handlepostBlogSubmit)}>
+        <form
+          action="/upload"
+          method="POST"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit(handlepostBlogSubmit)}
+        >
           {/* Card */}
           <div className="bg-white rounded-xl shadow dark:bg-slate-900">
             <div className="relative h-40 rounded-t-xl bg-[url('/images/insight-img-03.avif')] bg-no-repeat bg-cover bg-center">
@@ -211,7 +225,7 @@ export default function BlogPost() {
                       accept="image/*"
                       onChange={handleImageChange}
                       id="af-submit-app-upload-images"
-                      name="af-submit-app-upload-images"
+                      name="image"
                       className="sr-only"
                     />
                     {selectedImage && (

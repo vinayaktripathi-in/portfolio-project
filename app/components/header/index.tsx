@@ -215,6 +215,7 @@ export const Header = () => {
           >
             <div className="p-2 flex flex-col items-center gap-y-4 gap-x-0">
               <Link
+                onClick={() => setHamburger(!hamburger)}
                 className={`${
                   pathname === "/blog/post"
                     ? "text-blue-600"
@@ -225,6 +226,7 @@ export const Header = () => {
                 Post Blog
               </Link>
               <Link
+                onClick={() => setHamburger(!hamburger)}
                 className={`${
                   pathname === "/"
                     ? "text-blue-600"
@@ -236,6 +238,7 @@ export const Header = () => {
                 Home
               </Link>
               <Link
+                onClick={() => setHamburger(!hamburger)}
                 className={`${
                   pathname === "/services"
                     ? "text-blue-600"
@@ -246,6 +249,7 @@ export const Header = () => {
                 Services
               </Link>
               <Link
+                onClick={() => setHamburger(!hamburger)}
                 className={`${
                   pathname === "/projects"
                     ? "text-blue-600"
@@ -256,6 +260,7 @@ export const Header = () => {
                 Projects
               </Link>
               <Link
+                onClick={() => setHamburger(!hamburger)}
                 className={`${
                   pathname === "/blog"
                     ? "text-blue-600"

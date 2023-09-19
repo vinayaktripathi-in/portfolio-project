@@ -99,6 +99,7 @@ export async function getUserDataApi(token: string) {
     throw error;
   }
 }
+
 export async function postBlogApi(userData: postBlogUserData, token: string) {
   try {
     const response = await axios.post(`${BASE_URL}/create-blog`, userData, {
