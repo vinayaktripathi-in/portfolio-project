@@ -211,7 +211,7 @@ export const Header = () => {
         <>
           <div
             ref={hamburgerRef}
-            className={`z-10 w-56 block fixed top-20 right-5 md:shadow-md p-2 bg-white border dark:bg-gray-800 dark:border-gray-700 dark:divide-gray-700 shadow-lg dark:shadow-2xl rounded-lg overflow-hidden transition-all duration-300 basis-full grow md:hidden`}
+            className={`z-10 w-full h-screen block fixed top-0 left-1/2 -translate-x-1/2 md:shadow-md pt-20 p-2 bg-white border dark:bg-gray-800 dark:border-gray-700 dark:divide-gray-700 shadow-lg dark:shadow-2xl rounded overflow-hidden transition-all duration-1000 basis-full grow md:hidden`}
           >
             <div className="p-2 flex flex-col items-center gap-y-4 gap-x-0">
               <Link
@@ -219,7 +219,7 @@ export const Header = () => {
                   pathname === "/blog/post"
                     ? "text-blue-600"
                     : "text-gray-800 dark:text-gray-200"
-                } + inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 dark:bg-slate-900`}
+                } + inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xl font-medium bg-gray-100 dark:bg-slate-900`}
                 href="/blog/post"
               >
                 Post Blog
@@ -229,7 +229,7 @@ export const Header = () => {
                   pathname === "/"
                     ? "text-blue-600"
                     : "text-gray-500 dark:text-gray-400"
-                } + font-medium hover:text-blue-600 md:py-6`}
+                } + font-medium text-xl hover:text-blue-600 md:py-6`}
                 href="/"
                 aria-current="page"
               >
@@ -240,7 +240,7 @@ export const Header = () => {
                   pathname === "/services"
                     ? "text-blue-600"
                     : "text-gray-500 dark:text-gray-400"
-                } + font-medium hover:text-blue-600 md:py-6`}
+                } + font-medium text-xl hover:text-blue-600 md:py-6`}
                 href="/services"
               >
                 Services
@@ -250,7 +250,7 @@ export const Header = () => {
                   pathname === "/projects"
                     ? "text-blue-600"
                     : "text-gray-500 dark:text-gray-400"
-                } + font-medium hover:text-blue-600 md:py-6`}
+                } + font-medium text-xl hover:text-blue-600 md:py-6`}
                 href="/projects"
               >
                 Projects
@@ -260,14 +260,14 @@ export const Header = () => {
                   pathname === "/blog"
                     ? "text-blue-600"
                     : "text-gray-500 dark:text-gray-400"
-                } + font-medium hover:text-blue-600 md:py-6`}
+                } + font-medium text-xl hover:text-blue-600 md:py-6`}
                 href="/blog"
               >
                 Blog
               </Link>
               <span className="w-full border-t"></span>
               <Link
-                className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500"
+                className="flex items-center gap-x-2 font-medium text-xl text-gray-500 hover:text-blue-600 md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500"
                 href={data ? "/profile" : "/signin"}
               >
                 <AiOutlineUser />
@@ -280,7 +280,7 @@ export const Header = () => {
                 )}
               </Link>
               {data && (
-                <div className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-gray-300 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500">
+                <div className="flex items-center gap-x-2 font-medium text-xl text-gray-500 hover:text-blue-600 md:border-gray-300 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500">
                   <BiLockAlt />
                   <button
                     className="font-medium text-gray-500 hover:text-gray-400 md:py-6 dark:text-gray-400 dark:hover:text-gray-500"
