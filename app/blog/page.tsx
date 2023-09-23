@@ -132,12 +132,12 @@ export default function Work() {
                 className="group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] cursor-pointer"
                 // href="#"
               >
-                <div className="aspect-w-16 aspect-h-11">
+                <div className="aspect-w-16 h-[254px] aspect-h-11 overflow-hidden">
                   <Image
                     unoptimized
                     width={100}
                     height={100}
-                    className="w-full object-cover rounded-xl"
+                    className="w-full h-full object-cover rounded-xl"
                     src={
                       data.coverImage
                         ? data.coverImage

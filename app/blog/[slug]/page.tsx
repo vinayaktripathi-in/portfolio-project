@@ -44,7 +44,10 @@ export default function BlogDetail() {
   const email = data?.email ?? "email";
   const coverImage = data?.coverImage ?? "coverImage";
   const createdAt = data?.createdAt ?? "createdAt";
-  const likes = likesData?.likes ?? "0";
+  const likes = (data?.likes ?? []) as string[];
+
+  const numberOfLikes = likes.length;
+  // Use numberOfLikes here
 
   console.log(data, "Object");
 
@@ -211,7 +214,11 @@ export default function BlogDetail() {
                 width={0}
                 height={0}
                 className="w-full object-cover rounded-xl"
-                src="https://images.unsplash.com/photo-1670272505340-d906d8d77d03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                src={
+                  data?.coverImage
+                    ? data.coverImage
+                    : "https://images.unsplash.com/photo-1670272505340-d906d8d77d03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                }
                 alt="Image Description"
               />
               <figcaption className="mt-3 text-sm text-center text-gray-500">
@@ -355,7 +362,7 @@ export default function BlogDetail() {
                 ) : (
                   <AiOutlineHeart className={`w-4 h-4 hover:fill-red-500`} />
                 )}
-                {likes ? likes : 0}
+                {numberOfLikes ? numberOfLikes : 0}
                 <span
                   className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded-md shadow-sm dark:bg-black"
                   role="tooltip"

@@ -5,6 +5,7 @@ import {
   likeBlogSuccess,
   likeBlogFailure,
 } from "./likeBlogSlice";
+import { getBlogSuccess } from "../getBlogSlice";
 
 interface likeBlogData {
   id: string;
@@ -22,6 +23,7 @@ export const likeBlogUser = createAsyncThunk(
       const response = await likeBlogApi(token, id);
       console.log(response);
       dispatch(likeBlogSuccess(response)); // Pass the response as payload
+      dispatch(getBlogSuccess(response)); // Pass the response as payload
       return response;
     } catch (error: any) {
       dispatch(likeBlogFailure(error)); // Pass the error object itself
