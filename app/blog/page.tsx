@@ -1,6 +1,6 @@
 "use client";
 import { ReduxState, getBlogUser } from "@/lib/redux";
-import { getBlogsUser } from "@/lib/redux/slices/getBlogsSlice";
+import { getBlogsUser } from "@/lib/redux/slices/blog/getBlogsSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -138,7 +138,11 @@ export default function Work() {
                     width={100}
                     height={100}
                     className="w-full object-cover rounded-xl"
-                    src="https://images.unsplash.com/photo-1633114128174-2f8aa49759b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                    src={
+                      data.coverImage
+                        ? data.coverImage
+                        : "https://images.unsplash.com/photo-1633114128174-2f8aa49759b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                    }
                     alt="Image Description"
                   />
                 </div>

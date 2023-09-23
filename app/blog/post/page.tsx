@@ -6,8 +6,8 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import {
   postBlogUser,
-  resetSuccessState,
-} from "@/lib/redux/slices/postBlogSlice";
+  postBlogResetState,
+} from "@/lib/redux/slices/blog/postBlogSlice";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -91,7 +91,7 @@ export default function BlogPost() {
   useEffect(() => {
     if (isSuccess) {
       toast.success(`Blog posted successfully!!`);
-      dispatch(dispatch(resetSuccessState()));
+      dispatch(dispatch(postBlogResetState()));
       router.push("/blog");
     } else if (error) {
       toast.error("An error occurred");

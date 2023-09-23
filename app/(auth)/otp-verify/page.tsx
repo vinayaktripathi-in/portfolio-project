@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import OtpInput from "react-otp-input";
 import { useDispatch, useSelector } from "react-redux";
-import { verifyUser } from "@/lib/redux/slices/verifySlice";
+import { verifyUser } from "@/lib/redux/slices/auth/verifySlice";
 import { toast } from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";

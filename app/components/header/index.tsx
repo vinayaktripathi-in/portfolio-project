@@ -5,7 +5,7 @@ import { ReduxState } from "@/lib/redux";
 import { ThemeSwitch } from "@components/theme";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData, clearUser } from "@/lib/redux/slices/userDataSlice";
-import { removeToken } from "@/lib/redux/slices/signInSlice";
+import { removeToken } from "@/lib/redux/slices/auth/signInSlice";
 import { AiOutlineLoading3Quarters, AiOutlineUser } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";

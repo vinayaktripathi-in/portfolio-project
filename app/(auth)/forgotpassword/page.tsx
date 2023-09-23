@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { forgotPassword } from "@/lib/redux/slices/forgotPasswordSlice";
+import { forgotPassword } from "@/lib/redux/slices/auth/forgotPasswordSlice";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";

@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { signInUser } from "@/lib/redux/slices/signInSlice";
+import { signInUser } from "@/lib/redux/slices/auth/signInSlice";
 import { fetchUserData } from "@/lib/redux";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -30,7 +30,7 @@ export default function SignIn() {
   const { isLoading, isSuccess, error, token } = signInState;
   const { data } = userDataState;
   const router = useRouter();
-  
+
   const {
     register,
     handleSubmit,
