@@ -33,8 +33,8 @@ const config: Config = {
       // Define loading related classes
       animation: {
         progressbar: "progressbar 10s linear infinite",
-        easein: "easein 1s ease-in",
-        easeout: "easeout 1s ease-in",
+        easein: "easein 100ms ease-in",
+        easeout: "easeout 500ms ease-in",
       },
     },
   },
