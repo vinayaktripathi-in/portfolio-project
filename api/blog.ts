@@ -73,8 +73,9 @@ export async function getBlogApi(token: string, blogId: string | null) {
 }
 export async function likeBlogApi(token: string, blogId: string | null) {
   try {
-    const response: AxiosResponse = await axios.get(
+    const response: AxiosResponse = await axios.post(
       `${BASE_URL}/like-blog/${blogId}/like`,
+      {},
       {
         headers: {
           "x-auth-token": token, // Include the JWT token in the request header

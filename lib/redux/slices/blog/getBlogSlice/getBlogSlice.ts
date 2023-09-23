@@ -8,6 +8,7 @@ interface getBlogState {
     email: string;
     coverImage: string | null;
     createdAt: number;
+    likes: number;
   } | null;
   isLoading: boolean;
   isSuccess: boolean;

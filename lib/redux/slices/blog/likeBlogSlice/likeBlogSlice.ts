@@ -1,15 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface likeBlogState {
-  isLoading: boolean;
-  isSuccess: boolean;
+  loading: boolean;
+  success: boolean;
   error: string | null;
+  likesData:{
+    message: string | null;
+    likes: number | null;
+  }
 }
 
 const initialState: likeBlogState = {
-  isLoading: false,
+  loading: false,
   error: null,
-  isSuccess: false,
+  success: false,
+  likesData:{
+    message: null,
+    likes: null
+  }
 };
 
 export const likeBlogSlice = createSlice({
@@ -17,20 +25,21 @@ export const likeBlogSlice = createSlice({
   initialState,
   reducers: {
     likeBlogRequest: (state) => {
-      state.isLoading = true;
+      state.loading = true;
       state.error = null;
-      state.isSuccess = false;
+      state.success = false;
     },
-    likeBlogSuccess: (state) => {
-      state.isLoading = false;
-      state.isSuccess = true;
+    likeBlogSuccess: (state, action) => {
+      state.loading = false;
+      state.success = true;
+      state.likesData = action.payload;
     },
     likeBlogFailure: (state, action) => {
-      state.isLoading = false;
+      state.loading = false;
       state.error = action.payload;
     },
     likeBlogResetState: (state) => {
-      state.isSuccess = false;
+      state.success = false;
     },
   },
 });

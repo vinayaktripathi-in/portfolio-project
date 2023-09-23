@@ -4,7 +4,6 @@ import {
   likeBlogRequest,
   likeBlogSuccess,
   likeBlogFailure,
-  // likeBlogResetState
 } from "./likeBlogSlice";
 
 interface likeBlogData {

@@ -1,10 +1,11 @@
 "use client";
-import { ReduxState, getBlogUser } from "@/lib/redux";
+import { ReduxState, getBlogUser, likeBlogUser } from "@/lib/redux";
 import { useParams } from "next/navigation"; // Import useRouter to access query parameters
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 interface blogData {
   title?: string;
@@ -22,9 +23,9 @@ interface blogData {
 export default function BlogDetail() {
   const searchParams = useParams(); // Use useRouter to access query parameters
   const dispatch = useDispatch<any>();
+  const blogId = searchParams?.slug;
 
   useEffect(() => {
-    const blogId = searchParams?.slug;
     console.log(blogId, "BlogID");
     if (blogId) {
       // Check if blogId is not null before making the API call
@@ -33,7 +34,9 @@ export default function BlogDetail() {
   }, [dispatch, searchParams?.slug]);
 
   const getBlogState = useSelector((state: ReduxState) => state.getBlog);
+  const likeBlogState = useSelector((state: ReduxState) => state.likeBlog);
   const { isLoading, isSuccess, error, data } = getBlogState;
+  const { loading, success, likesData } = likeBlogState;
 
   const title = data?.title ?? "title";
   const content = data?.content ?? "content";
@@ -41,8 +44,14 @@ export default function BlogDetail() {
   const email = data?.email ?? "email";
   const coverImage = data?.coverImage ?? "coverImage";
   const createdAt = data?.createdAt ?? "createdAt";
+  const likes = likesData?.likes ?? "0";
 
   console.log(data, "Object");
+
+  function like() {
+    dispatch(likeBlogUser(blogId as string));
+  }
+
   return (
     <>
       {/* Blog Article */}
@@ -337,20 +346,16 @@ export default function BlogDetail() {
             {/* Button */}
             <div className="hs-tooltip inline-block">
               <button
+                onClick={like}
                 type="button"
                 className="hs-tooltip-toggle flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
               >
-                <svg
-                  className="w-4 h-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={16}
-                  height={16}
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                </svg>
-                875
+                {Number(likes) >= 1 ? (
+                  <AiFillHeart className={`w-4 h-4 fill-red-500`} />
+                ) : (
+                  <AiOutlineHeart className={`w-4 h-4 hover:fill-red-500`} />
+                )}
+                {likes ? likes : 0}
                 <span
                   className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded-md shadow-sm dark:bg-black"
                   role="tooltip"
