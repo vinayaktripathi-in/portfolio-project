@@ -5,6 +5,7 @@ import { RxCross2 } from "react-icons/rx";
 
 interface Props {
   button?: ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children?: ReactNode;
   className?: string;
   buttonClassName?: string;
@@ -12,6 +13,7 @@ interface Props {
 
 export const Modal = ({
   button,
+  onClick,
   children,
   className,
   buttonClassName,
@@ -25,9 +27,14 @@ export const Modal = ({
   };
   useOutsideClick(modalRef, closeModal);
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setModal(!modal)
+    onClick && onClick(e);
+  };
+
   return (
     <>
-      <button className={buttonClassName} onClick={() => setModal(!modal)}>
+      <button className={buttonClassName} onClick={handleClick}>
         {button}
       </button>
       {modal && (

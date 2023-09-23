@@ -1,13 +1,16 @@
 "use client";
-import { ReduxState, getBlogUser, likeBlogUser } from "@/lib/redux";
+import {
+  ReduxState,
+  getBlogUser,
+  likeBlogUser,
+  likedByBlogUser,
+} from "@/lib/redux";
 import { useParams } from "next/navigation"; // Import useRouter to access query parameters
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Modal } from "@/app/components/modal";
-import { RxCross2 } from "react-icons/rx";
 
 interface blogData {
   title?: string;
@@ -37,8 +40,12 @@ export default function BlogDetail() {
 
   const getBlogState = useSelector((state: ReduxState) => state.getBlog);
   const likeBlogState = useSelector((state: ReduxState) => state.likeBlog);
+  const likedByBlogState = useSelector(
+    (state: ReduxState) => state.likedByBlog
+  );
   const { isLoading, isSuccess, error, data } = getBlogState;
-  const { loading, success, likesData } = likeBlogState;
+  const { likesData } = likeBlogState;
+  const { loading, success, likedby } = likedByBlogState;
 
   const title = data?.title ?? "title";
   const content = data?.content ?? "content";
@@ -56,7 +63,10 @@ export default function BlogDetail() {
   function like() {
     dispatch(likeBlogUser(blogId as string));
   }
-  console.log(numberOfLikes, "likes");
+  const likedBy = () => {
+    dispatch(likedByBlogUser(blogId as string));
+  };
+  console.log(likedby, "likes");
 
   return (
     <>
@@ -374,21 +384,37 @@ export default function BlogDetail() {
                   </span>
                 </button>
                 <Modal
+                  onClick={likedBy}
                   button={numberOfLikes ? numberOfLikes : 0}
                   buttonClassName="flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
                 >
                   <>
                     <div className="relative flex flex-col">
-                      {/* <div className="absolute top-2 right-2">
-                        <button
-                          type="button"
-                          className="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
-                          data-hs-overlay="#hs-notifications"
-                        >
-                          <span className="sr-only">Close</span>
-                          <RxCross2 className="text-xl text-gray-500" />
-                        </button>
-                      </div> */}
+                      <div>
+                        {likedby?.map((user, index) => (
+                          <>
+                            <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500" >
+                              <div key={index} className="flex-shrink-0 group block">
+                                <div className="flex items-center">
+                                  <img
+                                    className="inline-block flex-shrink-0 h-[3.875rem] w-[3.875rem] rounded-full"
+                                    src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+                                    alt="Image Description"
+                                  />
+                                  <div className="ml-3">
+                                    <h3 className="font-semibold text-gray-800 dark:text-white">
+                                      {user.firstName} {user.lastName}
+                                    </h3>
+                                    <p className="text-sm font-medium text-gray-400">
+                                      {user.email}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        ))}
+                      </div>
                     </div>
                   </>
                 </Modal>

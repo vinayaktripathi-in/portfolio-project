@@ -87,3 +87,18 @@ export async function likeBlogApi(token: string, blogId: string | null) {
     throw error;
   }
 }
+export async function likedByBlogApi(token: string, blogId: string | null) {
+  try {
+    const response: AxiosResponse = await axios.get(
+      `${BASE_URL}/liked-by-blog/${blogId}`,
+      {
+        headers: {
+          "x-auth-token": token, // Include the JWT token in the request header
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

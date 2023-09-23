@@ -8,3 +8,4 @@ export * from "./blog/postBlogSlice";
 export * from "./blog/getBlogsSlice";
 export * from "./blog/getBlogSlice";
 export * from "./blog/likeBlogSlice";
+export * from "./blog/likedByBlogSlice";
