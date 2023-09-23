@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { Modal } from "@/app/components/modal";
+import { RxCross2 } from "react-icons/rx";
 
 interface blogData {
   title?: string;
@@ -54,6 +56,7 @@ export default function BlogDetail() {
   function like() {
     dispatch(likeBlogUser(blogId as string));
   }
+  console.log(numberOfLikes, "likes");
 
   return (
     <>
@@ -352,24 +355,45 @@ export default function BlogDetail() {
           <div className="flex items-center gap-x-1.5">
             {/* Button */}
             <div className="hs-tooltip inline-block">
-              <button
-                onClick={like}
-                type="button"
-                className="hs-tooltip-toggle flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
-              >
-                {Number(likes) >= 1 ? (
-                  <AiFillHeart className={`w-4 h-4 fill-red-500`} />
-                ) : (
-                  <AiOutlineHeart className={`w-4 h-4 hover:fill-red-500`} />
-                )}
-                {numberOfLikes ? numberOfLikes : 0}
-                <span
-                  className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded-md shadow-sm dark:bg-black"
-                  role="tooltip"
+              <div className="flex items-center gap-x-2">
+                <button
+                  onClick={like}
+                  type="button"
+                  className="hs-tooltip-toggle flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
                 >
-                  Like
-                </span>
-              </button>
+                  {numberOfLikes >= 1 ? (
+                    <AiFillHeart className={`w-4 h-4 fill-red-500`} />
+                  ) : (
+                    <AiOutlineHeart className={`w-4 h-4 hover:fill-red-500`} />
+                  )}
+                  <span
+                    className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded-md shadow-sm dark:bg-black"
+                    role="tooltip"
+                  >
+                    Like
+                  </span>
+                </button>
+                <Modal
+                  button={numberOfLikes ? numberOfLikes : 0}
+                  buttonClassName="flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+                  className="h-[50vh]"
+                >
+                  <>
+                    <div className="relative flex flex-col">
+                      {/* <div className="absolute top-2 right-2">
+                        <button
+                          type="button"
+                          className="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800"
+                          data-hs-overlay="#hs-notifications"
+                        >
+                          <span className="sr-only">Close</span>
+                          <RxCross2 className="text-xl text-gray-500" />
+                        </button>
+                      </div> */}
+                    </div>
+                  </>
+                </Modal>
+              </div>
             </div>
             {/* Button */}
             <div className="block h-3 border-r border-gray-300 mx-3 dark:border-gray-600" />
