@@ -16,15 +16,25 @@ const config: Config = {
       },
       // Define the animation keyframes
       keyframes: {
-        progressAnimation: {
+        progressbar: {
           "0%": { width: "0%" },
           "100%": { width: "100%" },
+        },
+        easein: {
+          "0%": { transform: "translateY(100%) translateX(-50%)" },
+          "100%": { transform: "translateY(-50%) translateX(-50%)" },
+        },
+        easeout: {
+          "0%": { transform: "translateY(-50%) translateX(-50%)" },
+          "100%": { transform: "translateY(100%) translateX(-50%)" },
         },
       },
 
       // Define loading related classes
       animation: {
-        loading: "progressAnimation 10s linear infinite",
+        progressbar: "progressbar 10s linear infinite",
+        easein: "easein 1s ease-in",
+        easeout: "easeout 1s ease-in",
       },
     },
   },

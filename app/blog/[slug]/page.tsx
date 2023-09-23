@@ -376,7 +376,6 @@ export default function BlogDetail() {
                 <Modal
                   button={numberOfLikes ? numberOfLikes : 0}
                   buttonClassName="flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
-                  className="h-[50vh]"
                 >
                   <>
                     <div className="relative flex flex-col">

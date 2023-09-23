@@ -33,9 +33,7 @@ export const Modal = ({
       {modal && (
         <div
           ref={modalRef}
-          className={`${className} ${
-            modal ? "opacity-100 duration-500" : "opacity-0"
-          } min-h-[50vh] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] w-full sm:w-11/12 md:w-3/4 lg:w-1/2 bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 ease-out transition-all sm:mx-auto`}
+          className={`${className} ${modal ? "animate-easein" : "animate-easein"} min-h-[50vh] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] w-11/12 sm:w-11/12 md:w-3/4 lg:w-1/2 bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 sm:mx-auto`}
         >
           <div className="relative">
             <div className="absolute top-2 right-2">
