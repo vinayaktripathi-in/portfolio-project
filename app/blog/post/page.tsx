@@ -53,11 +53,13 @@ export default function BlogPost() {
   // const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      // Update the selectedImage state when a file is selected
-      setSelectedImage(e.target.files[0]);
-      console.log(selectedImage);
-      // setPreviewImage(URL.createObjectURL(e.target.files[0]));
+    if (e.target?.files && e.target.files[0]) {
+      const file = e.target.files[0];
+
+      if (file) {
+        setSelectedImage(file);
+        console.log(file); // Log the selected file
+      }
     }
   };
 
@@ -66,29 +68,25 @@ export default function BlogPost() {
       event.preventDefault();
     }
 
-    const token = localStorage.getItem("token");
-    if (token) {
-      const postBlogData = {
-        userData: {
-          title: data.title,
-          content: data.content,
-          category: data.category,
-          coverImage: selectedImage || null,
-        },
-        token: token,
-      };
-      const formData = new FormData();
-      if (selectedImage) {
-        formData.append("coverImage", selectedImage);
-      }
-      formData.append("title", postBlogData.userData.title);
-      formData.append("content", postBlogData.userData.content);
-      formData.append("category", postBlogData.userData.category);
+    const postBlogData = {
+      title: data.title,
+      content: data.content,
+      category: data.category,
+      coverImage: selectedImage || null,
+    };
 
-      dispatch(postBlogUser({ userData: postBlogData.userData, token }));
-      // dispatch(postBlogUser(postBlogData));
+    const formData = new FormData();
+    formData.append("title", postBlogData.title);
+    formData.append("content", postBlogData.content);
+    formData.append("category", postBlogData.category);
+    if (selectedImage) {
+      formData.append("coverImage", selectedImage);
     }
+    console.log("Form Data", FormData);
+    dispatch(postBlogUser({ userData: formData }));
+    // dispatch(postBlogUser(postBlogData));
   };
+  console.log(selectedImage);
 
   useEffect(() => {
     if (isSuccess) {
@@ -188,7 +186,7 @@ export default function BlogPost() {
                     className="py-2 px-3 pr-11 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                     placeholder="Enter blog title"
                   />
-                  {errors.title && (
+                  {errors?.title && (
                     <p className="text-xs text-red-600 mt-2">
                       {errors.title.message}
                     </p>
@@ -261,7 +259,7 @@ export default function BlogPost() {
                       Maximum file size is 2 MB
                     </span>
                   </label>
-                  {errors.image && (
+                  {errors?.image && (
                     <p className="text-xs text-red-600 mt-2">
                       {errors.image.message}
                     </p>
@@ -280,16 +278,14 @@ export default function BlogPost() {
                     id="af-submit-app-category"
                     className="py-2 px-3 pr-9 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                   >
-                    <option value={""} selected>
-                      Select a category
-                    </option>
+                    <option defaultValue={"true"}>Select a category</option>
                     <option value={"ecommerce"}>Ecommerce</option>
                     <option value={"finance"}>Finance</option>
                     <option value={"marketplace"}>Marketplace</option>
                     <option value={"social"}>Social</option>
                     <option value={"others"}>Others</option>
                   </select>
-                  {errors.category && (
+                  {errors?.category && (
                     <p className="text-xs text-red-600 mt-2">
                       {errors.category.message}
                     </p>
@@ -310,7 +306,7 @@ export default function BlogPost() {
                     placeholder="A detailed summary will better explain your products to the audiences. Our users will see this in your dedicated product page."
                     defaultValue={""}
                   />
-                  {errors.content && (
+                  {errors?.content && (
                     <p className="text-xs text-red-600 mt-2">
                       {errors.content.message}
                     </p>

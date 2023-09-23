@@ -1,21 +1,39 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { postBlogApi } from "@/api";
-import { postBlogRequest, postBlogSuccess, postBlogFailure } from "./postBlogSlice";
+import {
+  postBlogRequest,
+  postBlogSuccess,
+  postBlogFailure,
+} from "./postBlogSlice";
 
 interface postBlogData {
+  // title: string;
+  // content: string;
+  // category: string;
+  // coverImage: File | null;
+}
+
+type FormData = {
   title: string;
   content: string;
   category: string;
-  coverImage: File | null;
-}
+  coverImage?: File;
+};
 
-// Add a token parameter to postBlogUser
+// Define an async thunk using createAsyncThunk
 export const postBlogUser = createAsyncThunk(
-  "postBlog",
-  async ({ userData, token }: { userData: postBlogData; token: string }, thunkAPI) => {
+  "postBlog", 
+  async (
+    { userData }: { userData: postBlogData },
+    thunkAPI
+  ) => {
+    const token = localStorage.getItem("token");
+    if (token === null) {
+      throw new Error("Token not found in local storage");
+    }
     try {
       thunkAPI.dispatch(postBlogRequest());
-      const response = await postBlogApi(userData, token); // Pass the token to postBlogApi
+      const response = await postBlogApi(userData, token);
       thunkAPI.dispatch(postBlogSuccess());
       return response.data;
     } catch (error) {
