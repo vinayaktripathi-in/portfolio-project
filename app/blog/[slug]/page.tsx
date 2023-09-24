@@ -36,7 +36,7 @@ export default function BlogDetail() {
       // Check if blogId is not null before making the API call
       dispatch(getBlogUser(blogId as string));
     }
-  }, [dispatch, searchParams?.slug]);
+  }, [dispatch, searchParams?.slug, blogId]);
 
   const userDataState = useSelector((state: ReduxState) => state.userData);
   const getBlogState = useSelector((state: ReduxState) => state.getBlog);
@@ -45,9 +45,9 @@ export default function BlogDetail() {
     (state: ReduxState) => state.likedByBlog
   );
   const { userData } = userDataState;
-  const { isLoading, isSuccess, error, data } = getBlogState;
+  const { data } = getBlogState;
   const { likesData } = likeBlogState;
-  const { loading, success, likedby } = likedByBlogState;
+  const { likedby } = likedByBlogState;
 
   const title = data?.title ?? "title";
   const content = data?.content ?? "content";
@@ -401,7 +401,9 @@ export default function BlogDetail() {
                                 className="flex-shrink-0 group block"
                               >
                                 <div className="flex items-center">
-                                  <img
+                                  <Image
+                                    width={0}
+                                    height={0}
                                     className="inline-block flex-shrink-0 h-[3.875rem] w-[3.875rem] rounded-full"
                                     src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
                                     alt="Image Description"

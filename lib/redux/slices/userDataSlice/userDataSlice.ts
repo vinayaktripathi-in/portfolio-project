@@ -7,6 +7,7 @@ interface UserdataState {
     lastName: string;
     email: string;
     phone: string;
+    profilePic: string;
     token: string;
   } | null;
   loading: boolean;
