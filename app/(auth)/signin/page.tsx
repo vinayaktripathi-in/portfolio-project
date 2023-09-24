@@ -28,7 +28,7 @@ export default function SignIn() {
   const signInState = useSelector((state: ReduxState) => state.signIn);
   const userDataState = useSelector((state: ReduxState) => state.userData);
   const { isLoading, isSuccess, error, token } = signInState;
-  const { data } = userDataState;
+  const { userData } = userDataState;
   const router = useRouter();
 
   const {

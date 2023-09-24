@@ -25,7 +25,7 @@ export const Header = () => {
     dispatch(fetchUserData());
   }, [dispatch]);
   const userDataState = useSelector((state: ReduxState) => state.userData);
-  const { data, loading, error } = userDataState;
+  const { userData, loading, error } = userDataState;
 
   function handleSignOut() {
     localStorage.removeItem("token");
@@ -188,14 +188,14 @@ export const Header = () => {
                   </div>
                   <Link
                     className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500"
-                    href={data ? "/profile" : "/signin"}
+                    href={userData ? "/profile" : "/signin"}
                   >
                     <AiOutlineUser />
                     {loading ? (
                       <AiOutlineLoading3Quarters className="animate-spin" />
-                    ) : data ? (
-                      `${data?.firstName ?? ""} ${
-                        data?.lastName ?? ""
+                    ) : userData ? (
+                      `${userData?.firstName ?? ""} ${
+                        userData?.lastName ?? ""
                       }`.trim() || "Sign in"
                     ) : (
                       "Sign in"
@@ -273,18 +273,18 @@ export const Header = () => {
               <span className="w-full border-t"></span>
               <Link
                 className="flex items-center gap-x-2 font-medium text-xl text-gray-500 hover:text-blue-600 md:border-l md:border-gray-300 md:my-6 md:pl-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500"
-                href={data ? "/profile" : "/signin"}
+                href={userData ? "/profile" : "/signin"}
               >
                 <AiOutlineUser />
                 {loading ? (
                   <AiOutlineLoading3Quarters className="animate-spin" />
-                ) : data && data.firstName && data.lastName ? (
-                  `${data.firstName} ${data.lastName}`
+                ) : userData && userData.firstName && userData.lastName ? (
+                  `${userData.firstName} ${userData.lastName}`
                 ) : (
                   "Sign in"
                 )}
               </Link>
-              {data && (
+              {userData && (
                 <div className="flex items-center gap-x-2 font-medium text-xl text-gray-500 hover:text-blue-600 md:border-gray-300 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500">
                   <BiLockAlt />
                   <button

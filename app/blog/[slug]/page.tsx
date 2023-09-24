@@ -38,11 +38,13 @@ export default function BlogDetail() {
     }
   }, [dispatch, searchParams?.slug]);
 
+  const userDataState = useSelector((state: ReduxState) => state.userData);
   const getBlogState = useSelector((state: ReduxState) => state.getBlog);
   const likeBlogState = useSelector((state: ReduxState) => state.likeBlog);
   const likedByBlogState = useSelector(
     (state: ReduxState) => state.likedByBlog
   );
+  const { userData } = userDataState;
   const { isLoading, isSuccess, error, data } = getBlogState;
   const { likesData } = likeBlogState;
   const { loading, success, likedby } = likedByBlogState;
@@ -56,9 +58,9 @@ export default function BlogDetail() {
   const likes = (data?.likes ?? []) as string[];
 
   const numberOfLikes = likes.length;
-  // Use numberOfLikes here
+  const likeExists = likes.find((user) => user === userData?.userId);
 
-  console.log(data, "Object");
+  console.log(userData, "userData");
 
   function like() {
     dispatch(likeBlogUser(blogId as string));
@@ -371,7 +373,7 @@ export default function BlogDetail() {
                   type="button"
                   className="hs-tooltip-toggle flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
                 >
-                  {numberOfLikes >= 1 ? (
+                  {likeExists ? (
                     <AiFillHeart className={`w-4 h-4 fill-red-500`} />
                   ) : (
                     <AiOutlineHeart className={`w-4 h-4 hover:fill-red-500`} />

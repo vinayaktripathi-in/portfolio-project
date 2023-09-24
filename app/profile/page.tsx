@@ -7,7 +7,7 @@ type Props = {};
 
 export default function Profile({}: Props) {
   const userDataState = useSelector((state: ReduxState) => state.userData);
-  const { data } = userDataState;
+  const { userData } = userDataState;
 
   return (
     <>
@@ -15,7 +15,7 @@ export default function Profile({}: Props) {
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div className="mx-auto max-w-2xl mb-8 lg:mb-14 text-center">
           <h2 className="text-3xl lg:text-4xl text-gray-800 font-bold dark:text-gray-200">
-            Hey, {data?.firstName} {data?.lastName}
+            Hey, {userData?.firstName} {userData?.lastName}
           </h2>
           <p className="mt-3 text-gray-800 dark:text-gray-200">
             How you&apos;r feeling today?

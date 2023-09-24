@@ -59,7 +59,7 @@ export default function CreatePassword() {
   useEffect(() => {
     if (success) {
       router.push("/signin");
-      toast.success(`Change password successful ${userData.data?.firstName}!!`);
+      toast.success(`Change password successful ${userData.userData?.firstName}!!`);
     } else if (error) {
       toast.error("An error occurred");
     }

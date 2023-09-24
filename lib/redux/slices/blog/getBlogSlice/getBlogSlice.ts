@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface getBlogState {
   data: {
+    userId: string;
     title: string;
     content: string;
     author: string;

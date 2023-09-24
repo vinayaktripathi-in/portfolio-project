@@ -38,7 +38,7 @@ export default function BlogPost() {
   const postBlogState = useSelector((state: ReduxState) => state.postBlog);
   const userDataState = useSelector((state: ReduxState) => state.userData);
   const { isLoading, error, isSuccess } = postBlogState;
-  const { data } = userDataState;
+  const { userData } = userDataState;
   const router = useRouter();
 
   const {
