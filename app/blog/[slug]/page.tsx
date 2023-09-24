@@ -71,11 +71,11 @@ export default function BlogDetail() {
   return (
     <>
       {/* Blog Article */}
-      <div className="max-w-3xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto">
+      <div className="max-w-3xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto overfl">
         <div className="max-w-2xl">
           {/* Avatar Media */}
           <div className="flex justify-between items-center mb-6">
-            <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
+            <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3 group">
               <div className="flex-shrink-0">
                 <Image
                   unoptimized
@@ -97,7 +97,7 @@ export default function BlogDetail() {
                         </span>
                         {/* Dropdown Card */}
                         <div
-                          className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 max-w-xs cursor-default bg-gray-900 divide-y divide-gray-700 shadow-lg rounded-xl dark:bg-black"
+                          className="w-full hs-tooltip-content group-hover:opacity-100 group-hover:inline-block opacity-0 transition-opacity absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden z-10 max-w-xs cursor-default bg-gray-900 divide-y divide-gray-700 shadow-lg rounded-xl dark:bg-black"
                           role="tooltip"
                         >
                           {/* Body */}
@@ -115,7 +115,7 @@ export default function BlogDetail() {
                               </div>
                               <div className="grow">
                                 <p className="text-lg font-semibold text-gray-200">
-                                  Leyla Ludic
+                                  {data?.author ? data.author : "Leyla Ludic"}
                                 </p>
                               </div>
                             </div>
@@ -393,8 +393,11 @@ export default function BlogDetail() {
                       <div>
                         {likedby?.map((user, index) => (
                           <>
-                            <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500" >
-                              <div key={index} className="flex-shrink-0 group block">
+                            <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500">
+                              <div
+                                key={index}
+                                className="flex-shrink-0 group block"
+                              >
                                 <div className="flex items-center">
                                   <img
                                     className="inline-block flex-shrink-0 h-[3.875rem] w-[3.875rem] rounded-full"
