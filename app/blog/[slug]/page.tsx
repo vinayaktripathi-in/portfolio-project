@@ -60,15 +60,12 @@ export default function BlogDetail() {
   const numberOfLikes = likes.length;
   const likeExists = likes.find((user) => user === userData?.userId);
 
-  console.log(userData, "userData");
-
   function like() {
     dispatch(likeBlogUser(blogId as string));
   }
   const likedBy = () => {
     dispatch(likedByBlogUser(blogId as string));
   };
-  console.log(likedby, "likes");
 
   return (
     <>
@@ -402,6 +399,7 @@ export default function BlogDetail() {
                               >
                                 <div className="flex items-center">
                                   <Image
+                                   unoptimized
                                     width={0}
                                     height={0}
                                     className="inline-block flex-shrink-0 h-[3.875rem] w-[3.875rem] rounded-full"
