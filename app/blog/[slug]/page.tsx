@@ -399,7 +399,7 @@ export default function BlogDetail() {
                               >
                                 <div className="flex items-center">
                                   <Image
-                                   unoptimized
+                                    unoptimized
                                     width={0}
                                     height={0}
                                     className="inline-block flex-shrink-0 h-[3.875rem] w-[3.875rem] rounded-full"
@@ -429,28 +429,71 @@ export default function BlogDetail() {
             <div className="block h-3 border-r border-gray-300 mx-3 dark:border-gray-600" />
             {/* Button */}
             <div className="hs-tooltip inline-block">
-              <button
-                type="button"
-                className="hs-tooltip-toggle flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
-              >
-                <svg
-                  className="w-4 h-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={16}
-                  height={16}
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
+              <div className="flex items-center gap-x-2">
+                <button
+                  type="button"
+                  className="hs-tooltip-toggle flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
                 >
-                  <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
-                </svg>
-                16
-                <span
-                  className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded-md shadow-sm dark:bg-black"
-                  role="tooltip"
+                  <svg
+                    className="w-4 h-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={16}
+                    height={16}
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
+                  </svg>
+                  {/* 16 */}
+                  <span
+                    className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded-md shadow-sm dark:bg-black"
+                    role="tooltip"
+                  >
+                    Comment
+                  </span>
+                </button>
+                <Modal
+                  onClick={likedBy}
+                  button={numberOfLikes ? numberOfLikes : 0}
+                  buttonClassName="flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
                 >
-                  Comment
-                </span>
-              </button>
+                  <>
+                    <div className="relative flex flex-col">
+                      <div>
+                        {likedby?.map((user, index) => (
+                          <>
+                            <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500">
+                              <div
+                                key={index}
+                                className="flex-shrink-0 group block"
+                              >
+                                <div className="flex items-center">
+                                  <Image
+                                    unoptimized
+                                    width={0}
+                                    height={0}
+                                    className="inline-block flex-shrink-0 h-[3.875rem] w-[3.875rem] rounded-full"
+                                    src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+                                    alt="Image Description"
+                                  />
+                                  <div className="ml-3">
+                                    <h3 className="font-semibold text-gray-800 dark:text-white">
+                                      {user.firstName} {user.lastName}
+                                    </h3>
+                                    <p className="text-sm font-medium text-gray-400">
+                                      {user.email}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                </Modal>
+              </div>
             </div>
             {/* Button */}
             <div className="block h-3 border-r border-gray-300 mx-3 dark:border-gray-600" />

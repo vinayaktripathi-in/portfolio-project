@@ -1,30 +1,25 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { postBlogApi } from "@/api";
+import { commentBlogApi } from "@/api";
 import {
-  postBlogRequest,
-  postBlogSuccess,
-  postBlogFailure,
-} from "./postBlogSlice";
+  commentBlogRequest,
+  commentBlogSuccess,
+  commentBlogFailure,
+} from "./commentBlogSlice";
 
-interface postBlogData {
-  // title: string;
-  // content: string;
-  // category: string;
-  // coverImage: File | null;
+interface commentBlogData {
+  blogId: string;
+  text: string;
 }
 
 type FormData = {
-  title: string;
-  content: string;
-  category: string;
-  coverImage?: File;
+  text: string;
 };
 
 // Define an async thunk using createAsyncThunk
-export const postBlogUser = createAsyncThunk(
-  "postBlog", 
+export const commentBlogUser = createAsyncThunk(
+  "commentBlog",
   async (
-    { userData }: { userData: postBlogData },
+    { blogId, text }: { blogId: string; text: string },
     thunkAPI
   ) => {
     const token = localStorage.getItem("token");
@@ -32,13 +27,13 @@ export const postBlogUser = createAsyncThunk(
       throw new Error("Token not found in local storage");
     }
     try {
-      thunkAPI.dispatch(postBlogRequest());
-      const response = await postBlogApi(userData, token);
-      thunkAPI.dispatch(postBlogSuccess());
+      thunkAPI.dispatch(commentBlogRequest());
+      const response = await commentBlogApi(blogId, text, token);
+      thunkAPI.dispatch(commentBlogSuccess());
       return response.data;
     } catch (error) {
       const errorMessage = (error as Error).message || "An error occurred.";
-      thunkAPI.dispatch(postBlogFailure(errorMessage));
+      thunkAPI.dispatch(commentBlogFailure(errorMessage));
       throw error;
     }
   }

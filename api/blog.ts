@@ -14,6 +14,10 @@ interface postBlogUserData {
 // interface likeBlogUserData {
 //   id: string;
 // }
+interface commentBlogUserData{
+  // blogId: string;
+  // text: string;
+}
 
 export async function getUserDataApi(token: string) {
   try {
@@ -74,7 +78,7 @@ export async function getBlogApi(token: string, blogId: string | null) {
 export async function likeBlogApi(token: string, blogId: string | null) {
   try {
     const response: AxiosResponse = await axios.post(
-      `${BASE_URL}/like-blog/${blogId}/like`,
+      `${BASE_URL}/like-blog/${blogId}`,
       {},
       {
         headers: {
@@ -97,6 +101,18 @@ export async function likedByBlogApi(token: string, blogId: string | null) {
         },
       }
     );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+export async function commentBlogApi(token: string, blogId: string | null, userData: commentBlogUserData,) {
+  try {
+     const response = await axios.post(`${BASE_URL}/comment-blog/${blogId}`, userData, {
+      headers: {
+        "x-auth-token": token, // Include the JWT token in the request header
+      },
+    });
     return response.data;
   } catch (error) {
     throw error;
