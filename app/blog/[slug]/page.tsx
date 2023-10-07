@@ -7,12 +7,15 @@ import {
   commentBlogUser,
   commentedByBlogUser,
 } from "@/lib/redux";
+import * as yup from "yup";
 import { useParams } from "next/navigation"; // Import useRouter to access query parameters
 import Image from "next/image";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Modal } from "@/app/components/modal";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface blogData {
   title?: string;
@@ -26,11 +29,26 @@ interface blogData {
 // interface Props {
 //   blogId? : string;
 // }
+interface formData {
+  text: string;
+}
+
+const schema = yup.object().shape({
+  text: yup.string().required("comment is required"),
+});
 
 export default function BlogDetail() {
   const searchParams = useParams(); // Use useRouter to access query parameters
   const dispatch = useDispatch<any>();
   const blogId = searchParams?.slug;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   useEffect(() => {
     console.log(blogId, "BlogID");
@@ -46,10 +64,15 @@ export default function BlogDetail() {
   const likedByBlogState = useSelector(
     (state: ReduxState) => state.likedByBlog
   );
+  const commentedByBlogState = useSelector(
+    (state: ReduxState) => state.commentedByBlog
+  );
   const { userData } = userDataState;
   const { data } = getBlogState;
   const { likesData } = likeBlogState;
   const { likedby } = likedByBlogState;
+  const { commentedby } = commentedByBlogState;
+  console.log(commentedby, "commentedby");
 
   const title = data?.title ?? "title";
   const content = data?.content ?? "content";
@@ -72,7 +95,13 @@ export default function BlogDetail() {
   };
   const commentedBy = () => {
     dispatch(commentedByBlogUser(blogId as string));
-    console.log(commentedBy);
+  };
+
+  const handleCommentSubmit: SubmitHandler<formData> = async (data, event) => {
+    if (event) {
+      event.preventDefault();
+    }
+    dispatch(commentBlogUser(blogId as string, data));
   };
 
   return (
@@ -468,7 +497,7 @@ export default function BlogDetail() {
                   <>
                     <div className="relative flex flex-col">
                       <div>
-                        {/* {commentedBy?.map((user, index) => (
+                        {commentedby?.comments.map((user, index) => (
                           <>
                             <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500">
                               <div
@@ -486,18 +515,25 @@ export default function BlogDetail() {
                                   />
                                   <div className="ml-3">
                                     <h3 className="font-semibold text-gray-800 dark:text-white">
-                                      {user.firstName} {user.lastName}
+                                      {user.author}
                                     </h3>
                                     <p className="text-sm font-medium text-gray-400">
-                                      {user.email}
+                                      {user.text}
                                     </p>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </>
-                        ))} */}
+                        ))}
                       </div>
+                      <form
+                        onSubmit={handleSubmit(handleCommentSubmit)}
+                        className="fixed bottom-0"
+                      >
+                        <input type="text" />
+                        <button>Send</button>
+                      </form>
                     </div>
                   </>
                 </Modal>
