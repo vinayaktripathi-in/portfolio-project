@@ -4,6 +4,8 @@ import {
   getBlogUser,
   likeBlogUser,
   likedByBlogUser,
+  commentBlogUser,
+  commentedByBlogUser,
 } from "@/lib/redux";
 import { useParams } from "next/navigation"; // Import useRouter to access query parameters
 import Image from "next/image";
@@ -56,8 +58,10 @@ export default function BlogDetail() {
   const coverImage = data?.coverImage ?? "coverImage";
   const createdAt = data?.createdAt ?? "createdAt";
   const likes = (data?.likes ?? []) as string[];
+  const comments = (data?.comments ?? []) as string[];
 
   const numberOfLikes = likes.length;
+  const numberOfComments = comments.length;
   const likeExists = likes.find((user) => user === userData?.userId);
 
   function like() {
@@ -65,6 +69,10 @@ export default function BlogDetail() {
   }
   const likedBy = () => {
     dispatch(likedByBlogUser(blogId as string));
+  };
+  const commentedBy = () => {
+    dispatch(commentedByBlogUser(blogId as string));
+    console.log(commentedBy);
   };
 
   return (
@@ -453,14 +461,14 @@ export default function BlogDetail() {
                   </span>
                 </button>
                 <Modal
-                  onClick={likedBy}
-                  button={numberOfLikes ? numberOfLikes : 0}
+                  onClick={commentedBy}
+                  button={numberOfComments ? numberOfComments : 0}
                   buttonClassName="flex items-center gap-x-2 text-sm text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
                 >
                   <>
                     <div className="relative flex flex-col">
                       <div>
-                        {likedby?.map((user, index) => (
+                        {/* {commentedBy?.map((user, index) => (
                           <>
                             <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500">
                               <div
@@ -488,7 +496,7 @@ export default function BlogDetail() {
                               </div>
                             </div>
                           </>
-                        ))}
+                        ))} */}
                       </div>
                     </div>
                   </>

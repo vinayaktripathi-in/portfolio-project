@@ -9,3 +9,5 @@ export * from "./blog/getBlogsSlice";
 export * from "./blog/getBlogSlice";
 export * from "./blog/likeBlogSlice";
 export * from "./blog/likedByBlogSlice";
+export * from "./blog/commentBlogSlice";
+export * from "./blog/commentedByBlogSlice";

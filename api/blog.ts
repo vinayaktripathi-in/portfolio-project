@@ -118,3 +118,18 @@ export async function commentBlogApi(token: string, blogId: string | null, userD
     throw error;
   }
 }
+export async function commentedByBlogApi(token: string, blogId: string | null) {
+  try {
+    const response: AxiosResponse = await axios.get(
+      `${BASE_URL}/get-comments-blog/${blogId}`,
+      {
+        headers: {
+          "x-auth-token": token, // Include the JWT token in the request header
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

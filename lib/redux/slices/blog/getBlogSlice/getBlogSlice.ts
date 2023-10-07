@@ -10,6 +10,7 @@ interface getBlogState {
     coverImage: string | null;
     createdAt: number;
     likes: number;
+    comments: number;
   } | null;
   isLoading: boolean;
   isSuccess: boolean;

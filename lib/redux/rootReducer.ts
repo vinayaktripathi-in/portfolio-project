@@ -10,6 +10,8 @@ import { getBlogsSlice } from "./slices";
 import { getBlogSlice } from "./slices";
 import { likeBlogSlice } from "./slices";
 import { likedByBlogSlice } from "./slices";
+import { commentBlogSlice } from "./slices";
+import { commentedByBlogSlice } from "./slices";
 
 export const reducer = {
   signUp: signUpSlice.reducer,
@@ -23,4 +25,6 @@ export const reducer = {
   getBlog: getBlogSlice.reducer,
   likeBlog: likeBlogSlice.reducer,
   likedByBlog: likedByBlogSlice.reducer,
+  commentBlog: commentBlogSlice.reducer,
+  commentedByBlog: commentedByBlogSlice.reducer,
 };
