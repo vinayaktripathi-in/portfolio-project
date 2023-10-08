@@ -6,6 +6,7 @@ import {
   likedByBlogUser,
   commentBlogUser,
   commentedByBlogUser,
+  getBlogsUser,
 } from "@/lib/redux";
 import * as yup from "yup";
 import { useParams } from "next/navigation"; // Import useRouter to access query parameters
@@ -101,7 +102,13 @@ export default function BlogDetail() {
     if (event) {
       event.preventDefault();
     }
-    dispatch(commentBlogUser(blogId as string, data));
+    console.log(data.text, "tesfakldans");
+    dispatch(commentBlogUser({ blogId: blogId as string, text: data.text }));
+    if (blogId) {
+      // Check if blogId is not null before making the API call
+      dispatch(getBlogUser(blogId as string));
+    }
+    commentedBy();
   };
 
   return (
@@ -497,6 +504,7 @@ export default function BlogDetail() {
                   <>
                     <div className="relative flex flex-col">
                       <div>
+                        <h1 className="my-2 dark:text-white">Comments</h1>
                         {commentedby?.comments.map((user, index) => (
                           <>
                             <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500">
@@ -504,17 +512,17 @@ export default function BlogDetail() {
                                 key={index}
                                 className="flex-shrink-0 group block"
                               >
-                                <div className="flex items-center">
+                                <div className="flex items-start">
                                   <Image
                                     unoptimized
                                     width={0}
                                     height={0}
-                                    className="inline-block flex-shrink-0 h-[3.875rem] w-[3.875rem] rounded-full"
+                                    className="inline-block flex-shrink-0 h-[2rem] w-[2rem] rounded-full"
                                     src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
                                     alt="Image Description"
                                   />
                                   <div className="ml-3">
-                                    <h3 className="font-semibold text-gray-800 dark:text-white">
+                                    <h3 className="font-semibold text-xs text-gray-800 dark:text-white">
                                       {user.author}
                                     </h3>
                                     <p className="text-sm font-medium text-gray-400">
@@ -529,10 +537,13 @@ export default function BlogDetail() {
                       </div>
                       <form
                         onSubmit={handleSubmit(handleCommentSubmit)}
-                        className="fixed bottom-0"
+                        className="sticky bottom-0"
                       >
-                        <input type="text" />
-                        <button>Send</button>
+                        <input
+                          {...register("text", { required: true })}
+                          type="text"
+                        />
+                        <button type="submit">Send</button>
                       </form>
                     </div>
                   </>

@@ -18,17 +18,14 @@ type FormData = {
 // Define an async thunk using createAsyncThunk
 export const commentBlogUser = createAsyncThunk(
   "commentBlog",
-  async (
-    { blogId, text }: { blogId: string; text: string },
-    thunkAPI
-  ) => {
+  async ({ blogId, text }: { blogId: string; text: string }, thunkAPI) => {
     const token = localStorage.getItem("token");
     if (token === null) {
       throw new Error("Token not found in local storage");
     }
     try {
       thunkAPI.dispatch(commentBlogRequest());
-      const response = await commentBlogApi(blogId, text, token);
+      const response = await commentBlogApi(token, blogId, text);
       thunkAPI.dispatch(commentBlogSuccess());
       return response.data;
     } catch (error) {
