@@ -27,10 +27,12 @@ interface blogData {
   createdAt?: number;
 }
 
-// interface Props {
-//   blogId? : string;
-// }
 interface formData {
+  text: string;
+}
+
+interface Comment {
+  author: string;
   text: string;
 }
 
@@ -505,7 +507,7 @@ export default function BlogDetail() {
                     <div className="relative flex flex-col">
                       <div>
                         <h1 className="my-2 dark:text-white">Comments</h1>
-                        {commentedby?.comments.map((user, index) => (
+                        {commentedby?.comments?.map((comment: Comment, index: number) => (
                           <>
                             <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500">
                               <div
@@ -523,10 +525,10 @@ export default function BlogDetail() {
                                   />
                                   <div className="ml-3">
                                     <h3 className="font-semibold text-xs text-gray-800 dark:text-white">
-                                      {user.author}
+                                      {comment.author}
                                     </h3>
                                     <p className="text-sm font-medium text-gray-400">
-                                      {user.text}
+                                      {comment.text}
                                     </p>
                                   </div>
                                 </div>
@@ -543,7 +545,9 @@ export default function BlogDetail() {
                           {...register("text", { required: true })}
                           type="text"
                         />
-                        <button type="submit">Send</button>
+                        <button className="dark:text-white" type="submit">
+                          Send
+                        </button>
                       </form>
                     </div>
                   </>

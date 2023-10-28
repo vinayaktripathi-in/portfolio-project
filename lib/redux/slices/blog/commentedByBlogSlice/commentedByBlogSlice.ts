@@ -1,7 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface Comment {
+  author: string;
+  text: string;
+}
+
 interface UserDataState {
-  commentedby: null | any[]; // Change the type based on the actual data type expected
+  commentedby: Comment[] | null | any; // Change the type based on the actual data type expected
   loading: boolean;
   success: boolean;
   error: string | null;
