@@ -28,6 +28,7 @@ export const commentBlogSlice = createSlice({
       state.success = false;
     },
     commentBlogSuccess: (state) => {
+      
       state.loading = false;
       state.success = true;
     },
