@@ -45,15 +45,10 @@ export async function postBlogApi(userData: postBlogUserData, token: string) {
   }
 }
 
-export async function getBlogsApi(token: string) {
+export async function getBlogsApi() {
   try {
     const response: AxiosResponse = await axios.get(
-      `${BASE_URL}/get-all-blogs`,
-      {
-        headers: {
-          "x-auth-token": token, // Include the JWT token in the request header
-        },
-      }
+      `${BASE_URL}/get-all-blogs`
     );
     return response.data;
   } catch (error) {
