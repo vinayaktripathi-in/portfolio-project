@@ -75,7 +75,7 @@ export default function BlogDetail() {
   const { likesData } = likeBlogState;
   const { likedby } = likedByBlogState;
   const { commentedby } = commentedByBlogState;
-  console.log(commentedby, "commentedby");
+  // console.log(commentedby, "commentedby");
 
   const title = data?.title ?? "title";
   const content = data?.content ?? "content";
@@ -110,8 +110,12 @@ export default function BlogDetail() {
       // Check if blogId is not null before making the API call
       dispatch(getBlogUser(blogId as string));
     }
-    commentedBy();
+    // commentedBy();
   };
+
+  // useEffect(() => {
+  //   commentedBy();
+  // }, [handleCommentSubmit]);
 
   return (
     <>
@@ -505,37 +509,39 @@ export default function BlogDetail() {
                 >
                   <>
                     <div className="relative flex flex-col">
-                      <div>
-                        <h1 className="my-2 dark:text-white">Comments</h1>
-                        {commentedby?.comments?.map((comment: Comment, index: number) => (
-                          <>
-                            <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500">
-                              <div
-                                key={index}
-                                className="flex-shrink-0 group block"
-                              >
-                                <div className="flex items-start">
-                                  <Image
-                                    unoptimized
-                                    width={0}
-                                    height={0}
-                                    className="inline-block flex-shrink-0 h-[2rem] w-[2rem] rounded-full"
-                                    src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-                                    alt="Image Description"
-                                  />
-                                  <div className="ml-3">
-                                    <h3 className="font-semibold text-xs text-gray-800 dark:text-white">
-                                      {comment.author}
-                                    </h3>
-                                    <p className="text-sm font-medium text-gray-400">
-                                      {comment.text}
-                                    </p>
+                      <h1 className="my-2 dark:text-white">Comments</h1>
+                      <div className="h-[90%] overflow-y-auto">
+                        {commentedby?.comments?.map(
+                          (comment: Comment, index: number) => (
+                            <>
+                              <div className="p-4 flex flex-col gap-2 divide-y divide-gray-500">
+                                <div
+                                  key={index}
+                                  className="flex-shrink-0 group block"
+                                >
+                                  <div className="flex items-start">
+                                    <Image
+                                      unoptimized
+                                      width={0}
+                                      height={0}
+                                      className="inline-block flex-shrink-0 h-[2rem] w-[2rem] rounded-full"
+                                      src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+                                      alt="Image Description"
+                                    />
+                                    <div className="ml-3">
+                                      <h3 className="font-semibold text-xs text-gray-800 dark:text-white">
+                                        {comment.author}
+                                      </h3>
+                                      <p className="text-sm font-medium text-gray-400">
+                                        {comment.text}
+                                      </p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </>
-                        ))}
+                            </>
+                          )
+                        )}
                       </div>
                       <form
                         onSubmit={handleSubmit(handleCommentSubmit)}
